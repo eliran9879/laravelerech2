@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+            <script type="text/javascript"> document.body.style.backgroundImage = "url('pic.jpg')"; </script>
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">

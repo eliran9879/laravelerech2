@@ -14,14 +14,15 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+   <!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+-->
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body >
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+   <!--    <nav class="navbar navbar-toggleable-md navbar-light bg-white shadow-sm">-->
+        <nav class="navbar navbar-expand-md navbar-light bg-yeelow shadow-sm"> 
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
