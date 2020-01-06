@@ -149,7 +149,7 @@ body {
 {
   margin:0
 }
-.bg-light{background-color:#484848!important}
+.bg-light{background-color:#778899!important} /* origin #484848 */
 @media (max-width:991px)
 {
   .site-footer [class^=col-]
@@ -234,7 +234,7 @@ body {
     color: white
 }
 .bg-black {
-    background-color:black
+    background-color:#2C3E50 /* origin black */
 }
 .navbar-light .navbar-brand, .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
     color: white;
@@ -259,7 +259,7 @@ body {
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm">
             <div class="container">
-                <img src="images/erech_logo.png" style="width:150px;height:50px">
+                <img src="images/erech_logo.png" style="width:100px;height:50px">
                 <a class="navbar-brand" href="{{ url('/home') }}">
                      Erech Company
                 </a>
