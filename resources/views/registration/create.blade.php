@@ -41,6 +41,12 @@
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
              </div>
           </div>
+          <div class="form-group row">
+            <label for="organization" class="col-md-4 col-form-label text-md-right">Organization name</label>
+             <div class="col-md-6">
+            <input type="text" class="form-control" id="organization" name="organization">
+        </div>
+          </div>
         <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
             <button style="cursor:pointer" type="submit" class="btn btn-primary">register</button>
