@@ -321,7 +321,7 @@ body {
       <div class="list-group list-group-flush">
         <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light text-color">Dashboard</a>
         
-        
+        <a href="{{ url('covenants_ibi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Ibi</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-color">Events (not avialabe)</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-color">Profile (not avialabe)</a>
         <a href="#" class="list-group-item list-group-item-action bg-light text-color">Status (not avialabe)</a>

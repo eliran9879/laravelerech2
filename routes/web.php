@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('covenants_ibi', 'CovenantsibiController')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register_admin', 'RegistrationController@create');
 Route::post('/home', 'RegistrationController@store');
