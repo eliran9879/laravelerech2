@@ -24,5 +24,6 @@ Route::post('/home', 'RegistrationController@store');
 //Route::resource('register_admin', 'RegistrationController');
 
 Route::get('export', 'MyController@export')->name('export');
-Route::get('importExportView', 'MyController@importExportView');
+// Route::get('importExportView', 'MyController@importExportView');
 Route::post('import', 'MyController@import')->name('import');
+Route::post('import1', 'MyController@import1')->name('import1');
