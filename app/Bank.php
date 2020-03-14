@@ -10,6 +10,14 @@ class Bank extends Model
     {
         return $this->hasMany('App\Covenantsibi');
     }
+    public function covenantshapoalim()
+    {
+        return $this->hasMany('App\Covenantshapoalim');
+    }
+    public function covenantsmizrahi()
+    {
+        return $this->hasMany('App\Covenantsmizrahi');
+    }
     protected $fillable = [
         'name', 
     ];
