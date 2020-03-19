@@ -49,7 +49,7 @@ class ClientdataController extends Controller
         $query->type_check = $request->type;
         
         $query->save();
-        return redirect('clientdatas/create');
+        return redirect('client_data/create');
     }
 
     /**
