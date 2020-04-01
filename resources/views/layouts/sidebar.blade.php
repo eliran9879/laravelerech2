@@ -326,6 +326,7 @@ body {
         <a href="{{ url('covenants_hapoalim') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Hapoalim</a>
         <a href="{{ url('covenants_mizrahi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Mizrahi</a>
         <a href="{{ url('client_data/create') }}" class="list-group-item list-group-item-action bg-light text-color">Query</a>
+        <a href="{{ url('customers') }}" class="list-group-item list-group-item-action bg-light text-color">Customers</a>
 
       </div>
     </div>

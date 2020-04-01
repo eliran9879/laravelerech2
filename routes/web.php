@@ -21,6 +21,7 @@ Route::resource('covenants_ibi', 'CovenantsibiController')->middleware('auth');
 Route::resource('covenants_hapoalim', 'CovenantshapoalimController')->middleware('auth');
 Route::resource('covenants_mizrahi', 'CovenantsmizrahiController')->middleware('auth');
 Route::resource('client_data', 'ClientdataController')->middleware('auth');
+Route::resource('customers', 'CustomerController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register_admin', 'RegistrationController@create');
