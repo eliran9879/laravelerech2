@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Customer;
-
+use DB;
 
 class CustomerController extends Controller
 {
@@ -97,5 +97,62 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function action(Request $request)
+    {
+     if($request->ajax())
+     {
+      $output = '';
+      $query = $request->get('query');
+      if($query != '')
+      {
+       $data = DB::table('customers')
+         ->where('client_name', 'like', '%'.$query.'%')
+         ->orWhere('adrress', 'like', '%'.$query.'%')
+         ->orWhere('occupation', 'like', '%'.$query.'%')
+         ->orWhere('id_account', 'like', '%'.$query.'%')
+         ->orWhere('payeee', 'like', '%'.$query.'%')
+         ->orderBy('id', 'desc')
+         ->get();
+         
+      }
+      else
+      {
+       $data = DB::table('customers')
+         ->orderBy('id', 'desc')
+         ->get();
+      }
+      $total_row = $data->count();
+      if($total_row > 0)
+      {
+       foreach($data as $row)
+       {
+        $output .= '
+        <tr>
+         <td>'.$row->client_name.'</td>
+         <td>'.$row->adrress.'</td>
+         <td>'.$row->occupation.'</td>
+         <td>'.$row->id_account.'</td>
+         <td>'.$row->payeee.'</td>
+        </tr>
+        ';
+       }
+      }
+      else
+      {
+       $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+      }
+      $data = array(
+       'table_data'  => $output,
+       'total_data'  => $total_row
+      );
+
+      echo json_encode($data);
+     }
     }
 }
