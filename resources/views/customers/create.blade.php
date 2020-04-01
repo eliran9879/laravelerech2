@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
-<h1>Create a new meet</h1>
+<h1>Create a new customer</h1>
 <form method = 'post' action = "{{action('CustomerController@store')}}" >
 {{csrf_field()}}      
 

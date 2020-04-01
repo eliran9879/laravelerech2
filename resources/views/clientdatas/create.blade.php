@@ -14,6 +14,11 @@
      <input type = "text" class = "form-control" name = "name" required>
      </div><br>
      <div class="col-md-2">
+    <label class="control-label" for = "payeee"> Payeee name </label></div>
+    <div class="col-md-10">
+     <input type = "text" class = "form-control" name = "payeee" required>
+     </div><br>
+     <div class="col-md-2">
     <label class="control-label" for = "title"> Id </label></div>
     <div class="col-md-10">
      <input type = "number" class = "form-control" name = "id" required>

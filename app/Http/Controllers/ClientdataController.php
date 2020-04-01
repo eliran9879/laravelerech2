@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Clientdata;
+use App\Customer;
 
 class ClientdataController extends Controller
 {
@@ -39,8 +40,12 @@ class ClientdataController extends Controller
     {
         $query = new ClientData();
         $id =Auth::id();
-
-        $query->client_id = 1;
+        $name_client =DB::table('customers')->where('payeee' , $request->payeee)->value('id_account');
+        $id_client = DB::table('customers')->where('id_account' , $request->id)->value('id_account');
+        if ($name_client == $id_client) {
+            $client_id = $id_client;
+        }
+        $query->client_id = $client_id;
         
         $query->amount = $request->amount;
         $query->deposit_date = $request->start_date;
