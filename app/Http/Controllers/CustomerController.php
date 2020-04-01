@@ -44,11 +44,11 @@ class CustomerController extends Controller
 
       
         
-        $customer->amount = $request->amount;
-        $customer->deposit_date = $request->start_date;
-        $customer->end_date = $request->end_date;
-        $customer->designation = $request->transaction;
-        $customer->type_check = $request->type;
+        $customer->client_name = $request->title;
+        $customer->id_account = $request->account;
+        $customer->payeee = $request->payeee;
+        $customer->occupation = $request->occupation;
+        $customer->adrress = $request->adrress;
         
         $customer->save();
         return redirect('customers');

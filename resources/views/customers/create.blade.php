@@ -23,9 +23,9 @@
      </div>
 
      <div class="col-md-2">
-    <label class="control-label" for="payeee">Id Account</label></div>
+    <label class="control-label" for="account">Id Account</label></div>
     <div class="col-md-10">
-     <input type = "number" class = "form-control" name = "payeee" required>
+     <input type = "number" class = "form-control" name = "account" required>
      </div>
 
      <div class="col-md-2">
