@@ -1,5 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
+
 <h1>Create a new customer</h1>
 <form method = 'post' action = "{{action('CustomerController@store')}}" >
 {{csrf_field()}}      
@@ -46,10 +47,3 @@
     <button name="submit" type="submit" value="Save"> Add</button></div>
     </form></div>
     @endsection
-   
-
-
-
-
-
-  

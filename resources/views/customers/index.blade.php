@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
-
 @section('content')
+
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -77,7 +77,7 @@ $(document).ready(function(){
 
 @endsection
 
-<!-- <footer class="ttt">Website of EISS</footer> -->
+<!-- <footer class="ttt">Website of EISS</footer> 
 
 <style>
 
@@ -98,6 +98,6 @@ $(document).ready(function(){
    text-align:center;
 }
 
-
 </style>
 
+-->

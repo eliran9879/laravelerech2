@@ -1,5 +1,3 @@
-
-
 @extends('layouts.sidebar')
 @section('content')
 <title>Import Export Excel to database</title>
@@ -80,16 +78,9 @@
 
 </div>
 
-
-
-
-
-
-    
-
  
  @endsection
-<!-- <footer class="ttt">Website of EISS</footer> -->
+<!-- <footer class="ttt">Website of EISS</footer> 
 
 <style>
 
@@ -113,3 +104,4 @@
 
 </style>
 
+-->

@@ -1,5 +1,3 @@
-
-
 @extends('layouts.sidebar')
 @section('content')
 
@@ -56,17 +54,9 @@
 
 </div>
 
-
-
-
-
-
-    
-
  
  @endsection
-<!-- <footer class="ttt">Website of EISS</footer> -->
-
+<!-- <footer class="ttt">Website of EISS</footer> 
 <style>
 
  
@@ -89,3 +79,4 @@
 
 </style>
 
+-->
