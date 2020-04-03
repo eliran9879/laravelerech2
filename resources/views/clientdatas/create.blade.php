@@ -1,11 +1,8 @@
-@extends('layouts.sidebar')
+@extends('layouts.sidebar2')
 @section('content')
 <h1>New Query</h1>
 <form method = 'post' action = "{{action('ClientdataController@store')}}" >
 {{csrf_field()}}      
-
-
-  
 
 <div class = "form-group">
 <div class="col-md-2">
@@ -68,10 +65,3 @@
     <button name="submit" type="submit" value="Save"> Search</button></div>
     </form></div>
     @endsection
-   
-
-
-
-
-
-  

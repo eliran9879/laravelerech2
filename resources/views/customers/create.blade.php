@@ -1,4 +1,4 @@
-@extends('layouts.sidebar')
+@extends('layouts.sidebar2')
 @section('content')
 
 <h1>Create a new customer</h1>
