@@ -25,9 +25,13 @@ class ClientdataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('clientdatas.create');
+        
+        
+        $clientnames = DB::table('customers')->select('client_name')->get(); 
+        $payeenames = Customer::where('client_name' , $request->ajax('client_name'))->get();
+        return view('clientdatas.create',['clientnames'=>$clientnames, 'payeenames'=> $payeenames]);
     }
 
     /**

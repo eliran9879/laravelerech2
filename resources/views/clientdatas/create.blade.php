@@ -5,16 +5,32 @@
 {{csrf_field()}}      
 
 <div class = "form-group">
+
 <div class="col-md-2">
-    <label class="control-label" for = "name"> Client's name </label></div>
+    <label class="control-label" for = "client_name"> Client's name </label></div>
     <div class="col-md-10">
-     <input type = "text" class = "form-control" name = "name" required>
-     </div><br>
+    <select class="form-control" name = "client_name">
+    @foreach($clientnames as $clientname)
+  
+  <option value="{{$clientname->client_name}}"> {{$clientname->client_name}}</option>
+
+  @endforeach  
+</select></div>
+     <!-- <input type = "text" class = "form-control" name = "name" required> -->
+     <!-- </div> -->
+     <br>
      <div class="col-md-2">
     <label class="control-label" for = "payeee"> Payeee name </label></div>
     <div class="col-md-10">
-     <input type = "text" class = "form-control" name = "payeee" required>
-     </div><br>
+    <select class="form-control" >
+    @foreach($payeenames as $payeename)
+  
+  <option value="{{$payeename->client_name}}"> {{$payeename->payeee}}</option>
+  @endforeach  
+</select></div>
+     <!-- <input type = "text" class = "form-control" name = "payeee" required> -->
+     <!-- </div> -->
+     <br>
      <div class="col-md-2">
     <label class="control-label" for = "title"> Id </label></div>
     <div class="col-md-10">
