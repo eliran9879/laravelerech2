@@ -36,13 +36,10 @@
      <div class="col-md-2">
     <label class="control-label" for = "title"> Id </label></div>
     <div class="col-md-10">
-    <select class="form-control" name = "client_name" name="id_account" id="id_account">
-    @foreach($idaccounts as $idaccounts)
-  
-  <option value="{{$idaccounts->id_account}}"> {{$idaccounts->id_account}}</option>
-
-  @endforeach  
+    <select class="form-control"  name="id_account" id="id_account">
+    <option value="">Select id</option>
 </select></div>
+
      <div class="col-md-2">
     <label class="control-label" for = "amount"> Amount </label></div>
     <div class="col-md-10">
@@ -114,6 +111,37 @@ $(document).ready(function(){
 
 });
 </script>
+<script>
+$(document).ready(function(){
 
+ $('.dynamic').change(function(){
+  if($(this).val() != '')
+  {
+   var select = $(this).attr("id");
+   var value = $(this).val();
+   var dependent = $(this).data('dependent');
+   var _token = $('input[name="_token"]').val();
+   $.ajax({
+    url:"{{ route('dynamicdependent.fetch') }}",
+    method:"POST",
+    data:{select:select, value:value, _token:_token, dependent:dependent},
+    success:function(result)
+    {
+     $('#'+dependent).html(result);
+    }
+
+   })
+  }
+ });
+
+
+
+ $('#payeee').change(function(){
+  $('#id_account').val('');
+ });
+ 
+
+
+</script>
     @endsection
    

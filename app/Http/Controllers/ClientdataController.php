@@ -52,14 +52,36 @@ class ClientdataController extends Controller
       
      }
     }
-   
+    function fetch1(Request $request)
+    {
+     $select = $request->get('select');
+     $value = $request->get('value');
+     $dependent = $request->get('dependent');
+     $data = DB::table('customers')
+       ->where($select, $value)
+       ->groupBy($dependent)
+       ->get();
+     $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+     foreach($data as $row)
+     {
+      $output .= '<option value="'.$row->$dependent.'">'.$row->$dependent.'</option>';
+     }
+     echo $output;
+    }
+
+
+
+
     public function create(Request $request)
     {
         
         
         $clientnames = DB::table('customers')->select('client_name')->get(); 
-       $query= $request->input('payeee');
-        $idaccounts = Customer::where('payeee' , $query)->pluck('id_account');
+    //    $query= $request->input('payeee');
+    $idaccounts = DB::table('customers')
+    
+    ->get();   
+    // $idaccounts = Customer::where('payeee' , $query)->pluck('id_account');
         return view('clientdatas.create',['clientnames'=>$clientnames,'idaccounts'=>$idaccounts]);
     }
 
