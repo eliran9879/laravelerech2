@@ -22,20 +22,27 @@
      <div class="col-md-2">
     <label class="control-label" for = "payeee"> Payeee name </label></div>
     <div class="col-md-10">
-    <select class="form-control" >
-    @foreach($payeenames as $payeename)
+    <input type = "text" class = "form-control" name = "payeee" id="payeee" required>
+    <div id="payeeeList">
+    </div>
+     </div><br>
+   
   
-  <option value="{{$payeename->client_name}}"> {{$payeename->payeee}}</option>
-  @endforeach  
-</select></div>
+  
+</div>
      <!-- <input type = "text" class = "form-control" name = "payeee" required> -->
      <!-- </div> -->
      <br>
      <div class="col-md-2">
     <label class="control-label" for = "title"> Id </label></div>
     <div class="col-md-10">
-     <input type = "number" class = "form-control" name = "id" required>
-     </div><br>
+    <select class="form-control" name = "client_name" name="id_account" id="id_account">
+    @foreach($idaccounts as $idaccounts)
+  
+  <option value="{{$idaccounts->id_account}}"> {{$idaccounts->id_account}}</option>
+
+  @endforeach  
+</select></div>
      <div class="col-md-2">
     <label class="control-label" for = "amount"> Amount </label></div>
     <div class="col-md-10">
@@ -80,4 +87,33 @@
     <div class="col-md-10">
     <button name="submit" type="submit" value="Save"> Search</button></div>
     </form></div>
+    <script>
+$(document).ready(function(){
+
+ $('#payeee').keyup(function(){ 
+        var query = $(this).val();
+        if(query != '')
+        {
+         var _token = $('input[name="_token"]').val();
+         $.ajax({
+          url:"{{ route('autocomplete.fetch') }}",
+          method:"POST",
+          data:{query:query, _token:_token},
+          success:function(data){
+           $('#payeeeList').fadeIn();  
+                    $('#payeeeList').html(data);
+          }
+         });
+        }
+    });
+
+    $(document).on('click', 'li', function(){  
+        $('#payeee').val($(this).text());  
+        $('#payeeeList').fadeOut();  
+    });  
+
+});
+</script>
+
     @endsection
+   

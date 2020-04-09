@@ -25,13 +25,42 @@ class ClientdataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function fetch(Request $request)
+    {
+     if($request->get('query'))
+     {
+      $query = $request->get('query');
+      error_log($query);
+      $data = DB::table('customers')
+        ->where('payeee', 'LIKE', "%{$query}%")
+        ->get();
+        $output = '';
+      
+      $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+      foreach($data as $row)
+      {
+       $output .= '
+       <li><a href="#">'.$row->payeee.'</a></li>
+       ';
+      }
+      $output .= '</ul>';
+      if(count($data))
+      echo $output;
+        else
+            return 'No Result Found, add new customer';
+   
+      
+     }
+    }
+   
     public function create(Request $request)
     {
         
         
         $clientnames = DB::table('customers')->select('client_name')->get(); 
-        $payeenames = Customer::where('client_name' , $request->ajax('client_name'))->get();
-        return view('clientdatas.create',['clientnames'=>$clientnames, 'payeenames'=> $payeenames]);
+       $query= $request->input('payeee');
+        $idaccounts = Customer::where('payeee' , $query)->pluck('id_account');
+        return view('clientdatas.create',['clientnames'=>$clientnames,'idaccounts'=>$idaccounts]);
     }
 
     /**
