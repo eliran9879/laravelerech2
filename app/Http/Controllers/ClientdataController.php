@@ -19,8 +19,7 @@ class ClientdataController extends Controller
      */
     public function index()
     {
-        $clientbasic= DB::table('clientdatas')->latest('id')->take(1)->value('designation');
-        $clientbasiccheck= DB::table('clientdatas')->latest('id')->take(1)->value('type_check');
+        $clientbasic= DB::table('clientdatas')->latest('id')->take(1)->get();
         $clientdat = DB::table('clientdatas')->latest('id')->take(1)->value('end_date');
         $clientdatas = DB::table('clientdatas')->latest('id')->take(1)->value('deposit_date');
         $datetime1 = new DateTime($clientdatas);
@@ -29,11 +28,17 @@ class ClientdataController extends Controller
         $days = $clientdatas1->format('%a');
         $range = $days/30;
         echo($range);//working until here
-
-    //    $range = ($clientbasic->end_date) - ($last_id->deposit_date);
-        if (($clientbasic == 'Loan' || $clientbasic->designation == 'real_estate') & ($clientbasiccheck = 'Salaried')) {
-           $client = DB::table('covenantshapoalims')->where('designation','loan')->value('amount'); 
-           echo($client);}
+        foreach ($clientbasic as $clientbasic) {
+            $client_des = $clientbasic->designation;
+            $client_check = $clientbasic->type_check;
+        echo($client_des);}
+     
+          if (($client_des == 'Loan' || $client_des == 'real_estate') & ($client_check == 'Salaried')) {
+            echo($client_des);}
+         
+            // $client = DB::table('covenantshapoalims')->where('designation','loan')->value('total_month'); 
+            // echo($client);}
+         
     //     $clientrange = DB::table('covenantshapoalims')->where( $range ,'<', $clientdata->total_month)->get(); 
     //     $clientrangemin =  $clientrange->min('total_month')->get();
     //     // $sumamount =  App\Clientdata::where([['payeee' , $request->payeee],['client_name' , $request->client_name]])->sum('amount');
