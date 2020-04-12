@@ -73,14 +73,12 @@ class ClientdataController extends Controller
 
 
     public function create(Request $request)
-    {
-        
-        
-        $clientnames = DB::table('customers')->select('client_name')->get(); 
+    { 
+    // $clientnames = Customer::where('payeee' , $request->payeee)->get('client_name'); 
     //    $query= $request->input('payeee');
+    $clientnames = DB::table('customers')->select('client_name')->get(); 
     $idaccounts = DB::table('customers')
-    
-    ->get();   
+        ->get();   
     // $idaccounts = Customer::where('payeee' , $query)->pluck('id_account');
         return view('clientdatas.create',['clientnames'=>$clientnames,'idaccounts'=>$idaccounts]);
     }
@@ -95,9 +93,10 @@ class ClientdataController extends Controller
     {
         $query = new ClientData();
         $id =Auth::id();
-        $name_client =DB::table('customers')->where('payeee' , $request->payeee)->value('id_account');
-        $id_client = DB::table('customers')->where('id_account' , $request->id)->value('id_account');
+        $name_client =DB::table('customers')->where('client_name' , $request->client_name)->value('payeee');
+        $id_client = DB::table('customers')->where('payeee' , $request->payeee)->value('payeee');
         if ($name_client == $id_client) {
+            $id_client = DB::table('customers')->where([['payeee' , $request->payeee],['client_name' , $request->client_name]])->value('id_account'); 
             $client_id = $id_client;
         }
         $query->client_id = $client_id;

@@ -25,12 +25,9 @@
     <input type = "text" class = "form-control" name = "payeee" id="payeee" required>
     <div id="payeeeList">
     </div>
-     </div><br>
-   
-  
-  
-</div>
-     <!-- <input type = "text" class = "form-control" name = "payeee" required> -->
+     </div>
+     
+   <!-- <input type = "text" class = "form-control" name = "payeee" required> -->
      <!-- </div> -->
      <br>
      <div class="col-md-2">
@@ -39,7 +36,7 @@
     <select class="form-control"  name="id_account" id="id_account">
     <option value="">Select id</option>
 </select></div>
-
+<br>
      <div class="col-md-2">
     <label class="control-label" for = "amount"> Amount </label></div>
     <div class="col-md-10">
