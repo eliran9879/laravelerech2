@@ -17,7 +17,19 @@ class ClientdataController extends Controller
      */
     public function index()
     {
-        //
+       $last_id = DB::table('clientdatas')->order_by('id', 'desc')->first();
+       $range = ($last_id->end_date - $last_id->deposit_date) / 30;
+       if (($last_id->designation == 'Loan' || $last_id->designation == 'real_estate') & ($last_id->type_check = 'Salaried')) {
+        $clientdata = DB::table('covenantshapoalims')->where('designation','loan')->get(); 
+        $clientrange = DB::table('covenantshapoalims')->where( $range ,'<', $clientdata->total_month)->get(); 
+        $clientrangemin =  $clientrange->min('total_month')->get();
+        // $sumamount =  App\Clientdata::where([['payeee' , $request->payeee],['client_name' , $request->client_name]])->sum('amount');
+        $clientid =  $last_id->client_id;
+        $sumamount =  App\Clientdata::where('client_id', $clientid)->sum('amount');
+         if ((($last_id->amount) / $sumamount ) < $clientrangemin->max_approval)
+             $clientdatas = $clientrangemin; 
+             return view('clientdatas.index',['clientdatas' => $clientdatas]);
+       }
     }
 
     /**
@@ -106,8 +118,9 @@ class ClientdataController extends Controller
         $query->end_date = $request->end_date;
         $query->designation = $request->transaction;
         $query->type_check = $request->type;
-        
+
         $query->save();
+
         return redirect('client_data/create');
     }
 
