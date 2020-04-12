@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use App\Clientdata;
 use App\Customer;
-
+use App\Http\Controllers\Carbon;
+use App\Covenantshapoalim;
 class ClientdataController extends Controller
 {
     /**
@@ -17,19 +19,30 @@ class ClientdataController extends Controller
      */
     public function index()
     {
-       $last_id = DB::table('clientdatas')->order_by('id', 'desc')->first();
-       $range = ($last_id->end_date - $last_id->deposit_date) / 30;
-       if (($last_id->designation == 'Loan' || $last_id->designation == 'real_estate') & ($last_id->type_check = 'Salaried')) {
-        $clientdata = DB::table('covenantshapoalims')->where('designation','loan')->get(); 
-        $clientrange = DB::table('covenantshapoalims')->where( $range ,'<', $clientdata->total_month)->get(); 
-        $clientrangemin =  $clientrange->min('total_month')->get();
-        // $sumamount =  App\Clientdata::where([['payeee' , $request->payeee],['client_name' , $request->client_name]])->sum('amount');
-        $clientid =  $last_id->client_id;
-        $sumamount =  App\Clientdata::where('client_id', $clientid)->sum('amount');
-         if ((($last_id->amount) / $sumamount ) < $clientrangemin->max_approval)
-             $clientdatas = $clientrangemin; 
-             return view('clientdatas.index',['clientdatas' => $clientdatas]);
-       }
+        $clientbasic= DB::table('clientdatas')->latest('id')->take(1)->value('designation');
+        $clientbasiccheck= DB::table('clientdatas')->latest('id')->take(1)->value('type_check');
+        $clientdat = DB::table('clientdatas')->latest('id')->take(1)->value('end_date');
+        $clientdatas = DB::table('clientdatas')->latest('id')->take(1)->value('deposit_date');
+        $datetime1 = new DateTime($clientdatas);
+        $datetime2 = new DateTime($clientdat);
+        $clientdatas1 = $datetime2->diff($datetime1);
+        $days = $clientdatas1->format('%a');
+        $range = $days/30;
+        echo($range);//working until here
+
+    //    $range = ($clientbasic->end_date) - ($last_id->deposit_date);
+        if (($clientbasic == 'Loan' || $clientbasic->designation == 'real_estate') & ($clientbasiccheck = 'Salaried')) {
+           $client = DB::table('covenantshapoalims')->where('designation','loan')->value('amount'); 
+           echo($client);}
+    //     $clientrange = DB::table('covenantshapoalims')->where( $range ,'<', $clientdata->total_month)->get(); 
+    //     $clientrangemin =  $clientrange->min('total_month')->get();
+    //     // $sumamount =  App\Clientdata::where([['payeee' , $request->payeee],['client_name' , $request->client_name]])->sum('amount');
+    //     $clientid =  $last_id->client_id;
+    //     $sumamount =  DB::table('clientdatas')::where('client_id', $clientid)->sum('amount');
+    //      if ((($last_id->amount) / $sumamount ) < $clientrangemin->max_approval)
+            //  $clientdatas = $clientrangemin; 
+            //  return view('clientdatas.index',['clientdatas' => $clientdatas]);
+       
     }
 
     /**
@@ -121,7 +134,7 @@ class ClientdataController extends Controller
 
         $query->save();
 
-        return redirect('client_data/create');
+        return redirect('client_data');
     }
 
     /**
