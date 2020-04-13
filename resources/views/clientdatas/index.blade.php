@@ -31,9 +31,9 @@
 @foreach($clientdatas as $clientdata)
 <tr>
  
-<td >{{$clientdata->end_date}} </td>
-<td > {{$clientdata->deposit_date}}</td>
-<td > {{$clientdata->type_check}}</td>
+<td >{{$clientdata->bank_id}} </td>
+<td > {{$clientdata->total_month}}</td>
+<td > {{$clientdata->approval}}</td>
 </tr>
 
 

@@ -27,26 +27,30 @@ class ClientdataController extends Controller
         $clientdatas1 = $datetime2->diff($datetime1);
         $days = $clientdatas1->format('%a');
         $range = $days/30;
-        echo($range);//working until here
+        // echo($range);//working until here
         foreach ($clientbasic as $clientbasic) {
             $client_des = $clientbasic->designation;
             $client_check = $clientbasic->type_check;
-        echo($client_des);}
-     
+            $clientid =  $clientbasic->client_id;
+            $clientamount = $clientbasic->amount;
+        // echo($client_des);}
+        }
           if (($client_des == 'Loan' || $client_des == 'real_estate') & ($client_check == 'Salaried')) {
-            echo($client_des);}
-         
-            // $client = DB::table('covenantshapoalims')->where('designation','loan')->value('total_month'); 
-            // echo($client);}
-         
-    //     $clientrange = DB::table('covenantshapoalims')->where( $range ,'<', $clientdata->total_month)->get(); 
-    //     $clientrangemin =  $clientrange->min('total_month')->get();
-    //     // $sumamount =  App\Clientdata::where([['payeee' , $request->payeee],['client_name' , $request->client_name]])->sum('amount');
-    //     $clientid =  $last_id->client_id;
-    //     $sumamount =  DB::table('clientdatas')::where('client_id', $clientid)->sum('amount');
-    //      if ((($last_id->amount) / $sumamount ) < $clientrangemin->max_approval)
-            //  $clientdatas = $clientrangemin; 
-            //  return view('clientdatas.index',['clientdatas' => $clientdatas]);
+           
+            $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
+            $client_month =  DB::table('covenantshapoalims')->where([['designation','loan'],['total_month',$min_month]])->get(); 
+            // echo($client_month);
+            }
+            foreach ($client_month as $client_month1) {
+                $client_poalim_aprroval = $client_month1->max_approval;
+            }
+           $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
+        //    echo($sumamount);
+         if (($clientamount / $sumamount ) < $client_poalim_aprroval){
+             $clientdatas = $client_month; 
+             echo($clientdatas);
+             return view('clientdatas.index',['clientdatas' => $clientdatas]);
+         }
        
     }
 
