@@ -31,7 +31,7 @@
 @foreach($clientdatas as $clientdata)
 <tr>
  
-<td >{{$clientdata->bank_id}} </td>
+<td >{{$clientdata->banks->name}} </td>
 <td > {{$clientdata->total_month}}</td>
 <td > {{$clientdata->approval}}</td>
 </tr>

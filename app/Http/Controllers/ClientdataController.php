@@ -10,6 +10,7 @@ use App\Clientdata;
 use App\Customer;
 use App\Http\Controllers\Carbon;
 use App\Covenantshapoalim;
+use App\Bank;
 class ClientdataController extends Controller
 {
     /**
@@ -26,6 +27,7 @@ class ClientdataController extends Controller
         $datetime2 = new DateTime($clientdat);
         $clientdatas1 = $datetime2->diff($datetime1);
         $days = $clientdatas1->format('%a');
+        // echo($days);
         $range = $days/30;
         // echo($range);//working until here
         foreach ($clientbasic as $clientbasic) {
@@ -38,7 +40,7 @@ class ClientdataController extends Controller
           if (($client_des == 'Loan' || $client_des == 'real_estate') & ($client_check == 'Salaried')) {
            
             $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
-            $client_month =  DB::table('covenantshapoalims')->where([['designation','loan'],['total_month',$min_month]])->get(); 
+            $client_month =  Covenantshapoalim::with('banks')->where([['designation','loan'],['total_month',$min_month]])->get(); 
             // echo($client_month);
             }
             foreach ($client_month as $client_month1) {
