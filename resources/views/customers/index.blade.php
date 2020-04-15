@@ -34,6 +34,7 @@
          <th>Occupation</th>
          <th>Id Account</th>
          <th>Payeee</th>
+         <th>Actions</th>
         </tr>
        </thead>
        <tbody>

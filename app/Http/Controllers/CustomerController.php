@@ -74,7 +74,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('customers.edit', compact('customer'));
     }
 
     /**
@@ -86,7 +87,9 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $customer = Customer::find($id);
+        $customer -> update($request->all());
+        return redirect('customers');
     }
 
     /**
@@ -97,7 +100,9 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = Customer::find($id);
+        $customer->delete();
+        return redirect('customers');
     }
 
     function action(Request $request)
@@ -135,7 +140,11 @@ class CustomerController extends Controller
          <td>'.$row->adrress.'</td>
          <td>'.$row->occupation.'</td>
          <td>'.$row->id_account.'</td>
-         <td>'.$row->payeee.'</td>
+         <td>'.$row->payeee.'</td> 
+         <td> 
+            <a href="customers/'.$row->id.'/edit"> <img src="https://image.flaticon.com/icons/png/512/84/84380.png" 
+            style = "width:30px; height:30px; display:block; margin-left: auto; margin-right: auto;"> </a>
+         </td>
         </tr>
         ';
        }

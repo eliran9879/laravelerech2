@@ -44,11 +44,11 @@
     <div class="col-md-10">
      <input type = "text" class = "form-control" name = "adrress" required>
      </div>  
-   
        
-   <br>
+    <br>
     <div class="col-md-10">
     <button name="submit" type="submit" value="Save"> Add</button></div>
-    </form></div>
+    </form>
+    </div>
   
-    @endsection
+@endsection
