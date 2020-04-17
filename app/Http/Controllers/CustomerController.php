@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Customer;
+use DataTables;
 use DB;
 
 class CustomerController extends Controller
@@ -100,9 +101,9 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $customer = Customer::find($id);
-        $customer->delete();
-        return redirect('customers');
+        $data = Customer::find($id);
+        $data->delete();
+         return redirect('customers');
     }
 
     function action(Request $request)
@@ -144,6 +145,9 @@ class CustomerController extends Controller
          <td> 
             <a href="customers/'.$row->id.'/edit"> <img src="https://image.flaticon.com/icons/png/512/84/84380.png" 
             style = "width:30px; height:30px; display:block; margin-left: auto; margin-right: auto;"> </a>
+         </td>
+         <td>
+          <button type="button" name="edit" id="'.$row->id.'" class="delete btn btn-danger btn-sm">Delete</button>
          </td>
         </tr>
         ';

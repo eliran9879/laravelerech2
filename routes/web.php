@@ -41,4 +41,4 @@ Route::post('import1', 'MyController@import1')->name('import1');
 Route::get('/customers', 'CustomerController@index');
 Route::get('/customers/action', 'CustomerController@action')->name('customers.action');
 Route::resource('customers', 'CustomerController');
-
+Route::get('customers/destroy/{id}', 'CustomerController@destroy');

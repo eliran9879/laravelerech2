@@ -26,7 +26,7 @@
      </div>
      <div class="table-responsive">
       <h3 align="center">Total Data : <span id="total_records"></span></h3>
-      <table class="table table-striped table-bordered">
+      <table id="user_table" class="table table-striped table-bordered">
        <thead>
         <tr>
          <th>Customer Name</th>
@@ -46,6 +46,36 @@
     </div>    
    </div>
   </div>
+ 
+<!-- Central Modal Medium -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog"  aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+          <!--Header-->
+          <div class="modal-header">
+            <h4 class="modal-title w-100" id="myModalLabel">Warning!</h4>
+            <button type="button" class="close" data-dismiss="modal" >
+               &times;
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+            <div class="alert alert-danger" role="alert">
+               Are you sure to delete ?
+            </div>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+          <div class="modal-footer">
+             <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
+             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+             </div>
+ </div>
+ </div>
+ </div>
+ </div>
+  
 
 </html>
 
@@ -73,6 +103,33 @@ $(document).ready(function(){
   var query = $(this).val();
   fetch_customer_data(query);
  });
+
+ var user_id;
+
+$(document).on('click', '.delete', function(){
+ user_id = $(this).attr('id');
+ $('#confirmModal').modal('show');
+});
+
+$('#ok_button').click(function(){
+ $.ajax({
+  url:"customers/destroy/"+user_id,
+  beforeSend:function(){
+   $('#ok_button').text('Deleting...');
+  },
+  success:function(data)
+  {
+   setTimeout(function(){
+    $('#confirmModal').modal('hide');
+    location.reload();
+    // $('#user_table').data().ajax.reload();
+    //  $("#result").load($data);
+    alert('Data Deleted');
+   }, 2000);
+  }
+ })
+});
+
 });
 </script>
 
