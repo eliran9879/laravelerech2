@@ -4,38 +4,33 @@
 <form method = 'post' action = "{{action('ClientdataController@store')}}" >
 {{csrf_field()}}      
 
-<div class = "form-group">
-
+<div class="form-group">
 <div class="col-md-2">
-    <label class="control-label" for = "client_name"> Client's name </label></div>
+    <label class="control-label" for = "client_name"> Client name </label></div>
     <div class="col-md-10">
-    <select class="form-control" name = "client_name">
-    @foreach($clientnames as $clientname)
-  
-  <option value="{{$clientname->client_name}}"> {{$clientname->client_name}}</option>
-
-  @endforeach  
-</select></div>
-     <!-- <input type = "text" class = "form-control" name = "name" required> -->
-     <!-- </div> -->
-     <br>
-     <div class="col-md-2">
-    <label class="control-label" for = "payeee"> Payeee name </label></div>
-    <div class="col-md-10">
-    <input type = "text" class = "form-control" name = "payeee" id="payeee" required>
-    <div id="payeeeList">
+    <select name="country" id="client_name" class="form-control  dynamic" data-dependent="payeee" >
+     <option value="">Select clientname</option>
+     @foreach($country_list as $client_name)
+     <option value="{{ $client_name->client_name}}">{{ $client_name->client_name }}</option>
+     @endforeach
+    </select>
     </div>
-     </div>
-     
-   <!-- <input type = "text" class = "form-control" name = "payeee" required> -->
-     <!-- </div> -->
-     <br>
-     <div class="col-md-2">
-    <label class="control-label" for = "title"> Id </label></div>
+   <br />
+   <div class="col-md-2">
+    <label class="control-label" for = "payeee">  payeee </label></div>
     <div class="col-md-10">
-    <select class="form-control"  name="id_account" id="id_account">
-    <option value="">Select id</option>
-</select></div>
+    <select name="payeee" id="payeee" class="form-control  dynamic" data-dependent="id_account">
+     <option value="">Select payeee</option>
+    </select> </div>
+   <br />
+   <div class="col-md-2">
+    <label class="control-label" for = "id_account">  Id account </label></div>
+    <div class="col-md-10">
+    <select name="id_account" id="id_account" class="form-control ">
+     <option value="">Select id</option>
+    </select>
+    </div>
+   {{ csrf_field() }}
 <br>
      <div class="col-md-2">
     <label class="control-label" for = "amount"> Amount </label></div>
@@ -105,40 +100,42 @@ $(document).ready(function(){
         $('#payeee').val($(this).text());  
         $('#payeeeList').fadeOut();  
     });  
+  
+    $(document).ready(function(){
+
+$('.dynamic').change(function(){
+ if($(this).val() != '')
+ {
+  var select = $(this).attr("id");
+  var value = $(this).val();
+  var dependent = $(this).data('dependent');
+  var _token = $('input[name="_token"]').val();
+  $.ajax({
+   url:"{{ route('ClientdataController.fetch1') }}",
+   method:"POST",
+   data:{select:select, value:value, _token:_token, dependent:dependent},
+   success:function(result)
+   {
+    $('#'+dependent).html(result);
+   }
+
+  })
+ }
+});
+
+$('#client_name').change(function(){
+ $('#payeee').val('');
+ $('#id_account').val('');
+});
+
+$('#payeee').change(function(){
+ $('#id_account').val('');
+});
+
 
 });
+});
 </script>
-<script>
-$(document).ready(function(){
 
- $('.dynamic').change(function(){
-  if($(this).val() != '')
-  {
-   var select = $(this).attr("id");
-   var value = $(this).val();
-   var dependent = $(this).data('dependent');
-   var _token = $('input[name="_token"]').val();
-   $.ajax({
-    url:"{{ route('dynamicdependent.fetch') }}",
-    method:"POST",
-    data:{select:select, value:value, _token:_token, dependent:dependent},
-    success:function(result)
-    {
-     $('#'+dependent).html(result);
-    }
-
-   })
-  }
- });
-
-
-
- $('#payeee').change(function(){
-  $('#id_account').val('');
- });
- 
-
-
-</script>
     @endsection
    

@@ -42,7 +42,7 @@ class ClientdataController extends Controller
             $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
             $client_month =  Covenantshapoalim::with('banks')->where([['designation','loan'],['total_month',$min_month]])->get(); 
             // echo($client_month);
-            }
+            
             foreach ($client_month as $client_month1) {
                 $client_poalim_aprroval = $client_month1->max_approval;
             }
@@ -53,7 +53,20 @@ class ClientdataController extends Controller
              echo($clientdatas);
              return view('clientdatas.index',['clientdatas' => $clientdatas]);
          }
-       
+         }
+      elseif (($client_des == 'Discount') & ($client_check == 'Salaried')) {
+        $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','discount']])->min('total_month');  
+        $client_month =  Covenantshapoalim::with('banks')->where([['designation','discount'],['total_month',$min_month]])->get(); 
+        foreach ($client_month as $client_month1) {
+            $client_poalim_aprroval = $client_month1->max_approval;
+        }
+        $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
+        if (($clientamount / $sumamount ) < $client_poalim_aprroval){
+            $clientdatas = $client_month; 
+            echo($clientdatas);
+            return view('clientdatas.index',['clientdatas' => $clientdatas]);
+        }
+        }
     }
 
     /**
@@ -66,7 +79,7 @@ class ClientdataController extends Controller
      if($request->get('query'))
      {
       $query = $request->get('query');
-      error_log($query);
+      echo($query);
       $data = DB::table('customers')
         ->where('payeee', 'LIKE', "%{$query}%")
         ->get();
@@ -108,15 +121,20 @@ class ClientdataController extends Controller
 
 
 
+
     public function create(Request $request)
     { 
     // $clientnames = Customer::where('payeee' , $request->payeee)->get('client_name'); 
     //    $query= $request->input('payeee');
-    $clientnames = DB::table('customers')->select('client_name')->get(); 
-    $idaccounts = DB::table('customers')
-        ->get();   
+    // $clientnames = DB::table('customers')->select('client_name')->get(); 
+    // $idaccounts = DB::table('customers')
+        // ->get();   
     // $idaccounts = Customer::where('payeee' , $query)->pluck('id_account');
-        return view('clientdatas.create',['clientnames'=>$clientnames,'idaccounts'=>$idaccounts]);
+        // return view('clientdatas.create',['clientnames'=>$clientnames,'idaccounts'=>$idaccounts]);
+        $country_list = DB::table('customers')
+        ->groupBy('client_name')
+        ->get();
+    return view('clientdatas.create')->with('country_list', $country_list);
     }
 
     /**
@@ -148,6 +166,7 @@ class ClientdataController extends Controller
         return redirect('client_data');
     }
 
+   
     /**
      * Display the specified resource.
      *

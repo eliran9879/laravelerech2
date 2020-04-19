@@ -23,7 +23,6 @@ Route::resource('covenants_mizrahi', 'CovenantsmizrahiController')->middleware('
 Route::resource('client_data', 'ClientdataController')->middleware('auth');
 Route::post('/client_data/fetch', 'ClientdataController@fetch')->name('autocomplete.fetch');
 // Route::post('/client_data/fetch1', 'ClientdataController@fetch1')->name('autocomplete1.fetch');
-Route::post('client_data/fetch1', 'ClientdataController@fetch1')->name('dynamicdependent.fetch');
 
 //Route::resource('customers', 'CustomerController');
 
@@ -42,3 +41,6 @@ Route::get('/customers', 'CustomerController@index');
 Route::get('/customers/action', 'CustomerController@action')->name('customers.action');
 Route::resource('customers', 'CustomerController');
 Route::get('customers/destroy/{id}', 'CustomerController@destroy');
+Route::get('/clientdatas', 'ClientdataController@create');
+
+Route::post('clientdatas/fetch1', 'ClientdataController@fetch1')->name('ClientdataController.fetch1');
