@@ -28,6 +28,7 @@
 </thead>
 
 <tbody>
+@if(!empty($clientdatas))
 @foreach($clientdatas as $clientdata)
 <tr>
  
@@ -36,8 +37,22 @@
 <td > {{$clientdata->approval}}</td>
 </tr>
 
-
 @endforeach
+@endif
+
+@if(!empty($clientdatasmizrahi))
+@foreach($clientdatasmizrahi as $clientdatami)
+<tr>
+ 
+<td >{{$clientdatami->banks->name}} </td>
+<td > {{$clientdatami->total_month}}</td>
+<td > {{$clientdatami->approval}}</td>
+
+</tr>
+@endforeach
+
+
+@endif
 </tbody>
 </table>
 

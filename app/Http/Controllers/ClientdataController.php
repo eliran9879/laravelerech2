@@ -10,6 +10,7 @@ use App\Clientdata;
 use App\Customer;
 use App\Http\Controllers\Carbon;
 use App\Covenantshapoalim;
+use App\Covenantsmizrahi;
 use App\Bank;
 class ClientdataController extends Controller
 {
@@ -38,7 +39,7 @@ class ClientdataController extends Controller
         // echo($client_des);}
         }
           if (($client_des == 'Loan' || $client_des == 'real_estate') & ($client_check == 'Salaried')) {
-           
+
             $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
             $client_month =  Covenantshapoalim::with('banks')->where([['designation','loan'],['total_month',$min_month]])->get(); 
             // echo($client_month);
@@ -55,17 +56,39 @@ class ClientdataController extends Controller
          }
          }
       elseif (($client_des == 'Discount') & ($client_check == 'Salaried')) {
+        $min_month_mizrahi =  DB::table('covenantsmizrahis')->where([['total_month','>', $range],['designation','discount']])->min('total_month');  
         $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','discount']])->min('total_month');  
+     
         $client_month =  Covenantshapoalim::with('banks')->where([['designation','discount'],['total_month',$min_month]])->get(); 
+  
+
+   if (!empty($client_month)){
         foreach ($client_month as $client_month1) {
             $client_poalim_aprroval = $client_month1->max_approval;
         }
+    }  
+    
         $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
         if (($clientamount / $sumamount ) < $client_poalim_aprroval){
             $clientdatas = $client_month; 
             echo($clientdatas);
-            return view('clientdatas.index',['clientdatas' => $clientdatas]);
         }
+        if (!empty($min_month_mizrahi)){
+            $client_month_mizrahi =  Covenantsmizrahi::with('banks')->where([['designation','discount'],['total_month',$min_month_mizrahi]])->get(); 
+            foreach ($client_month_mizrahi as $client_month1_mizrahi) {
+                $client_mizrahi_aprroval = $client_month1_mizrahi->max_approval;
+            }
+            if ($clientamount < $client_mizrahi_aprroval){
+            $clientdatasmizrahi = $client_month_mizrahi; 
+            echo($clientdatasmizrahi);
+        }
+    }
+        if ((!empty ($clientdatas )) & (!empty ($clientdatasmizrahi )) )
+            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasmizrahi' => $clientdatasmizrahi]);
+        elseif (!empty ($clientdatas ))
+            return view('clientdatas.index',['clientdatas' => $clientdatas]);
+        elseif (!empty ($clientdatasmizrahi ))
+            return view('clientdatas.index',['clientdatasmizrahi' => $clientdatasmizrahi]);
         }
     }
 
