@@ -37,12 +37,12 @@ class ClientdataController extends Controller
             $client_check = $clientbasic->type_check;
             $clientid =  $clientbasic->client_id;
             $clientamount = $clientbasic->amount;
-        // echo($client_des);}
-        }
+        echo($client_des);
+    }    
           if (($client_des == 'Loan' || $client_des == 'real_estate') & ($client_check == 'Salaried')) {
             $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
             $client_month =  Covenantshapoalim::with('banks')->where([['designation','loan'],['total_month',$min_month]])->get(); 
-            // echo($client_month);
+            // echo($min_month);
             
             foreach ($client_month as $client_month1) {
                 $client_poalim_aprroval = $client_month1->max_approval;
@@ -50,30 +50,31 @@ class ClientdataController extends Controller
            $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
         //    echo($sumamount);
          if (($clientamount / $sumamount ) < $client_poalim_aprroval){
-             $clientdatas = $client_month; 
-             echo($clientdatas);
-             return view('clientdatas.index',['clientdatas' => $clientdatas]);
+             $clientdatashapoalim = $client_month; 
+            //  echo($clientdatas);
+             return view('clientdatas.index',['clientdatashapoalim' => $clientdatashapoalim]);
             
          }
         }
       elseif (($client_des == 'Discount') & ($client_check == 'Salaried')) {
         $min_month_mizrahi =  DB::table('covenantsmizrahis')->where([['total_month','>', $range],['designation','discount']])->min('total_month');  
         $min_month_ibi =  DB::table('covenantsibis')->where([['total_month','>', $range],['designation','discount']])->min('total_month');  
+        // echo(  $min_month_mizrahi);
         $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','discount']])->min('total_month');  
         if (!empty($min_month)){
-        $client_month =  Covenantshapoalim::with('banks')->where([['designation','discount'],['total_month',$min_month]])->get(); 
+            $client_month =  Covenantshapoalim::with('banks')->where([['designation','discount'],['total_month',$min_month]])->get(); 
         foreach ($client_month as $client_month1) {
             $client_poalim_aprroval = $client_month1->max_approval;
         }  
     
         $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
         if (($clientamount / $sumamount ) < $client_poalim_aprroval){
-            $clientdatas = $client_month; 
-            echo($clientdatas);
+            $clientdatashapoalim = $client_month; 
+            // echo($clientdatashapoalim);
         }
     }
     if (!empty($min_month_ibi)){
-        $client_month_ibi =  Covenantsibi::with('banks')->where([['designation','discount'],['total_month',$min_month]])->get(); 
+        $client_month_ibi =  Covenantsibi::with('banks')->where([['designation','discount'],['total_month',$min_month_ibi]])->get(); 
         foreach ($client_month_ibi as $client_month1_ibi) {
             $client_ibi_aprroval = $client_month1_ibi->total_amount;
             $client_ibi_min = $client_month1_ibi->min_percentage_general;
@@ -85,52 +86,57 @@ class ClientdataController extends Controller
      $sumamount_ibi =  DB::table('covenantsibis')->where('designation','discount')->sum('total_amount');
      if (($clientamount  < $client_ibi_aprroval) & (( $sumamount_discount_ibi/ $sumamount_ibi) < $client_ibi_max) & (( $sumamount_discount_ibi/ $sumamount_ibi) > $client_ibi_min))  {
             $clientdatasibi = $client_month_ibi; 
-            echo($clientdatasibi);
+            // echo($clientdatasibi);
         }
     
     }
         if (!empty($min_month_mizrahi)){
+            // echo(  $min_month_mizrahi);
             $client_month_mizrahi =  Covenantsmizrahi::with('banks')->where([['designation','discount'],['total_month',$min_month_mizrahi]])->get(); 
             foreach ($client_month_mizrahi as $client_month1_mizrahi) {
                 $client_mizrahi_aprroval = $client_month1_mizrahi->max_approval;
             }
             if ($clientamount < $client_mizrahi_aprroval){
             $clientdatasmizrahi = $client_month_mizrahi; 
-            echo($clientdatasmizrahi);
+            // echo($clientdatasmizrahi);
         }
     }
 }
-        if ((!empty ($clientdatas )) & (!empty ($clientdatasmizrahi )) & (!empty ($clientdatasibi )) ){
+        if ((!empty ($clientdatashapoalim )) & (!empty ($clientdatasmizrahi )) & (!empty ($clientdatasibi ))){
         $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
-            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasmizrahi' => $clientdatasmizrahi,'clientdatasibi',$clientdatasibi,'id_last' => $id_last]);
+            return view('clientdatas.index',['clientdatashapoalim' => $clientdatashapoalim,'clientdatasmizrahi' => $clientdatasmizrahi,'clientdatasibi',$clientdatasibi,'id_last' => $id_last]);
+       }      
        
-             }
-             
-        elseif ((!empty ($clientdatas )) & (!empty ($clientdatasmizrahi ))){
+        elseif ((!empty ($clientdatashapoalim )) & (!empty ($clientdatasibi ))){
         $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
-            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasmizrahi' => $clientdatasmizrahi,'id_last' => $id_last]);
-        }
-        elseif ((!empty ($clientdatas )) & (!empty ($clientdatasibi ))){
-        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
-            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
-                 }     
+            return view('clientdatas.index',['clientdatashapoalim' => $clientdatashapoalim,'clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
+                 }   
+         
         elseif ((!empty ($clientdatasmizrahi )) & (!empty ($clientdatasibi ))){
         $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
             return view('clientdatas.index',['clientdatasmizrahi' => $clientdatasmizrahi,'clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
         }
+        
+        elseif ((!empty($clientdatashapoalim)) & (!empty ($clientdatasmizrahi ))) {
+            $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+            $id_last1 = DB::table('clientdatas')->latest('id')->take(1)->get();
+            return view('clientdatas.index',['clientdatashapoalim' => $clientdatashapoalim,'clientdatasmizrahi' => $clientdatasmizrahi,'id_last' => $id_last]);            
+        }
         elseif (!empty ($clientdatasmizrahi )) {
+            echo(  $clientdatasmizrahi);
         $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
             return view('clientdatas.index',['clientdatasmizrahi' => $clientdatasmizrahi,'id_last' => $id_last]);
-     
                }
         elseif (!empty ($clientdatasibi)){
         $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
             return view('clientdatas.index',['clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
         }
-            elseif (!empty ($clientdatas )){
+            elseif (!empty ($clientdatashapoalim )){
         $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
-            return view('clientdatas.index',['clientdatas' => $clientdatas,'id_last' => $id_last]);
-            }
+        // echo ($id_last);
+            return view('clientdatas.index',['clientdatashapoalim' => $clientdatashapoalim,'id_last' => $id_last]);
+        }
+        
     }
     public function status($id)
     {
@@ -139,11 +145,12 @@ class ClientdataController extends Controller
        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
     //    $id_last->status= 'open';
        $id_last=DB::table('clientdatas')->where('id', $id) ->update(
-        ['status' => 'open']
+        ['status' => 'open','bank_id' => '2']
        );
         return redirect('client_data');
     }
 
+   
     /**
      * Show the form for creating a new resource.
      *
