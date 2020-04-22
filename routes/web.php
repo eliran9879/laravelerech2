@@ -46,3 +46,5 @@ Route::get('/clientdatas', 'ClientdataController@create');
 Route::post('clientdatas/fetch1', 'ClientdataController@fetch1')->name('ClientdataController.fetch1');
 
 Route::get('client_data/status/{id}', 'ClientdataController@status')->name('status');
+Route::get('client_data/status/{id}', 'ClientdataController@status2')->name('status2');
+// Route::get('client_data/status/{id}', 'ClientdataController@status3')->name('status3');
