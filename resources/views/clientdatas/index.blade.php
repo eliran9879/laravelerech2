@@ -29,7 +29,7 @@
 
 <tbody>
 @if(!empty($clientdatas))
-<!-- @foreach($clientdatas as $clientdata) -->
+@foreach($clientdatas as $clientdata)
 <tr>
  
 <td >{{$clientdata->banks->name}} </td>
@@ -42,11 +42,10 @@
     <td > {{$id_last->status}}</td>
 @endif
 @endforeach
- 
-             
+              
 </tr>
 
-<!-- @endforeach -->
+@endforeach
 @endif
 
 @if(!empty($clientdatasmizrahi))
@@ -56,7 +55,13 @@
 <td >{{$clientdatami->banks->name}} </td>
 <td > {{$clientdatami->total_month}}</td>
 <td > {{$clientdatami->approval}}</td>
-
+@foreach($id_last as $id_last)
+   @if ($id_last->status == 'NULL')
+<td> <a href="{{route('status', $id_last->id)}}">@lang('submit loan')</a> </td>
+    @else
+    <td > {{$id_last->status}}</td>
+@endif
+@endforeach
 </tr>
 @endforeach
 
@@ -69,13 +74,13 @@
 <td >{{$clientdataibi->banks->name}} </td>
 <td > {{$clientdataibi->total_month}}</td>
 <td > {{$clientdataibi->approval}}</td>
-<td >
-                     
-
-
-  
-       
-       </td>
+@foreach($id_last as $id_last)
+   @if ($id_last->status == 'NULL')
+<td> <a href="{{route('status', $id_last->id)}}">@lang('submit loan')</a> </td>
+    @else
+    <td > {{$id_last->status}}</td>
+@endif
+@endforeach
 </tr>
 @endforeach
 

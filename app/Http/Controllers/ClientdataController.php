@@ -100,23 +100,37 @@ class ClientdataController extends Controller
         }
     }
 }
-        if ((!empty ($clientdatas )) & (!empty ($clientdatasmizrahi )) & (!empty ($clientdatasibi )) )
-            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasmizrahi' => $clientdatasmizrahi,'clientdatasibi',$clientdatasibi]);
-        elseif ((!empty ($clientdatas )) & (!empty ($clientdatasmizrahi )))
-            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasmizrahi' => $clientdatasmizrahi]);
-        elseif ((!empty ($clientdatas )) & (!empty ($clientdatasibi )))
-            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasibi' => $clientdatasibi]);
-        elseif ((!empty ($clientdatasmizrahi )) & (!empty ($clientdatasibi )))
-            return view('clientdatas.index',['clientdatasmizrahi' => $clientdatasmizrahi,'clientdatasibi' => $clientdatasibi]);
-        elseif (!empty ($clientdatasmizrahi ))
-            return view('clientdatas.index',['clientdatasmizrahi' => $clientdatasmizrahi]);
-        elseif (!empty ($clientdatasibi))
-            return view('clientdatas.index',['clientdatasibi' => $clientdatasibi]);
-        elseif (!empty ($clientdatas ))
+        if ((!empty ($clientdatas )) & (!empty ($clientdatasmizrahi )) & (!empty ($clientdatasibi )) ){
         $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
-        echo($id_last);
+            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasmizrahi' => $clientdatasmizrahi,'clientdatasibi',$clientdatasibi,'id_last' => $id_last]);
+       
+             }
+             
+        elseif ((!empty ($clientdatas )) & (!empty ($clientdatasmizrahi ))){
+        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasmizrahi' => $clientdatasmizrahi,'id_last' => $id_last]);
+        }
+        elseif ((!empty ($clientdatas )) & (!empty ($clientdatasibi ))){
+        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+            return view('clientdatas.index',['clientdatas' => $clientdatas,'clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
+                 }     
+        elseif ((!empty ($clientdatasmizrahi )) & (!empty ($clientdatasibi ))){
+        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+            return view('clientdatas.index',['clientdatasmizrahi' => $clientdatasmizrahi,'clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
+        }
+        elseif (!empty ($clientdatasmizrahi )) {
+        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+            return view('clientdatas.index',['clientdatasmizrahi' => $clientdatasmizrahi,'id_last' => $id_last]);
+     
+               }
+        elseif (!empty ($clientdatasibi)){
+        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+            return view('clientdatas.index',['clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
+        }
+            elseif (!empty ($clientdatas )){
+        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
             return view('clientdatas.index',['clientdatas' => $clientdatas,'id_last' => $id_last]);
-        
+            }
     }
     public function status($id)
     {
