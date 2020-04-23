@@ -80,15 +80,12 @@ class ClientdataController extends Controller
             $client_ibi_min = $client_month1_ibi->min_percentage_general;
             $client_ibi_max = $client_month1_ibi->max_percentage_general;
         }  
-    //  $sumamount_discount_ibi =  DB::table('clientdatas')->where([['designation','discount'],['bank_id','3']])->sum('amount');
-    //  $sumamount_ibi =  DB::table('clientdatas')->where([['designation','discount'],['bank_id','3']])->sum('amount');
-      $sumamount_discount_ibi =  DB::table('covenantsibis')->where('designation','discount')->sum('total_amount');
-     $sumamount_ibi =  DB::table('covenantsibis')->where('designation','discount')->sum('total_amount');
+     $sumamount_discount_ibi =  DB::table('clientdatas')->where([['designation','discount'],['bank_id','3']])->sum('amount');
+     $sumamount_ibi =  DB::table('clientdatas')->where('designation','discount')->sum('amount');
      if (($clientamount  < $client_ibi_aprroval) & (( $sumamount_discount_ibi/ $sumamount_ibi) < $client_ibi_max) & (( $sumamount_discount_ibi/ $sumamount_ibi) > $client_ibi_min))  {
             $clientdatasibi = $client_month_ibi; 
-            // echo($clientdatasibi);
-        }
-    
+            echo($clientdatasibi);
+        }    
     }
         if (!empty($min_month_mizrahi)){
             // echo(  $min_month_mizrahi);
@@ -102,33 +99,52 @@ class ClientdataController extends Controller
         }
     }
 }
+        $id_last1 = DB::table('clientdatas')->latest('id')->take(1)->value('id');
+        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+        foreach ($id_last as $id_last) {
+            $id_lastamount = $id_last->amount;
+            $id_lastdeposit = $id_last->deposit_date;
+            $id_lastend = $id_last->end_date;
+            $id_lastid =  $id_last->client_id;
+            $id_lastdesignation =  $id_last->designation;
+            $id_lasttype_check =  $id_last->type_check;
+
+        }  
         if ((!empty ($clientdatashapoalim )) & (!empty ($clientdatasmizrahi )) & (!empty ($clientdatasibi ))){
-        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+        DB::table('clientdatas')->where('id', $id_last1) ->update(
+            ['bank_id' => '1']
+           );
+           DB::table('clientdatas')->insertOrIgnore([
+            ['client_id' => $id_lastid, 'amount' => $id_lastamount,'deposit_date'=>  $id_lastdeposit,
+            'end_date' =>  $id_lastend,'designation'=> $id_lastdesignation,'type_check' => $id_lasttype_check, 'bank_id' => '2'],
+            ['client_id' => $id_lastid, 'amount' => $id_lastamount,'deposit_date'=>  $id_lastdeposit,
+            'end_date' =>  $id_lastend,'designation'=> $id_lastdesignation,'type_check' => $id_lasttype_check, 'bank_id' => '2']  
+           ]);
             return view('all.index',['clientdatashapoalim' => $clientdatashapoalim,'clientdatasmizrahi' => $clientdatasmizrahi,'clientdatasibi',$clientdatasibi,'id_last' => $id_last]);
-       }      
-       
+       }  
         elseif ((!empty ($clientdatashapoalim )) & (!empty ($clientdatasibi ))){
-        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+        DB::table('clientdatas')->where('id', $id_last1) ->update(
+            ['bank_id' => '1']
+           );
+           DB::table('clientdatas')->insertOrIgnore(
+            ['client_id' => $id_lastid, 'amount' => $id_lastamount,'deposit_date'=>  $id_lastdeposit,
+            'end_date' =>  $id_lastend,'designation'=> $id_lastdesignation,'type_check' => $id_lasttype_check, 'bank_id' => '3']  
+        );
             return view('all.index',['clientdatashapoalim' => $clientdatashapoalim,'clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
                  }   
          
         elseif ((!empty ($clientdatasmizrahi )) & (!empty ($clientdatasibi ))){
-        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+        DB::table('clientdatas')->where('id', $id_last1) ->update(
+            ['bank_id' => '3']
+           );
+           DB::table('clientdatas')->insertOrIgnore(
+            ['client_id' => $id_lastid, 'amount' => $id_lastamount,'deposit_date'=>  $id_lastdeposit,
+            'end_date' =>  $id_lastend,'designation'=> $id_lastdesignation,'type_check' => $id_lasttype_check, 'bank_id' => '2']  
+        );
             return view('clientdatas.index',['clientdatasmizrahi' => $clientdatasmizrahi,'clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
         }
         
         elseif ((!empty($clientdatashapoalim)) & (!empty ($clientdatasmizrahi ))) {
-            $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
-            $id_last1 = DB::table('clientdatas')->latest('id')->take(1)->value('id');
-            foreach ($id_last as $id_last) {
-                $id_lastamount = $id_last->amount;
-                $id_lastdeposit = $id_last->deposit_date;
-                $id_lastend = $id_last->end_date;
-                $id_lastid =  $id_last->client_id;
-                $id_lastdesignation =  $id_last->designation;
-                $id_lasttype_check =  $id_last->type_check;
-
-            }  
             DB::table('clientdatas')->where('id', $id_last1) ->update(
                 ['bank_id' => '1']
                );
@@ -139,18 +155,22 @@ class ClientdataController extends Controller
             return view('all.index',['clientdatashapoalim' => $clientdatashapoalim,'clientdatasmizrahi' => $clientdatasmizrahi,'id_last' => $id_last]);            
         }
         elseif (!empty ($clientdatasmizrahi )) {
-            echo(  $clientdatasmizrahi);
-
-        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
-            return view('all.index',['clientdatasmizrahi' => $clientdatasmizrahi,'id_last' => $id_last]);
-               }
+        DB::table('clientdatas')->where('id', $id_last1) ->update(
+            ['bank_id' => '2']
+           );
+            
+        return view('all.index',['clientdatasmizrahi' => $clientdatasmizrahi,'id_last' => $id_last]);
+    }
         elseif (!empty ($clientdatasibi)){
-        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
+        DB::table('clientdatas')->where('id', $id_last1) ->update(
+            ['bank_id' => '3']
+           );
             return view('all.index',['clientdatasibi' => $clientdatasibi,'id_last' => $id_last]);
         }
             elseif (!empty ($clientdatashapoalim )){
-        $id_last = DB::table('clientdatas')->latest('id')->take(1)->get();
-        // echo ($id_last);
+        DB::table('clientdatas')->where('id', $id_last1) ->update(
+            ['bank_id' => '1']
+           );
             return view('all.index',['clientdatashapoalim' => $clientdatashapoalim,'id_last' => $id_last]);
         }
         
