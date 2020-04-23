@@ -45,6 +45,6 @@ Route::get('/clientdatas', 'ClientdataController@create');
 
 Route::post('clientdatas/fetch1', 'ClientdataController@fetch1')->name('ClientdataController.fetch1');
 
-Route::get('client_data/status/{id}', 'ClientdataController@status')->name('status');
-// Route::get('client_data/status/{id}', 'ClientdataController@try')->name('try');
-// Route::get('client_data/status/{id}', 'ClientdataController@status3')->name('status3');
+Route::get('/all', 'ClientdataController@all');
+Route::get('client_data/status1/{id}', 'ClientdataController@status1')->name('status1');
+Route::get('client_data/statusclose/{id}', 'ClientdataController@statusclose')->name('statusclose');
