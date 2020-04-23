@@ -1,7 +1,7 @@
 
 
 
-@extends('layouts.sidebar3')
+@extends('layouts.sidebar')
 @section('content')
     
 <div class="w3-sidebar w3-bar-block " style="margin: 0 0 5% 0;" >
