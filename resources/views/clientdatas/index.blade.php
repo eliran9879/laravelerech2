@@ -48,8 +48,9 @@
 <td > {{$clientdata->designation}}</td>
 <td > {{$clientdata->type_check}}</td>
 @if (!empty($clientdata->status))
-   @if ($clientdata->status == 'open'))
-   <td>  <a href="{{route('statusclose', $clientdata->id)}}" class="btn btn-success">@lang('Close loan')</a> </td>
+   @if ($clientdata->status == 'open')
+   <td>  <a href="{{route('statusclose', $clientdata->id)}}" class="btn btn-success" onClick="alert('Are you sure?')"
+>@lang('Close loan')</a> </td>
    @else
 <td > {{$clientdata->status}}</td>
     @endif

@@ -167,7 +167,7 @@ class ClientdataController extends Controller
         $clientdata = Clientdata::findOrFail($id);
         $clientdata->status= 'open';
 
-        $clientdata->bank_id= 'close';
+      
         $clientdata->save();
         return redirect('client_data');
     }
