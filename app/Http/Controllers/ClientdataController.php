@@ -343,7 +343,7 @@ class ClientdataController extends Controller
 
         $query->save();
 
-        return redirect('client_data');
+        return redirect('all');
     }
 
    
