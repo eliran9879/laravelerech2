@@ -68,7 +68,12 @@
 
 @endif
 
+@if ($nodata )
+<h1>
+sorry, D'ont have possible bank to this transaction
+</h1>
 
+@endif
 </tbody>
 </table>
 

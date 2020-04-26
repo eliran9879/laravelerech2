@@ -75,16 +75,16 @@ class ClientdataController extends Controller
         else {
           $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
           $min_month_ibi =  DB::table('covenantsibis')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
-            if (!empty($min_month)){
+          if (!empty($min_month)){
             $client_month =  Covenantshapoalim::with('banks')->where([['designation','loan'],['total_month',$min_month]])->get(); 
             foreach ($client_month as $client_month1) {
                 $client_poalim_aprroval = $client_month1->max_approval;
             }
            $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
-        //    echo($sumamount);
+        
          if (($clientamount / $sumamount ) < $client_poalim_aprroval){
              $clientdatashapoalim = $client_month; 
-            //  echo($clientdatas);
+            //  echo($clientdatashapoalim);
          }
         }
          if (!empty($min_month_ibi)){
@@ -222,6 +222,9 @@ class ClientdataController extends Controller
            );
             return view('all.index',['clientdatashapoalim' => $clientdatashapoalim,'id_last' => $id_last]);
         }
+        else
+        $nodata = 'no data'; 
+        return view('all.index',compact('nodata'));
         
     }
    
