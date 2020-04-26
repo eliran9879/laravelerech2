@@ -17,17 +17,17 @@
     </div>
    <br />
    <div class="col-md-2">
-    <label class="control-label" for = "payeee">  Id account </label></div>
+    <label class="control-label" for = "id_account">  Id account </label></div>
     <div class="col-md-10">
     <select name="id_account" id="id_account" class="form-control  dynamic" data-dependent="payeee">
      <option value="">Select Id</option>
     </select> </div>
    <br />
    <div class="col-md-2">
-    <label class="control-label" for = "id_account">  payeee </label></div>
+    <label class="control-label" for = "payeee">  payeee </label></div>
     <div class="col-md-10">
     <select name="payeee" id="payeee" class="form-control ">
-     <option value="">Select id</option>
+     <option value="">Select payeee</option>
     </select>
     </div>
    {{ csrf_field() }}

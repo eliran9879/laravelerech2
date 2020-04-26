@@ -333,7 +333,7 @@ class ClientdataController extends Controller
             $id_client = DB::table('customers')->where([['payeee' , $request->payeee],['client_name' , $request->client_name]])->value('id_account'); 
             $client_id = $id_client;
         }
-        $query->client_id = $client_id;
+        $query->client_id = $request->id_account ;
         
         $query->amount = $request->amount;
         $query->deposit_date = $request->start_date;

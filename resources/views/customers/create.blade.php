@@ -15,7 +15,7 @@
 
 <div class = "form-group">
 <div class="col-md-2">
-    <label class="control-label" for = "title"> Client name </label></div>
+    <label class="control-label" for = "client_name"> Client name </label></div>
     <div class="col-md-10">
      <input type = "text" class = "form-control" name = "client_name" id="client_name" required>
     <div id="client_nameList">

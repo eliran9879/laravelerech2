@@ -46,7 +46,7 @@ class CustomerController extends Controller
 
       
         
-        $customer->client_name = $request->title;
+        $customer->client_name = $request->client_name;
         $customer->id_account = $request->account;
         $customer->payeee = $request->payeee;
         $customer->occupation = $request->occupation;

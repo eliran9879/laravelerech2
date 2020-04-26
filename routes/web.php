@@ -21,7 +21,6 @@ Route::resource('covenants_ibi', 'CovenantsibiController')->middleware('auth');
 Route::resource('covenants_hapoalim', 'CovenantshapoalimController')->middleware('auth');
 Route::resource('covenants_mizrahi', 'CovenantsmizrahiController')->middleware('auth');
 Route::resource('client_data', 'ClientdataController')->middleware('auth');
-Route::post('/client_data/fetch', 'ClientdataController@fetch')->name('autocomplete.fetch');
 // Route::post('/client_data/fetch1', 'ClientdataController@fetch1')->name('autocomplete1.fetch');
 
 //Route::resource('customers', 'CustomerController');
