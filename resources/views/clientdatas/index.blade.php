@@ -1,6 +1,3 @@
-
-
-
 @extends('layouts.sidebar')
 @section('content')
     
@@ -8,29 +5,25 @@
          
          <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
            <h2>Client data</h2>
+           {{ date('Y-m-d H:i:s') }} <br>
+           {{ date("d-m-Y H:i:s", strtotime("now -3 GMT")) }}
            <ol class="list-unstyled">
-            
-           
-             
-          </ol>
-        
-                
+          </ol>                   
  </div>
 
  <div class="panel panel-default">
-
 <br>
 <table class="table">
 <thead>
 <tr>
-<th >  bank name</th>
+<th > bank name</th>
 <th > client id</th>
 <th > amount</th>
 <th > deposit date</th>
 <th > end date</th>
 <th > disignation</th>
 <th > Type check</th>
-<th >  Action</th>
+<th > Action</th>
 
 
 </tr>
@@ -40,19 +33,47 @@
 @foreach($clientdatas as $clientdata)
   <tr>
 
-<td > {{$clientdata->banks->name}}</td>
-<td >{{$clientdata->client_id}} </td>
-<td > {{$clientdata->amount}}</td>
-<td > {{$clientdata->deposit_date}}</td>
-<td > {{$clientdata->end_date}}</td>
-<td > {{$clientdata->designation}}</td>
-<td > {{$clientdata->type_check}}</td>
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+            @elseif ($clientdata->status == 'close') closeStatus
+            @else overTime @endif"> {{$clientdata->banks->name}}</td>
+
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+            @elseif ($clientdata->status == 'close') closeStatus
+            @else overTime @endif"> {{$clientdata->client_id}}</td>
+
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+            @elseif ($clientdata->status == 'close') closeStatus
+            @else overTime @endif"> {{$clientdata->amount}}</td>
+
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+            @elseif ($clientdata->status == 'close') closeStatus
+            @else overTime @endif"> {{$clientdata->deposit_date}}</td>
+
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+            @elseif ($clientdata->status == 'close') closeStatus
+            @else overTime @endif">{{$clientdata->end_date}}</td>
+
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+            @elseif ($clientdata->status == 'close') closeStatus
+            @else overTime @endif">{{$clientdata->designation}}</td>
+            
+            <td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+            @elseif ($clientdata->status == 'close') closeStatus
+            @else overTime @endif"> {{$clientdata->type_check}}</td>
+
 @if (!empty($clientdata->status))
    @if ($clientdata->status == 'open')
-   <td>  <a href="{{route('statusclose', $clientdata->id)}}" class="btn btn-success" onClick="alert('Are you sure?')"
+   <td> <a href="{{route('statusclose', $clientdata->id)}}" class="btn btn-success" onClick="alert('Are you sure?')"
 >@lang('Close loan')</a> </td>
    @else
-<td > {{$clientdata->status}}</td>
+<td > {{$clientdata->status}} </td>
     @endif
     @else
     
@@ -61,22 +82,18 @@
 
 </tr>
 
-
 @endforeach
 </tbody>
 </table>
 
 </div>
-
 </div>
 
- 
  @endsection
+
 <!-- <footer class="ttt">Website of EISS</footer> 
 
 <style>
-
- 
 
   .col {
     position: absolute;
@@ -94,5 +111,11 @@
 }
 
 </style>
-
 -->
+
+<style>
+.nullStatus {background:#F8F8FF}
+.openStatus {background:#7FFFD4}
+.overTime {background:#DC143C}
+.closeStatus {background:#00BFFF}
+</style>
