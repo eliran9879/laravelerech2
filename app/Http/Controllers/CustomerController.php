@@ -49,11 +49,19 @@ class CustomerController extends Controller
         $customer->client_name = $request->client_name;
         $customer->id_account = $request->account;
         $customer->payeee = $request->payeee;
+        
         $customer->occupation = $request->occupation;
         $customer->adrress = $request->adrress;
-        
+        $ifexist =DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->get();
+        echo ( $ifexist );
+        if (DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->exists())
+        {
+       return abort (403,"sorry, you have this customer");
+        }
+        else{
         $customer->save();
         return redirect('customers');
+        }
     }
 
     /**
