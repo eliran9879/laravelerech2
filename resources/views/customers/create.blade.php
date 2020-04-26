@@ -17,8 +17,10 @@
 <div class="col-md-2">
     <label class="control-label" for = "title"> Client name </label></div>
     <div class="col-md-10">
-     <input type = "text" class = "form-control" name = "title" required>
-     </div>
+     <input type = "text" class = "form-control" name = "client_name" id="client_name" required>
+    <div id="client_nameList">
+    </div>
+    </div>
     
      <div class="col-md-2">
     <label class="control-label" for="payeee">Payeee</label></div>
@@ -50,5 +52,35 @@
     <button name="submit" type="submit" value="Save"> Add</button></div>
     </form>
     </div>
+
+    <script>
+$(document).ready(function(){
+
+ $('#client_name').keyup(function(){ 
+        var query = $(this).val();
+        if(query != '')
+        {
+         var _token = $('input[name="_token"]').val();
+         $.ajax({
+          url:"{{ route('autocomplete.fetch') }}",
+          method:"POST",
+          data:{query:query, _token:_token},
+          success:function(data){
+           $('#client_nameList').fadeIn();  
+                    $('#client_nameList').html(data);
+          }
+         });
+        }
+    });
+
+    $(document).on('click', 'li', function(){  
+        $('#client_name').val($(this).text());  
+        $('#client_nameList').fadeOut();  
+    });  
   
+
+});
+</script>
+
+
 @endsection
