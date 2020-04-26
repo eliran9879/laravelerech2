@@ -8,7 +8,7 @@
 <div class="col-md-2">
     <label class="control-label" for = "client_name"> Client name </label></div>
     <div class="col-md-10">
-    <select name="country" id="client_name" class="form-control  dynamic" data-dependent="payeee" >
+    <select name="country" id="client_name" class="form-control  dynamic" data-dependent="id_account" >
      <option value="">Select clientname</option>
      @foreach($country_list as $client_name)
      <option value="{{ $client_name->client_name}}">{{ $client_name->client_name }}</option>
@@ -17,16 +17,16 @@
     </div>
    <br />
    <div class="col-md-2">
-    <label class="control-label" for = "payeee">  payeee </label></div>
+    <label class="control-label" for = "payeee">  Id account </label></div>
     <div class="col-md-10">
-    <select name="payeee" id="payeee" class="form-control  dynamic" data-dependent="id_account">
-     <option value="">Select payeee</option>
+    <select name="id_account" id="id_account" class="form-control  dynamic" data-dependent="payeee">
+     <option value="">Select Id</option>
     </select> </div>
    <br />
    <div class="col-md-2">
-    <label class="control-label" for = "id_account">  Id account </label></div>
+    <label class="control-label" for = "id_account">  payeee </label></div>
     <div class="col-md-10">
-    <select name="id_account" id="id_account" class="form-control ">
+    <select name="payeee" id="payeee" class="form-control ">
      <option value="">Select id</option>
     </select>
     </div>
@@ -124,12 +124,12 @@ $('.dynamic').change(function(){
 });
 
 $('#client_name').change(function(){
- $('#payeee').val('');
  $('#id_account').val('');
+ $('#payeee').val('');
 });
 
-$('#payeee').change(function(){
- $('#id_account').val('');
+$('#id_account').change(function(){
+ $('#payeee').val('');
 });
 
 
