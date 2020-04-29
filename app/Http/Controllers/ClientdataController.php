@@ -230,7 +230,13 @@ class ClientdataController extends Controller
    
     public function index()
     {
-        $clientdatas= Clientdata::with('banks')->get();
+        if (request()->has('status')){
+        $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(1);
+        }
+        else{
+            $clientdatas= Clientdata::with('banks')->paginate(1);
+
+        }
         return view('clientdatas.index',['clientdatas' => $clientdatas]);
     }
    

@@ -5,6 +5,11 @@
          
          <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
            <h2>Client data</h2>
+           Filter:
+           <a href ="client_data/?status=Open">Open</a>|
+           <a href ="client_data/?status=Close">Close</a>|
+           <a href ="client_data">Reset</a>
+           <br>
            {{ date('Y-m-d H:i:s') }} <br>
            {{ date("d-m-Y H:i:s", strtotime("now -3 GMT")) }}
            <ol class="list-unstyled">
@@ -85,7 +90,7 @@
 @endforeach
 </tbody>
 </table>
-
+{{$clientdatas->links()}}
 </div>
 </div>
 
