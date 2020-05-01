@@ -51,6 +51,25 @@
     </div><br>
 
     <div class="col-md-2">
+    <label class="control-label" for="Amortization_table ">Amortization table </label></div>
+    
+    <div class="col-md-10" >
+
+<select  class="form-control" name = "Amortization_table"> 
+  <option value="volvo">Spizer</option>
+  <option value="saab">Balon</option>
+  <option value="mercedes">Equal fund</option>
+  
+  </select>
+    </div><br>
+
+    <div class="col-md-2">
+    <label class="control-label" for = "Interest"> Interest </label></div>
+    <div class="col-md-10">
+     <input type = "number" class = "form-control" name = "Interest" required>
+     </div><br>
+
+    <div class="col-md-2">
     <label class="control-label" for="type">Type check </label></div>
     
     <div class="col-md-10">

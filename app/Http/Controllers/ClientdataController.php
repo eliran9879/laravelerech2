@@ -25,6 +25,10 @@ class ClientdataController extends Controller
         $clientbasic= DB::table('clientdatas')->latest('id')->take(1)->get();
         $clientdat = DB::table('clientdatas')->latest('id')->take(1)->value('end_date');
         $clientdatas = DB::table('clientdatas')->latest('id')->take(1)->value('deposit_date');
+        // $clientdataamonaration = DB::table('clientdatas')->latest('id')->take(1)->value('amonaration_board');
+    //  if ($clientdataamonaration = 'equal fund'){
+        //   $fund_return = $clientamount / $range; 
+    //  }
         $datetime1 = new DateTime($clientdatas);
         $datetime2 = new DateTime($clientdat);
         $clientdatas1 = $datetime2->diff($datetime1);
