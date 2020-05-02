@@ -8,10 +8,10 @@
            Filter:
            <a href ="client_data/?status=Open">Open</a>|
            <a href ="client_data/?status=Close">Close</a>|
-           <a href ="client_data">Reset</a>
+           <a href ="client_data">All</a>
            <br>
-           {{ date('Y-m-d H:i:s') }} <br>
-           {{ date("d-m-Y H:i:s", strtotime("now -3 GMT")) }}
+           <!-- {{ date('Y-m-d H:i:s') }} <br> -->
+           <!-- {{ date("d-m-Y H:i:s", strtotime("now -3 GMT")) }} -->
            <ol class="list-unstyled">
           </ol>                   
  </div>

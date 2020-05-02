@@ -38,7 +38,12 @@
      <div class="col-md-2">
     <label class="control-label" for="occupation">Occupation</label></div>
     <div class="col-md-10">
-     <input type = "text" class = "form-control" name = "occupation" required>
+    <select  class="form-control" name = "occupation" required> 
+  <option value="real_estate">real_estate</option>
+  <option value="industry">industry</option>
+  <option value="agriculture"> agriculture</option>
+  
+  </select>
      </div>
 
     <div class="col-md-2">
