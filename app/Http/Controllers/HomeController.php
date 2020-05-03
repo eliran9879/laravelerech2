@@ -7,6 +7,7 @@ use App\user;
 use Illuminate\Support\Facades\Auth;
 use Charts;
 use DB;
+// s
 class HomeController extends Controller
 {
     /**
