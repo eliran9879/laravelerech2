@@ -162,7 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         // Maatwebsite\Excel\ExcelServiceProvider::class,
-        // ConsoleTVs\Charts\ChartsServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -228,7 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        // 'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ],
 
