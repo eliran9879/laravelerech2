@@ -33,7 +33,9 @@ Route::post('/home', 'RegistrationController@store');
 Route::get('export', 'MyController@export')->name('export');
 // Route::get('importExportView', 'MyController@importExportView');
 Route::post('import', 'MyController@import')->name('import');
+Route::post('import2', 'MyController@import2')->name('import2');
 Route::post('import1', 'MyController@import1')->name('import1');
+Route::get('export1', 'MyController@export1')->name('export1');
 
 
 Route::get('/customers', 'CustomerController@index');
