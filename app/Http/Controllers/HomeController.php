@@ -38,28 +38,28 @@ class HomeController extends Controller
 		// 	      ->dimensions(1000, 500)
 		// 	      ->responsive(false)
         //           ->groupByMonth(date('Y'), true);
-        $tasks = DB::table('customers') ->get();
-        foreach   ($tasks as $customer) {
-        $customer_occup = $customer->occupation;
-        }
-        $loans = DB::table('banks')
-        ->join('clientdatas', 'banks.id', '=', 'clientdatas.bank_id') 
-         ->where('clientdatas.status', '=' ,'open') ->orWhere('clientdatas.status', '=' ,'close') ->get();
-       $bar_chart = Charts::database( $tasks, 'bar', 'material')
-       ->title('segmentation occuputioan')
-       ->elementLabel("Total Customers")
-       ->Width(0)
-       ->responsive(true)
-       ->Colors(['#4caf50'])
-       ->groupBy('occupation');
-       $bar_chart1 = Charts::database( $loans, 'bar', 'material')
-       ->title('segmentation occuputioan')
-       ->elementLabel("Total transactions by banks")
-       ->Width(0)
-       ->responsive(true)
-       ->Colors(['#4caf50'])
-       ->groupBy('name');
+    //     $tasks = DB::table('customers') ->get();
+    //     foreach   ($tasks as $customer) {
+    //     $customer_occup = $customer->occupation;
+    //     }
+    //     $loans = DB::table('banks')
+    //     ->join('clientdatas', 'banks.id', '=', 'clientdatas.bank_id') 
+    //      ->where('clientdatas.status', '=' ,'open') ->orWhere('clientdatas.status', '=' ,'close') ->get();
+    //    $bar_chart = Charts::database( $tasks, 'bar', 'material')
+    //    ->title('segmentation occuputioan')
+    //    ->elementLabel("Total Customers")
+    //    ->Width(0)
+    //    ->responsive(true)
+    //    ->Colors(['#4caf50'])
+    //    ->groupBy('occupation');
+    //    $bar_chart1 = Charts::database( $loans, 'bar', 'material')
+    //    ->title('segmentation occuputioan')
+    //    ->elementLabel("Total transactions by banks")
+    //    ->Width(0)
+    //    ->responsive(true)
+    //    ->Colors(['#4caf50'])
+    //    ->groupBy('name');
     
-        return view('charts.index',compact('bar_chart','bar_chart1'));
+    //     return view('charts.index',compact('bar_chart','bar_chart1'));
     }
 }
