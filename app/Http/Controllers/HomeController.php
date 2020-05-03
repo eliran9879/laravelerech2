@@ -39,14 +39,12 @@ class HomeController extends Controller
 			      ->dimensions(1000, 500)
 			      ->responsive(false)
                   ->groupByMonth(date('Y'), true);
-        $tasks = DB::table('customers') ->get();
-        foreach   ($tasks as $customer) {
-        $customer_occup = $customer->occupation;
-        }
+        $customers = DB::table('customers') ->get();
+       
         $loans = DB::table('banks')
         ->join('clientdatas', 'banks.id', '=', 'clientdatas.bank_id') 
          ->where('clientdatas.status', '=' ,'open') ->orWhere('clientdatas.status', '=' ,'close') ->get();
-       $bar_chart = Charts::database( $tasks, 'bar', 'material')
+       $bar_chart = Charts::database( $customers, 'bar', 'material')
        ->title('segmentation occuputioan')
        ->elementLabel("Total Customers")
        ->Width(0)
@@ -60,7 +58,18 @@ class HomeController extends Controller
        ->responsive(true)
        ->Colors(['#4caf50'])
        ->groupBy('name');
-    
-        return view('charts.index',compact('bar_chart','bar_chart1'));
+       $customersindu = DB::table('customers')->where('occupation', 'industry')->count();
+       $customersreal = DB::table('customers')->where('occupation', 'real_astate')->count();
+       $customersgeneral = DB::table('customers')->count();
+       $customersperind = $customersindu /  $customersgeneral;
+       $customersperreal = $customersreal /  $customersgeneral;
+
+       $pie1  =	 Charts::create('pie', 'highcharts')
+       ->title('My nice chart')
+       ->labels(['real_estate', 'industry'])
+       ->values([$customersperreal,$customersperind])
+       ->responsive(true);
+
+        return view('charts.index',compact('bar_chart','bar_chart1','pie1'));
     }
 }
