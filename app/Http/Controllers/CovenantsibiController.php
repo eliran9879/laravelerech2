@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Gate;
 use App\Covenantsibi;
 use App\Bank;
 class CovenantsibiController extends Controller
@@ -16,6 +17,9 @@ class CovenantsibiController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         // $covenantsibis= Covenantsibi::all();
         $covenantsibis= Covenantsibi::with('banks')->get();
         return view('covenantsibis.index',['covenantsibis' => $covenantsibis]);

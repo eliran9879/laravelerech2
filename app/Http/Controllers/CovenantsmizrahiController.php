@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Gate;
 use App\Covenantsmizrahi;
 use App\Bank;
 
@@ -17,6 +18,9 @@ class CovenantsmizrahiController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         $covenantsmizrahis= Covenantsmizrahi::with('banks')->get();
         return view('covenantsmizrahis.index',['covenantsmizrahis' => $covenantsmizrahis]);
     }

@@ -5,6 +5,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Response;
 use App\Clientdata;
 use App\Customer;
@@ -13,6 +14,7 @@ use App\Covenantshapoalim;
 use App\Covenantsmizrahi;
 use App\Covenantsibi;
 use App\Bank;
+
 class ClientdataController extends Controller
 {
     /**
@@ -22,6 +24,9 @@ class ClientdataController extends Controller
      */
     public function all()
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         $clientbasic= DB::table('clientdatas')->latest('id')->take(1)->get();
         $clientdat = DB::table('clientdatas')->latest('id')->take(1)->value('end_date');
         $clientdatas = DB::table('clientdatas')->latest('id')->take(1)->value('deposit_date');
@@ -234,6 +239,9 @@ class ClientdataController extends Controller
    
     public function index()
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         if (request()->has('status')){
         $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(1);
         }
@@ -246,16 +254,20 @@ class ClientdataController extends Controller
    
     public function status1($id)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         $clientdata = Clientdata::findOrFail($id);
         $clientdata->status= 'open';
-
-      
         $clientdata->save();
         return redirect('client_data');
     }
 
     public function statusclose($id)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         $clientdata = Clientdata::findOrFail($id);
         $clientdata->status= 'close';
         $clientdata->save();
@@ -269,6 +281,9 @@ class ClientdataController extends Controller
      */
     function fetch(Request $request)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
      if($request->get('query'))
      {
       $query = $request->get('query');
@@ -296,6 +311,9 @@ class ClientdataController extends Controller
     }
     function fetch1(Request $request)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
      $select = $request->get('select');
      $value = $request->get('value');
      $dependent = $request->get('dependent');
@@ -317,6 +335,9 @@ class ClientdataController extends Controller
 
     public function create(Request $request)
     { 
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
     // $clientnames = Customer::where('payeee' , $request->payeee)->get('client_name'); 
     //    $query= $request->input('payeee');
     // $clientnames = DB::table('customers')->select('client_name')->get(); 
@@ -338,6 +359,9 @@ class ClientdataController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         $query = new ClientData();
         $id =Auth::id();
         $name_client =DB::table('customers')->where('client_name' , $request->client_name)->value('payeee');

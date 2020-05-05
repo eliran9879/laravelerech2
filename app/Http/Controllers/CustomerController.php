@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Gate;
 use App\Customer;
 use DataTables;
 use DB;
@@ -18,6 +19,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         //  $customers= Customer::all()->paginate(2);
          $customers = DB::table('customers')->simplePaginate(2);
          return view('customers.index',['customers' => $customers]);
@@ -30,6 +34,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         return view('customers.create');
     }
 
@@ -41,6 +48,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         $customer = new Customer();
         $id =Auth::id();
 
@@ -83,6 +93,9 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         $customer = Customer::find($id);
         return view('customers.edit', compact('customer'));
     }
@@ -96,6 +109,9 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         $customer = Customer::find($id);
         $customer -> update($request->all());
         return redirect('customers');
@@ -109,6 +125,9 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
         $data = Customer::find($id);
         $data->delete();
          return redirect('customers');
@@ -116,6 +135,9 @@ class CustomerController extends Controller
 
     function action(Request $request)
     {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
      if($request->ajax())
      {
       $output = '';
