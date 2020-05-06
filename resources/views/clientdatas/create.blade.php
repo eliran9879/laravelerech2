@@ -50,7 +50,7 @@
     <input type = "date" name="end_date" id="date" class="form-control" value="{{ date("Y-m-d") }}" required />
     </div><br>
 
-    <div class="col-md-2">
+    <!-- <div class="col-md-2">
     <label class="control-label" for="Amortization_table ">Amortization table </label></div>
     
     <div class="col-md-10" >
@@ -67,7 +67,7 @@
     <label class="control-label" for = "Interest"> Interest </label></div>
     <div class="col-md-10">
      <input type = "number" class = "form-control" name = "Interest" required>
-     </div><br>
+     </div><br> -->
 
     <div class="col-md-2">
     <label class="control-label" for="type">Type check </label></div>
@@ -80,18 +80,23 @@
     </div><br>
   
     <div class="col-md-2">
-    <label class="control-label" for="type">Transaction range </label></div>
-    
-    <div class="col-md-10">
+    <label class="control-label" for="type">Transaction type </label></div>
+
+    <div class="col-md-10" name = "bonds duration" id="ddlPassport"> 
     <input type = "radio" id="Loan" name="transaction" value="Loan">
     <label for="Loan">Loan</label><br>
     <input type="radio" id="Discount" name="transaction" value="Discount">
   <label for="Discount">Discount</label><br>
-  <input type="radio" id="Real estate" name="transaction" value="Real estate">
-  <label for="Real estate">Real estate</label>
+  <input type="radio" id="Realestate" name="transaction" value="Realestate">
+  <label for="Realestate">Real estate</label>
     </div><br>
+   <!-- <div class="col-md-2">
+    <label class="control-label" for = "bonds duration">  Bond's duration </label></div> -->
+    <div class="col-md-10" id="dvPassport" style="display: none">
+    Bond's duration
+    <input type = "text" class = "form-control" name = "bonds duration" id="bonds duration" required>
+   </div><br>
 
-   <br>
     <div class="col-md-10">
     <button name="submit" type="submit" value="Save"> Search</button></div>
     </form></div>
@@ -153,8 +158,20 @@ $('#id_account').change(function(){
 
 
 });
+
 });
 </script>
-
+<script type="text/javascript">
+$(function () {
+  $("input[name='transaction']").click(function () {
+            if ($("#Realestate").is(":checked")) {
+                $("#dvPassport").show();
+            } else {
+                $("#dvPassport").hide();
+            }
+        });
+    });
+     
+</script>
     @endsection
    
