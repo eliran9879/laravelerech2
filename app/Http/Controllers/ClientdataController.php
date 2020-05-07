@@ -53,7 +53,7 @@ class ClientdataController extends Controller
           if (($client_des == 'Loan' || $client_des == 'real_estate') & ($client_check == 'Salaried')) {
                if (($client_des == 'real_estate') & ($client_check == 'Salaried')) {
                 $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
-                $min_month_ibi =  DB::table('covenantsibis')->where([['total_month','>', $range],['designation','realestate']])->min('total_month');  
+                $min_month_ibi =  DB::table('covenantsibis')->where([['total_month','>', $rangeibi],['designation','realestate']])->min('total_month');  
                 if (!empty($min_month)){
                     $client_month =  Covenantshapoalim::with('banks')->where([['designation','loan'],['total_month',$min_month]])->get(); 
                     foreach ($client_month as $client_month1) {
