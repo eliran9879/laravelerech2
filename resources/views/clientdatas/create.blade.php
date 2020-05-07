@@ -94,7 +94,7 @@
     <label class="control-label" for = "bonds duration">  Bond's duration </label></div> -->
     <div class="col-md-10" id="dvPassport" style="display: none">
     Bond's duration
-    <input type = "text" class = "form-control" name = "bonds duration" id="bonds duration" required>
+    <input type = "Number" class = "form-control" name = "bondsduration" id="bondsduration" required>
    </div><br>
 
     <div class="col-md-10">

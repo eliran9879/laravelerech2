@@ -22,7 +22,7 @@ class ClientdataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function all()
+    public function all(Request $request)
     {
         if (Gate::denies('manager')){  
             if (Gate::denies('worker')) {
@@ -39,6 +39,8 @@ class ClientdataController extends Controller
         $clientdatas1 = $datetime2->diff($datetime1);
         $days = $clientdatas1->format('%a');
         // echo($days);
+        $rangeibi=$request->bondsduration;
+        echo( $rangeibi);
         $range = $days/30;
         // echo($range);//working until here
         foreach ($clientbasic as $clientbasic) {
