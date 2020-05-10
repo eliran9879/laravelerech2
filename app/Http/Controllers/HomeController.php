@@ -123,7 +123,7 @@ class HomeController extends Controller
     ->elementLabel('My nice label')
     ->values([$trytry*100,0,100])
     ->responsive(false)
-    ->height(300)
+    ->height(150)
     ->width(0);
 
         return view('charts.index',compact('bar_chart1','pie1','bar_top','date_tran','opentran'));
