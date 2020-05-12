@@ -29,12 +29,13 @@
       <table id="user_table" class="table table-striped table-bordered">
        <thead>
         <tr>
-         <th>Customer Name</th>
-         <th>Address</th>
-         <th>Occupation</th>
-         <th>Id Account</th>
-         <th>Payeee</th>
-         <th>Actions</th>
+         <th style="text-align:center">Customer Name</th>
+         <th style="text-align:center">Address</th>
+         <th style="text-align:center">Occupation</th>
+         <th style="text-align:center">Id Account</th>
+         <th style="text-align:center">Payeee</th>
+         <th style="text-align:center">Edit</th>
+         <th style="text-align:center">Delete</th>
         </tr>
        </thead>
        <tbody>

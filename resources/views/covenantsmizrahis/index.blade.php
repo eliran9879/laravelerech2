@@ -21,12 +21,13 @@
 <table class="table">
 <thead>
 <tr>
-<th > Name</th>
-<th > Designation</th>
-<th > Range</th>
-<th > Approval</th>
-<th > Max Aprroval</th>
-<th > Type check</th>
+<th >Name</th>
+<th >Designation</th>
+<th >Range</th>
+<th >Approval</th>
+<th >Max Aprroval</th>
+<th >Type check</th>
+<th >Edit</th>
 
 
 </tr>
@@ -37,12 +38,12 @@
   <tr>
  
 <td >{{$covenantmizrahi->banks->name}} </td>
-<td > {{$covenantmizrahi->designation}}</td>
-<td > {{$covenantmizrahi->total_month}}</td>
-<td > {{$covenantmizrahi->approval}}</td>
-<td > {{$covenantmizrahi->max_approval}}</td>
-<td > {{$covenantmizrahi->type_check}}</td>
-
+<td >{{$covenantmizrahi->designation}}</td>
+<td >{{$covenantmizrahi->total_month}}</td>
+<td >{{$covenantmizrahi->approval}}</td>
+<td >{{$covenantmizrahi->max_approval}}</td>
+<td >{{$covenantmizrahi->type_check}}</td>
+<td ><a href= "{{route('covenants_mizrahi.edit', $covenantmizrahi->id )}}">Edit</td>
 </tr>
 
 

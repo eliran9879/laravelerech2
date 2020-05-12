@@ -65,7 +65,8 @@ class CovenantsmizrahiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $covenantsmizrahis = Covenantsmizrahi::find($id);
+        return view('covenantsmizrahis.edit', compact('covenantsmizrahis'));
     }
 
     /**
@@ -77,7 +78,10 @@ class CovenantsmizrahiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $covenantsmizrahis = Covenantsmizrahi::find($id);
+        $covenantsmizrahis -> update($request->all());
+        return redirect('covenants_mizrahi');
+
     }
 
     /**
