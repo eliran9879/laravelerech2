@@ -43,7 +43,7 @@
 <td >{{$covenantmizrahi->approval}}</td>
 <td >{{$covenantmizrahi->max_approval}}</td>
 <td >{{$covenantmizrahi->type_check}}</td>
-<td ><a href= "{{route('covenants_mizrahi.edit', $covenantmizrahi->id )}}">Edit</td>
+<td ><a href= "{{route('covenants_mizrahi.edit', $covenantmizrahi->id )}}"><img src="https://image.flaticon.com/icons/png/512/84/84380.png" style = "width:30px; height:30px; margin-left: auto; margin-right: auto;"> </a></td>
 </tr>
 
 
