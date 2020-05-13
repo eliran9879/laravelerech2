@@ -116,16 +116,34 @@ class HomeController extends Controller
     $openpercent1 = DB::table('clientdatas')
     ->where('clientdatas.status', '=' ,'open') ->orWhere('clientdatas.status', '=' ,'close')
     ->sum('amount');
-      $trytry =  $openpercent/ $openpercent1;      
-      echo($trytry);     
+      $tryopen =  $openpercent/ $openpercent1;
+
     $opentran =  Charts::create('percentage', 'justgage')
-    ->title('My nice chart')
+    ->title('Percentage open deals')
     ->elementLabel('My nice label')
-    ->values([$trytry*100,0,100])
+    ->values([$tryopen*100,0,100])
     ->responsive(false)
     ->height(150)
-    ->width(0);
+    ;
+    $closepercent = DB::table('clientdatas')
+    ->where('clientdatas.status', '=' ,'close') 
+    ->sum('amount');
+    $tryclose =  $closepercent/ $openpercent1;      
 
-        return view('charts.index',compact('bar_chart1','pie1','bar_top','date_tran','opentran'));
+    $closetran =  Charts::create('percentage', 'justgage')
+    ->title('Percentage close deals')
+    ->elementLabel('My nice label')
+    ->values([$tryclose*100,0,100])
+    ->responsive(false)
+    ->height(150)  ;
+
+    $closetran1 =  Charts::create('percentage', 'justgage')
+    ->title('Percentage close deals')
+    ->elementLabel('My nice label')
+    ->values([$tryclose*100,0,100])
+    ->responsive(false)
+    ->height(150) ;
+
+        return view('charts.index',compact('bar_chart1','pie1','bar_top','date_tran','opentran','closetran','closetran1'));
     }
 }
