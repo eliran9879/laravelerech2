@@ -2,7 +2,7 @@
 @section('content')
   
 
-<<h1>Edit Mizrahi's Covenants </h1>
+<h1>Edit Hapoalim's Covenants </h1>
 <form method = 'post' action="{{action('CovenantshapoalimController@update', $covenantshapoalims->id)}}">
 @csrf
 @method('PATCH')

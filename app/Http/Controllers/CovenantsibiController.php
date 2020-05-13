@@ -65,7 +65,8 @@ class CovenantsibiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $covenantsibis= Covenantsibi::find($id);
+        return view('covenantsibis.edit', compact('covenantsibis'));
     }
 
     /**
@@ -77,7 +78,9 @@ class CovenantsibiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $covenantsibis = Covenantsibi::find($id);
+        $covenantsibis -> update($request->all());
+        return redirect('covenants_ibi');
     }
 
     /**
