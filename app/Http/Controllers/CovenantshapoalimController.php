@@ -65,7 +65,8 @@ class CovenantshapoalimController extends Controller
      */
     public function edit($id)
     {
-        //
+        $covenantshapoalims= Covenantshapoalim::find($id);
+        return view('covenantshapoalims.edit', compact('covenantshapoalims'));
     }
 
     /**
@@ -77,7 +78,9 @@ class CovenantshapoalimController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $covenantshapoalims= Covenantshapoalim::find($id);
+        $covenantshapoalims -> update($request->all());
+        return redirect('covenants_hapoalim');
     }
 
     /**

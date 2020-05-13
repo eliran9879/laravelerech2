@@ -20,12 +20,13 @@
 <table class="table">
 <thead>
 <tr>
-<th > Name</th>
-<th > Designation</th>
-<th > Range</th>
-<th > Approval</th>
-<th > Max Aprroval</th>
-<th > Type check</th>
+<th >Name</th>
+<th >Designation</th>
+<th >Range</th>
+<th >Approval</th>
+<th >Max Aprroval</th>
+<th >Type check</th>
+<th >Action</th>
 
 
 </tr>
@@ -41,7 +42,7 @@
 <td > {{$covenanthapoalim->approval}}</td>
 <td > {{$covenanthapoalim->max_approval}}</td>
 <td > {{$covenanthapoalim->type_check}}</td>
-
+<td ><a href= "{{route('covenants_hapoalim.edit', $covenanthapoalim->id )}}">Edit</td>
 </tr>
 
 

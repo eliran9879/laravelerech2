@@ -27,7 +27,7 @@
 <th >Approval</th>
 <th >Max Aprroval</th>
 <th >Type check</th>
-<th >Edit</th>
+<th >Action</th>
 
 
 </tr>

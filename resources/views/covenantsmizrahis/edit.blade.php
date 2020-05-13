@@ -31,10 +31,6 @@
     <input type= "text" class = "form-control" name= "type_check" value = "{{$covenantsmizrahis->type_check}}">
 </div>
 
-<div class = "form-group">
-    <label for = "title">Bank ID:</label>
-    <input type= "text" class = "form-control" name= "bank_id" value = "{{$covenantsmizrahis->bank_id}}">
-</div>
 
 <div class = "form-group">
     <input type ="submit" class = "form-control" name="submit" value ="Just Do It">
