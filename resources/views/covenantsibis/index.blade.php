@@ -43,13 +43,14 @@
 <table class="table">
 <thead>
 <tr>
-<th > Name</th>
-<th > Designation</th>
-<th > Range</th>
-<th > Approval</th>
-<th > Max amount</th>
-<th > Max general</th>
-<th > Min general</th>
+<th >Name</th>
+<th >Designation</th>
+<th >Range</th>
+<th >Max amount</th>
+<th >Approval</th>
+<th >Max general</th>
+<th >Min general</th>
+<th >Action</th>
 
 
 </tr>
@@ -66,7 +67,7 @@
 <td > {{$covenantibi->approval}}</td>
 <td > {{$covenantibi->max_percentage_general}}</td>
 <td > {{$covenantibi->min_percentage_general}}</td>
-
+<td ><a href= "{{route('covenants_ibi.edit', $covenantibi->id )}}">Edit</td>
 </tr>
 
 
