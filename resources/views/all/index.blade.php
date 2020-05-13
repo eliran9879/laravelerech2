@@ -68,7 +68,7 @@
 
 @endif
 
-@if ($nodata )
+@if (!empty($nodata ))
 <h1>
 sorry, D'ont have possible bank to this transaction
 </h1>

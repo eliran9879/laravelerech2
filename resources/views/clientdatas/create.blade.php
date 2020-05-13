@@ -50,24 +50,7 @@
     <input type = "date" name="end_date" id="date" class="form-control" value="{{ date("Y-m-d") }}" required />
     </div><br>
 
-    <!-- <div class="col-md-2">
-    <label class="control-label" for="Amortization_table ">Amortization table </label></div>
-    
-    <div class="col-md-10" >
-
-<select  class="form-control" name = "Amortization_table"> 
-  <option value="volvo">Spizer</option>
-  <option value="saab">Balon</option>
-  <option value="mercedes">Equal fund</option>
   
-  </select>
-    </div><br>
-
-    <div class="col-md-2">
-    <label class="control-label" for = "Interest"> Interest </label></div>
-    <div class="col-md-10">
-     <input type = "number" class = "form-control" name = "Interest" required>
-     </div><br> -->
 
     <div class="col-md-2">
     <label class="control-label" for="type">Type check </label></div>
@@ -94,7 +77,7 @@
     <label class="control-label" for = "bonds duration">  Bond's duration </label></div> -->
     <div class="col-md-10" id="dvPassport" style="display: none">
     Bond's duration
-    <input type = "Number" class = "form-control" name = "bondsduration" id="bondsduration" required>
+    <input type = "Number" class = "form-control" name = "bondsduration" id="bondsduration" >
    </div><br>
 
     <div class="col-md-10">
@@ -168,6 +151,7 @@ $(function () {
                 $("#dvPassport").show();
             } else {
                 $("#dvPassport").hide();
+          
             }
         });
     });

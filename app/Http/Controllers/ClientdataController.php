@@ -39,8 +39,10 @@ class ClientdataController extends Controller
         $clientdatas1 = $datetime2->diff($datetime1);
         $days = $clientdatas1->format('%a');
         // echo($days);
+     if ($request->bondsduration){
         $rangeibi=$request->bondsduration;
         echo( $rangeibi);
+     }
         $range = $days/30;
         // echo($range);//working until here
         foreach ($clientbasic as $clientbasic) {
