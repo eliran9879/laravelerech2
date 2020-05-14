@@ -68,14 +68,37 @@ class HomeController extends Controller
     //    ->groupBy('name');
        $customersindu = DB::table('customers')->where('occupation', 'industry')->count();
        $customersreal = DB::table('customers')->where('occupation', 'real_estate')->count();
+       $customersagri = DB::table('customers')->where('occupation', 'agriculture')->count();
       
-
+if (!empty($customersindu) && !empty($customersreal) && !empty($customersagri)){
        $pie1  =	 Charts::create('pie', 'highcharts')
        ->title('segmentation occuputioan')
-       ->labels(['real_estate', 'industry'])
-       ->values([$customersreal,$customersindu])
+       ->labels(['real_estate', 'industry','agriculture'])
+       ->values([$customersreal,$customersindu,  $customersagri ])
        ->responsive(true);
-
+}
+else if (!empty($customersindu) && !empty($customersreal)){
+$pie1  =	 Charts::create('pie', 'highcharts')
+->title('segmentation occuputioan')
+->labels(['real_estate', 'industry'])
+->values([$customersreal,$customersindu])
+->responsive(true);
+}
+else if (!empty($customersreal) && !empty($customersagri)){
+    $pie1  =	 Charts::create('pie', 'highcharts')
+    ->title('segmentation occuputioan')
+    ->labels(['real_estate', 'agriculture'])
+    ->values([$customersreal,$customersagri])
+    ->responsive(true);
+    }
+    else if (!empty($customersindu) && !empty($customersagri)){
+        $pie1  =	 Charts::create('pie', 'highcharts')
+        ->title('segmentation occuputioan')
+        ->labels(['industry', 'agriculture'])
+        ->values([$customersindu,$customersagri])
+        ->responsive(true);
+        }
+    
     $sumBrpro = DB::table('customers')
     ->select([DB::raw('sum(amount) as totalpro'),'client_name'])
     ->join('clientdatas', 'customers.id_account', '=', 'clientdatas.client_id') 
@@ -103,7 +126,7 @@ class HomeController extends Controller
 
 
     $date_tran = Charts::create('line', 'highcharts')
-	->title("Monthly new Register Users")
+	->title("Sum deals per month")
 	->elementLabel("Total Users")
     ->responsive(true)
     ->labels($transactions_year_month->pluck('new_date')->all())

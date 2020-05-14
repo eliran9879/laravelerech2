@@ -61,45 +61,7 @@
 
 
     
-<!-- Delete Customer -->
-    <p class="font-weight-bold"></p>
-    <section class="border border-light p-3 mb-4">
-      <button type="button" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target="#centralModal">Delete Customer</button>
-      </section>
-    
-<!-- Central Modal Medium -->
-    <div class="modal fade" id="centralModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <!--Content-->
-        <div class="modal-content">
-          <!--Header-->
-          <div class="modal-header">
-            <h4 class="modal-title w-100" id="myModalLabel">Warning!</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <!--Body-->
-          <div class="modal-body">
-            <div class="alert alert-danger" role="alert">
-               Are you sure to delete {{$customer->client_name}}?
-            </div>
-          </div>
-          <!--Footer-->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <form method = 'post' action = "{{action('CustomerController@destroy', $customer ->id)}}">
-              @csrf
-              @method('DELETE')
-              <div class = "modal-footer">
-                <button type="submit" class="btn btn-danger" name="submit">Delete Customer</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <!--/.Content-->
-      </div>
-    </div>
+
     <!-- Central Modal Medium -->
 
 
