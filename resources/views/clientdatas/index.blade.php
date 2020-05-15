@@ -39,6 +39,7 @@ style = "width:30px; height:30px; margin-left:40px; margin-right: auto;">
 
  <div class="panel panel-default">
 <br>
+<div class="table-responsive">
 <table class="table">
 <thead>
 <tr>
@@ -115,6 +116,7 @@ style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
 @endforeach
 </tbody>
 </table>
+</div>
 {{$clientdatas->links()}}
 </div>
 </div>
