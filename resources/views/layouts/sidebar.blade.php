@@ -42,6 +42,10 @@ body {
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
 }
+#sidebar-wrapper.sidebar-open{
+  margin-left: 0;
+
+}
 
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
@@ -351,7 +355,8 @@ body {
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
@@ -360,6 +365,10 @@ body {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+    jQuery(".navbar-toggler").click(function(e) {
+      jQuery("#sidebar-wrapper").toggleClass("sidebar-open");
+    });
+
   </script>
 
 </body>
