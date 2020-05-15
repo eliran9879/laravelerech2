@@ -67,7 +67,7 @@
 <td > {{$covenantibi->approval}}</td>
 <td > {{$covenantibi->max_percentage_general}}</td>
 <td > {{$covenantibi->min_percentage_general}}</td>
-<td ><a href= "{{route('covenants_ibi.edit', $covenantibi->id )}}">Edit</td>
+<td ><a href= "{{route('covenants_ibi.edit', $covenantibi->id )}}"><img src="https://image.flaticon.com/icons/png/512/84/84380.png" style = "width:30px; height:30px; margin-left: auto; margin-right: auto;"> </a></td>
 </tr>
 
 
