@@ -74,7 +74,10 @@ body {
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
 }
+#sidebar-wrapper.sidebar-open{
+  margin-left: 0;
 
+}
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;

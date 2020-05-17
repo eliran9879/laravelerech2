@@ -66,6 +66,7 @@ body {
   background-color: rgba(255, 255, 255, 0.84);
   color:black;
 }
+
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
@@ -74,7 +75,10 @@ body {
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
 }
+#sidebar-wrapper.sidebar-open{
+  margin-left: 0;
 
+}
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
