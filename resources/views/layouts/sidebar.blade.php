@@ -34,6 +34,37 @@ body {
   overflow-x: hidden;
 }
 
+.active {
+  background-color: green;
+  color: white;
+}
+.dropdown-container {
+  display: none;
+  background-color: none;
+  padding-left: 8px;
+}
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+.dropdown-btn {
+  padding: 6px 8px 6px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size:15px;
+  outline: none;
+  width: 15rem;
+  }
+  .dropdown-btn:hover {
+  background-color: rgba(255, 255, 255, 0.84);
+  color:black;
+}
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
@@ -324,17 +355,26 @@ body {
       <!-- <div class=" text-color sidebar-heading">Start Bootstrap </div> -->
       <div class="list-group list-group-flush">
         <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light text-color">Dashboard</a>
-        
-        <a href="{{ url('covenants_ibi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Ibi</a>
+        <button class="dropdown-btn" >Covenants <i class="fa fa-caret-down"></i>
+  </button>
+
+  <div class="dropdown-container">
+   <a href="{{ url('covenants_ibi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Ibi</a>
+ <!--<a href="{{ url('importExportView') }}" class="list-group-item list-group-item-action bg-light text-color">Import/Export</a>-->
+ <a href="{{ url('covenants_hapoalim') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Hapoalim</a>
+ <a href="{{ url('covenants_mizrahi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Mizrahi</a>
+</div>
+        <!-- <a href="{{ url('covenants_ibi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Ibi</a> -->
         <!--<a href="{{ url('importExportView') }}" class="list-group-item list-group-item-action bg-light text-color">Import/Export</a>-->
-        <a href="{{ url('covenants_hapoalim') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Hapoalim</a>
-        <a href="{{ url('covenants_mizrahi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Mizrahi</a>
+        <!-- <a href="{{ url('covenants_hapoalim') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Hapoalim</a> -->
+        <!-- <a href="{{ url('covenants_mizrahi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Mizrahi</a> -->
         <a href="{{ url('client_data/create') }}" class="list-group-item list-group-item-action bg-light text-color">Query</a>
         <a href="{{ url('customers') }}" class="list-group-item list-group-item-action bg-light text-color">Customers</a>
         <a href="{{ url('client_data') }}" class="list-group-item list-group-item-action bg-light text-color">Transaction data</a>
         @if (Gate::allows('manager')) 
         <a href="{{url('users')}}" class="list-group-item list-group-item-action bg-light text-color">access to users </a>
         @endif
+       
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -370,7 +410,20 @@ body {
     jQuery(".navbar-toggler").click(function(e) {
       jQuery("#sidebar-wrapper").toggleClass("sidebar-open");
     });
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
 
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}  
   </script>
 
 </body>

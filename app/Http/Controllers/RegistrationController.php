@@ -44,7 +44,6 @@ class RegistrationController extends Controller
                  'email' => $request['email'],
                  'password'=> hash::make($request['password']),
                  'organization' => $request['organization'],
-                 'codesubmit' => '1',
                  ]);
         }
         auth()->login($user);
