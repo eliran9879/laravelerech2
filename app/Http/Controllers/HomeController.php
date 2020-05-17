@@ -142,8 +142,8 @@ else if (!empty($customersreal) && !empty($customersagri)){
       $tryopen =  $openpercent/ $openpercent1;
 
     $opentran =  Charts::create('percentage', 'justgage')
-    ->title('Percentage open deals')
-    ->elementLabel('My nice label')
+    ->title('')
+    ->elementLabel('open deals')
     ->values([$tryopen*100,0,100])
     ->responsive(false)
     ->height(150)
@@ -154,15 +154,15 @@ else if (!empty($customersreal) && !empty($customersagri)){
     $tryclose =  $closepercent/ $openpercent1;      
 
     $closetran =  Charts::create('percentage', 'justgage')
-    ->title('Percentage close deals')
+    ->title('')
     ->elementLabel('My nice label')
     ->values([$tryclose*100,0,100])
     ->responsive(false)
     ->height(150)  ;
 
     $closetran1 =  Charts::create('percentage', 'justgage')
-    ->title('Percentage close deals')
-    ->elementLabel('My nice label')
+    ->title('')
+    ->elementLabel('close deals')
     ->values([$tryclose*100,0,100])
     ->responsive(false)
     ->height(150) ;

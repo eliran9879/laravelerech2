@@ -47,6 +47,12 @@
             <input type="text" class="form-control" id="organization" name="organization">
         </div>
           </div>
+          <div class="form-group row">
+            <label for="code" class="col-md-4 col-form-label text-md-right">Code</label>
+             <div class="col-md-6">
+            <input type="text" class="form-control" id="code" name="code">
+        </div>
+          </div>
         <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
             <button style="cursor:pointer" type="submit" class="btn btn-primary">register</button>

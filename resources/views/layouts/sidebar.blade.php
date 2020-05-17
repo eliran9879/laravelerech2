@@ -332,7 +332,9 @@ body {
         <a href="{{ url('client_data/create') }}" class="list-group-item list-group-item-action bg-light text-color">Query</a>
         <a href="{{ url('customers') }}" class="list-group-item list-group-item-action bg-light text-color">Customers</a>
         <a href="{{ url('client_data') }}" class="list-group-item list-group-item-action bg-light text-color">Transaction data</a>
-
+        @if (Gate::allows('manager')) 
+        <a href="{{url('users')}}" class="list-group-item list-group-item-action bg-light text-color">access to users </a>
+        @endif
       </div>
     </div>
     <!-- /#sidebar-wrapper -->

@@ -29,14 +29,24 @@ class RegistrationController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'organization' => ['required', 'string','max:255'],
         ]);
-        
+        if ($request['code']){
         $user = User::create([
             'name' => $request['name'],
              'email' => $request['email'],
              'password'=> hash::make($request['password']),
              'organization' => $request['organization'],
-        ]);
-        
+             'code' => $request['code']
+             ]);
+        }
+        else{
+            $user = User::create([
+                'name' => $request['name'],
+                 'email' => $request['email'],
+                 'password'=> hash::make($request['password']),
+                 'organization' => $request['organization'],
+                 'codesubmit' => '1',
+                 ]);
+        }
         auth()->login($user);
         
         return redirect()->to('/home');

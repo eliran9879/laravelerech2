@@ -36,7 +36,9 @@ Route::post('import', 'MyController@import')->name('import');
 Route::post('import2', 'MyController@import2')->name('import2');
 Route::post('import1', 'MyController@import1')->name('import1');
 Route::get('export1', 'MyController@export1')->name('export1');
+Route::get('users/code/{id}', 'UserController@code')->name('code');
 
+Route::resource('/users', 'UserController')->middleware('auth');
 
 Route::get('/customers', 'CustomerController@index');
 Route::get('/customers/action', 'CustomerController@action')->name('customers.action');

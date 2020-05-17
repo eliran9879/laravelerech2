@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<div class="container" style= "background: #a9a9a9a8;
+<div class="container" style= "background: #778899;
     border-radius: 2%;">
     
     <div class="row">
