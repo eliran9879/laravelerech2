@@ -247,10 +247,10 @@ class ClientdataController extends Controller
             if (Gate::denies('worker')) {
                 abort(403,"Are you a hacker or what?");} }
         if (request()->has('status')){
-        $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(1);
+        $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(4);
         }
         else{
-            $clientdatas= Clientdata::with('banks')->where('bank_id','!=','NULL')->paginate(1);
+            $clientdatas= Clientdata::with('banks')->where('bank_id','!=','NULL')->paginate(4);
 
         }
         return view('clientdatas.index',['clientdatas' => $clientdatas]);

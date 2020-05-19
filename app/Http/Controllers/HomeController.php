@@ -46,7 +46,7 @@ class HomeController extends Controller
          ->where('clientdatas.status', '=' ,'open') ->orWhere('clientdatas.status', '=' ,'close') ->get();
     
     $sumBrpro1 = DB::table('banks')
-    ->select([DB::raw('count(bank_id) as totalpro'),'name'])
+    ->select([DB::raw('sum(amount) as totalpro'),'name'])
     ->join('clientdatas', 'banks.id', '=', 'clientdatas.bank_id') 
     ->where('clientdatas.status', '=' ,'open') ->orWhere('clientdatas.status', '=' ,'close')
     ->groupBy('name')
@@ -115,16 +115,16 @@ else if (!empty($customersreal) && !empty($customersagri)){
     ->values($sumBrpro->pluck('totalpro')->all())
     ->responsive(true);
 
+    $oneYearOn = date('Y-m-d',strtotime(date("Y-m-d") . " - 366 day"));
 
     $transactions_year_month = DB::table('clientdatas')
     ->select([DB::raw('sum(amount) as totalpro'),DB::raw("DATE_FORMAT(deposit_date, '%m-%Y') new_date"),  DB::raw('YEAR(deposit_date) year,MONTH(deposit_date) as month')])
-    ->where([['clientdatas.status', '=' ,'open'],[ DB::raw('YEAR(deposit_date)') ,'=', now()->year]]) ->orWhere([['clientdatas.status', '=' ,'close'],[DB::raw('YEAR(deposit_date)') ,'=', now()->year]])
+    ->where([['clientdatas.status', '=' ,'open'],[ 'deposit_date' ,'>=',  $oneYearOn]]) ->orWhere([['clientdatas.status', '=' ,'close'],[DB::raw('YEAR(deposit_date)') ,'=', now()->year]])
     ->groupBy('year','month')
     ->get();
     echo( $transactions_year_month );
-  
-
-
+    // echo(  date('Y-m-d ')+ INTERVAL 30 DAY);
+    echo($oneYearOn);
     $date_tran = Charts::create('line', 'highcharts')
 	->title("Sum deals per month")
 	->elementLabel("Total Users")
