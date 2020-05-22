@@ -115,7 +115,20 @@ else if (!empty($customersreal) && !empty($customersagri)){
     ->values($sumBrpro->pluck('totalpro')->all())
     ->responsive(true);
 
-    $oneYearOn = date('Y-m-d',strtotime(date("Y-m-d") . " - 366 day"));
+    $sumBrprotry = DB::table('clientdatas')
+    ->select([DB::raw('sum(amount) as totalpro'),'designation'])
+    ->where([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Loan']])->orWhere([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Realestate']])->orWhere([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Discount']])
+    ->groupBy('designation')
+    ->get();
+    
+    $bar_toptry = Charts::create('bar', 'highcharts')
+    ->title("Top 5 customer ")
+    ->elementLabel('Sum of transactions','csd')
+    ->labels($sumBrprotry->pluck('designation')->all())
+    ->values($sumBrprotry->pluck('totalpro')->all())
+    ->responsive(true);
+
+    $oneYearOn = date('Y-m-d',strtotime(date("Y-m-d") . " - 12 month"));
 
     $transactions_year_month = DB::table('clientdatas')
     ->select([DB::raw('sum(amount) as totalpro'),DB::raw("DATE_FORMAT(deposit_date, '%m-%Y') new_date"),  DB::raw('YEAR(deposit_date) year,MONTH(deposit_date) as month')])
@@ -133,40 +146,47 @@ else if (!empty($customersreal) && !empty($customersagri)){
     ->values($transactions_year_month->pluck('totalpro')->all())
     ->responsive(true);
     
-    $openpercent = DB::table('clientdatas')
-    ->where('clientdatas.status', '=' ,'open') 
+    $discountpercent = DB::table('clientdatas')
+    ->where([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Discount']]) 
     ->sum('amount');
     $openpercent1 = DB::table('clientdatas')
-    ->where('clientdatas.status', '=' ,'open') ->orWhere('clientdatas.status', '=' ,'close')
+    ->where([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Loan']])->orWhere([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Realestate']])->orWhere([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Discount']])
     ->sum('amount');
-      $tryopen =  $openpercent/ $openpercent1;
+  
+    $discountopen =  $discountpercent/ $openpercent1;
 
-    $opentran =  Charts::create('percentage', 'justgage')
+    $opendiscount =  Charts::create('percentage', 'justgage')
     ->title('')
-    ->elementLabel('open deals')
-    ->values([$tryopen*100,0,100])
+    ->elementLabel('Discount')
+    ->values([$discountopen*100,0,100])
     ->responsive(false)
     ->height(150)
     ;
-    $closepercent = DB::table('clientdatas')
-    ->where('clientdatas.status', '=' ,'close') 
+    $openloancalc = DB::table('clientdatas')
+    ->where([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Loan']]) 
     ->sum('amount');
-    $tryclose =  $closepercent/ $openpercent1;      
+    $loanopen =  $openloancalc/ $openpercent1;      
+echo($openpercent1);
 
-    $closetran =  Charts::create('percentage', 'justgage')
+    $openloan =  Charts::create('percentage', 'justgage')
     ->title('')
-    ->elementLabel('My nice label')
-    ->values([$tryclose*100,0,100])
+    ->elementLabel('Loan')
+    ->values([$loanopen*100,0,100])
     ->responsive(false)
     ->height(150)  ;
-
-    $closetran1 =  Charts::create('percentage', 'justgage')
+  
+    $openrealestatecalc = DB::table('clientdatas')
+    ->where([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Realestate']]) 
+    ->sum('amount');
+    $realestateopen =  $openrealestatecalc/ $openpercent1; 
+  
+    $openrealestate =  Charts::create('percentage', 'justgage')
     ->title('')
-    ->elementLabel('close deals')
-    ->values([$tryclose*100,0,100])
+    ->elementLabel('Real estate')
+    ->values([$realestateopen*100,0,100])
     ->responsive(false)
     ->height(150) ;
 
-        return view('charts.index',compact('bar_chart1','pie1','bar_top','date_tran','opentran','closetran','closetran1'));
+        return view('charts.index',compact('bar_chart1','pie1','bar_top','bar_toptry','date_tran','opendiscount','openrealestate','openloan'));
     }
 }
