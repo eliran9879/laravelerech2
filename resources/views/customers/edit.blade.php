@@ -49,20 +49,7 @@
   </div>
 </form>
 
-<!--
-<form method = 'post' action = "{{action('CustomerController@destroy', $customer ->id)}}">
-  @csrf
-  @method('DELETE')
-  <div class = "form-group">
-      <input type ="submit" name="submit" onclick="return confirm('Are you sure?')" value ="Delete Customer">
-  </div>
-</form>
--->
 
-
-    
-
-    <!-- Central Modal Medium -->
 
 
 @endsection

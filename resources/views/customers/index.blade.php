@@ -137,27 +137,3 @@ $('#ok_button').click(function(){
 
 @endsection
 
-<!-- <footer class="ttt">Website of EISS</footer> 
-
-<style>
-
- 
-
-  .col {
-    position: absolute;
-    top: 87px;
-    left: 750px;
-  }
-
-.ttt{
-   position:absolute;
-   bottom:0;
-   width:100%;
-   height:30px;   
-   background:#6cf;
-   text-align:center;
-}
-
-</style>
-
--->

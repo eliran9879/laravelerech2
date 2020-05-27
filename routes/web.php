@@ -52,3 +52,5 @@ Route::get('/all', 'ClientdataController@all');
 Route::get('client_data/status1/{id}', 'ClientdataController@status1')->name('status1');
 Route::get('client_data/statusclose/{id}', 'ClientdataController@statusclose')->name('statusclose');
 Route::post('/customers/fetch', 'CustomerController@fetch')->name('autocomplete.fetch');
+
+Route::post('client_data/create', 'CustomerController@store1');

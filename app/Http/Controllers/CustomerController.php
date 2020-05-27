@@ -74,6 +74,38 @@ class CustomerController extends Controller
         }
     }
 
+    public function store1(Request $request)
+    {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
+        $customer = new Customer();
+        $id =Auth::id();
+
+      
+        
+        $customer->client_name = $request->client_name;
+        $customer->id_account = $request->id_account;
+        $customer->payeee = $request->payeee;
+        
+        $customer->occupation = $request->occupation;
+        $customer->adrress = $request->adrress;
+        $ifexist =DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->get();
+        if (DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->exists())
+        {
+        // return back()->withErrors(['unsuccess', 'Name is required']);
+        // return  redirect('client_data/create')->withErrors(['msg', 'The Message']);  
+        return response()->json(['unsuccess' => 'Data no Added successfully.']);
+
+    }
+        else{
+        $customer->save();
+        return redirect('client_data/create')->with('success','Data saved');
+  
+     }
+    }
+
+
     /**
      * Display the specified resource.
      *
