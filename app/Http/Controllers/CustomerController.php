@@ -114,7 +114,12 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
+        //  $customers= Customer::all()->paginate(2);
+         $customers = Customer::findOrFail($id);
+         return view('customers.show',['customers' => $customers]);
     }
 
     /**
@@ -237,6 +242,8 @@ class CustomerController extends Controller
           style = "width:30px; height:30px; display:block; margin-left: auto; margin-right: auto;">
           </button>
          </td>
+         <td><a href="customers/'.$row->id.'/show"> show </a></td> 
+
         </tr>
         ';
        }

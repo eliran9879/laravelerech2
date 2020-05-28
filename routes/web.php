@@ -45,6 +45,7 @@ Route::get('/customers/action', 'CustomerController@action')->name('customers.ac
 Route::resource('customers', 'CustomerController');
 Route::get('customers/destroy/{id}', 'CustomerController@destroy');
 Route::get('/clientdatas', 'ClientdataController@create');
+Route::get('customers/{id}/show', 'CustomerController@show');
 
 Route::post('clientdatas/fetch1', 'ClientdataController@fetch1')->name('ClientdataController.fetch1');
 
@@ -54,5 +55,3 @@ Route::get('client_data/statusclose/{id}', 'ClientdataController@statusclose')->
 Route::post('/customers/fetch', 'CustomerController@fetch')->name('autocomplete.fetch');
 
 Route::post('client_data/create', 'CustomerController@store1');
-Route::post('customers/update1/{id}', 'CustomerController@update1');
-Route::patch('users/update1/{id}', 'CustomerController@update1')->name('update-users');
