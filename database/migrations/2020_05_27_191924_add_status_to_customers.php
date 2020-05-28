@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCodesubmitToUsers extends Migration
+class AddStatusToCustomers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCodesubmitToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('codesubmit')->default('request to join');
+        Schema::table('customers', function (Blueprint $table) {
+            $table->string('status')->default('authorized');
         });
     }
 
@@ -25,9 +25,8 @@ class AddCodesubmitToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('codesubmit');
-
+        Schema::table('customers', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 }

@@ -128,6 +128,7 @@ class CustomerController extends Controller
         if (Gate::denies('manager')){  
             if (Gate::denies('worker')) {
                 abort(403,"Are you a hacker or what?");} }
+                
         $customer = Customer::find($id);
         return view('customers.edit', compact('customer'));
     }
@@ -145,16 +146,34 @@ class CustomerController extends Controller
             if (Gate::denies('worker')) {
                 abort(403,"Are you a hacker or what?");} }
         $customer = Customer::find($id);
-        $customer -> update($request->all());
+        $customer->status = $request->status;
+        $customer->update($request->all());
         return redirect('customers');
     }
 
+    // public function update1(Request $request,$id)
+    // {
+    //     if (Gate::denies('manager')){  
+    //         if (Gate::denies('worker')) {
+    //             abort(403,"Are you a hacker or what?");} }
+    //             $customer = Customer::find($id);
+    //             $customer->status = $request->status;
+
+    //             $customer -> save();
+    //             return redirect('customers');
+  
+     
+    // }
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+ 
+
+     
     public function destroy($id)
     {
         if (Gate::denies('manager')){  
@@ -182,6 +201,7 @@ class CustomerController extends Controller
          ->orWhere('occupation', 'like', '%'.$query.'%')
          ->orWhere('id_account', 'like', '%'.$query.'%')
          ->orWhere('payeee', 'like', '%'.$query.'%')
+         ->orWhere('status', 'like', '%'.$query.'%')
          ->orderBy('id', 'desc')
          ->get();
          
@@ -199,11 +219,14 @@ class CustomerController extends Controller
        {
         $output .= '
         <tr>
+
          <td>'.$row->client_name.'</td>
          <td>'.$row->adrress.'</td>
          <td>'.$row->occupation.'</td>
          <td>'.$row->id_account.'</td>
          <td>'.$row->payeee.'</td> 
+         <td>'.$row->status.'</td> 
+          
          <td> 
             <a href="customers/'.$row->id.'/edit"> <img src="https://image.flaticon.com/icons/png/512/84/84380.png" 
             style = "width:30px; height:30px; display:block; margin-left: auto; margin-right: auto;"> </a>

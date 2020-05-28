@@ -3,8 +3,13 @@
 
 <!DOCTYPE html>
 <html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
   <div class="w3-sidebar w3-bar-block " style="margin: 0 0 5% 0;" >
          <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
            
@@ -26,7 +31,8 @@
      </div>
      <div class="table-responsive">
       <h3 align="center">Total Data : <span id="total_records"></span></h3>
-      <table id="user_table" class="table table-striped table-bordered">
+      <div id="user_table">
+      <table  class="table table-striped table-bordered">
        <thead>
         <tr>
          <th style="text-align:center">Customer Name</th>
@@ -34,6 +40,7 @@
          <th style="text-align:center">Occupation</th>
          <th style="text-align:center">Id Account</th>
          <th style="text-align:center">Payeee</th>
+         <th style="text-align:center">Status</th>
          <th style="text-align:center">Edit</th>
          <th style="text-align:center">Delete</th>
         </tr>
@@ -42,7 +49,7 @@
 
        </tbody>
       </table>
- 
+ </div>
      </div>
     </div>    
    </div>
@@ -76,7 +83,7 @@
  </div>
  </div>
  </div>
-  
+
 
 </html>
 

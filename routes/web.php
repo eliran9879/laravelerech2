@@ -54,3 +54,5 @@ Route::get('client_data/statusclose/{id}', 'ClientdataController@statusclose')->
 Route::post('/customers/fetch', 'CustomerController@fetch')->name('autocomplete.fetch');
 
 Route::post('client_data/create', 'CustomerController@store1');
+Route::post('customers/update1/{id}', 'CustomerController@update1');
+Route::patch('users/update1/{id}', 'CustomerController@update1')->name('update-users');
