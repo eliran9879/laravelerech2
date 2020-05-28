@@ -356,25 +356,22 @@ body {
       <!-- <div class=" text-color sidebar-heading">Start Bootstrap </div> -->
       <div class="list-group list-group-flush">
         <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light text-color">Dashboard</a>
+        @if (Gate::allows('manager')) 
+        <a href="{{url('users')}}" class="list-group-item list-group-item-action bg-light text-color">access to users </a>
+        @endif
+        <a href="{{ url('client_data/create') }}" class="list-group-item list-group-item-action bg-light text-color">Query</a>
+        <a href="{{ url('customers') }}" class="list-group-item list-group-item-action bg-light text-color">Customers</a>
+        <a href="{{ url('client_data') }}" class="list-group-item list-group-item-action bg-light text-color">Transaction data</a>
+       
         <button class="dropdown-btn" >Covenants <i class="fa fa-caret-down"></i>
         </button>
 
        <div class="dropdown-container">
        <a href="{{ url('covenants_ibi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Ibi</a>
- <!--<a href="{{ url('importExportView') }}" class="list-group-item list-group-item-action bg-light text-color">Import/Export</a>-->
        <a href="{{ url('covenants_hapoalim') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Hapoalim</a>
        <a href="{{ url('covenants_mizrahi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Mizrahi</a>
        </div>
-        <!-- <a href="{{ url('covenants_ibi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Ibi</a> -->
-        <!--<a href="{{ url('importExportView') }}" class="list-group-item list-group-item-action bg-light text-color">Import/Export</a>-->
-        <!-- <a href="{{ url('covenants_hapoalim') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Hapoalim</a> -->
-        <!-- <a href="{{ url('covenants_mizrahi') }}" class="list-group-item list-group-item-action bg-light text-color">Covenants Mizrahi</a> -->
-        <a href="{{ url('client_data/create') }}" class="list-group-item list-group-item-action bg-light text-color">Query</a>
-        <a href="{{ url('customers') }}" class="list-group-item list-group-item-action bg-light text-color">Customers</a>
-        <a href="{{ url('client_data') }}" class="list-group-item list-group-item-action bg-light text-color">Transaction data</a>
-        @if (Gate::allows('manager')) 
-        <a href="{{url('users')}}" class="list-group-item list-group-item-action bg-light text-color">access to users </a>
-        @endif
+       
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
