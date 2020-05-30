@@ -38,7 +38,6 @@
          <th style="text-align:center">Customer Name</th>
          <th style="text-align:center">Address</th>
          <th style="text-align:center">Occupation</th>
-         <th style="text-align:center">Id Account</th>
          <th style="text-align:center">Payeee</th>
          <th style="text-align:center">Status</th>
          <th style="text-align:center">Edit</th>

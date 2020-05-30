@@ -4,7 +4,6 @@
 <div class="w3-sidebar w3-bar-block " style="margin: 0 0 5% 0;" >
          
          <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
-           <h2>all daata</h2>
            <ol class="list-unstyled">
             
            

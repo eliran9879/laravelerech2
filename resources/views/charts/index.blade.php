@@ -42,7 +42,9 @@
 
     <div class="row">
         <div class="col-md-6">
-            <div style="padding: 0 0 10px 0"> {!! $bar_top->html() !!}</div>
+            <div style="padding: 0 0 10px 0"> 
+            
+            {!! $bar_top->html() !!}</div>
             <div >{!! $date_tran->html() !!} </div>
 
         </div>

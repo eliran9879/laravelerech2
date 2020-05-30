@@ -228,7 +228,6 @@ class CustomerController extends Controller
          <td>'.$row->client_name.'</td>
          <td>'.$row->adrress.'</td>
          <td>'.$row->occupation.'</td>
-         <td>'.$row->id_account.'</td>
          <td>'.$row->payeee.'</td> 
          <td>'.$row->status.'</td> 
           
@@ -242,7 +241,7 @@ class CustomerController extends Controller
           style = "width:30px; height:30px; display:block; margin-left: auto; margin-right: auto;">
           </button>
          </td>
-         <td><a href="customers/'.$row->id.'/show"> show </a></td> 
+         <td><a href="customers/'.$row->id.'/show"> <img src="https://thumbs.dreamstime.com/b/more-details-button-more-details-rounded-isolated-sign-more-details-more-details-button-158491282.jpg" style = "width:70px; height:40px; display:block; margin-left: auto; margin-right: auto;"> </a></td> 
 
         </tr>
         ';

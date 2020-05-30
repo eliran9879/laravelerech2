@@ -128,8 +128,8 @@ else if (!empty($customersreal) && !empty($customersagri)){
     ->values($sumBrprotry->pluck('totalpro')->all())
     ->responsive(true);
 
-    $oneYearOn = date('Y-m-d',strtotime(date("Y-m-d") . " - 12 month"));
-
+    $oneYearOn = date('Y-m-d',strtotime(date("Y-m-d") . " - 13 month"));
+echo($oneYearOn);
     $transactions_year_month = DB::table('clientdatas')
     ->select([DB::raw('sum(amount) as totalpro'),DB::raw("DATE_FORMAT(deposit_date, '%m-%Y') new_date"),  DB::raw('YEAR(deposit_date) year,MONTH(deposit_date) as month')])
     ->where([['clientdatas.status', '=' ,'open'],[ 'deposit_date' ,'>=',  $oneYearOn]]) ->orWhere([['clientdatas.status', '=' ,'close'],[DB::raw('YEAR(deposit_date)') ,'=', now()->year]])
