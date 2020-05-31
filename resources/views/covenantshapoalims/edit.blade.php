@@ -6,6 +6,7 @@
 <form method = 'post' action="{{action('CovenantshapoalimController@update', $covenantshapoalims->id)}}">
 @csrf
 @method('PATCH')
+<div class="col-md-10">
 <div class = "form-group">
     <label for = "title">Designation:</label>
     <input type= "text" class = "form-control" name= "designation" value = "{{$covenantshapoalims->designation}}">
@@ -36,10 +37,8 @@
     <input type ="submit" class = "form-control" name="submit" value ="Just Do It">
 </div>
 
+</div>
+
 </form>
 
-
-
-
 @endsection
-

@@ -6,6 +6,7 @@
 <form method = 'post' action="{{action('CovenantsibiController@update', $covenantsibis->id)}}">
 @csrf
 @method('PATCH')
+<div class="col-md-10">
 <div class = "form-group">
     <label for = "title">Designation:</label>
     <input type= "text" class = "form-control" name= "designation" value = "{{$covenantsibis->designation}}">
@@ -28,6 +29,7 @@
 
 <div class = "form-group">
     <label for = "title">Max General:</label>
+    
     <input type= "text" class = "form-control" name= "max_percentage_general" value = "{{$covenantsibis->max_percentage_general}}">
 </div>
 
@@ -41,10 +43,8 @@
     <input type ="submit" class = "form-control" name="submit" value ="Just Do It">
 </div>
 
+</div>
+
 </form>
 
-
-
-
 @endsection
-
