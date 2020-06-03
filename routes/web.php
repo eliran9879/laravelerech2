@@ -22,7 +22,6 @@ Route::resource('covenants_hapoalim', 'CovenantshapoalimController')->middleware
 Route::resource('covenants_mizrahi', 'CovenantsmizrahiController')->middleware('auth');
 Route::resource('client_data', 'ClientdataController')->middleware('auth');
 // Route::post('/client_data/fetch1', 'ClientdataController@fetch1')->name('autocomplete1.fetch');
-Route::resource('payees', 'PayeeController')->middleware('auth');
 
 //Route::resource('customers', 'CustomerController');
 
@@ -45,6 +44,9 @@ Route::get('/customers', 'CustomerController@index');
 Route::get('/payees', 'PayeeController@index');
 Route::get('/customers/action', 'CustomerController@action')->name('customers.action');
 Route::get('/payees/action', 'PayeeController@action1')->name('payees.action');
+
+Route::resource('payees', 'PayeeController');
+Route::get('payees/destroy/{id}', 'PayeeController@destroy');
 
 Route::resource('customers', 'CustomerController');
 Route::get('customers/destroy/{id}', 'CustomerController@destroy');

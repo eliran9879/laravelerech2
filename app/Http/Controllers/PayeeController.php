@@ -127,7 +127,7 @@ class PayeeController extends Controller
                 abort(403,"Are you a hacker or what?");} }
                 
         $payee = Payee::find($id);
-        return view('payees.edit', compact('payees'));
+        return view('payees.edit', compact('payee'));
     }
 
     /**
