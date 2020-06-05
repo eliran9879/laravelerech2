@@ -66,36 +66,32 @@ class PayeeController extends Controller
         }
     }
 
-    // public function store1(Request $request)
-    // {
-    //     if (Gate::denies('manager')){  
-    //         if (Gate::denies('worker')) {
-    //             abort(403,"Are you a hacker or what?");} }
-    //     $customer = new Customer();
-    //     $id =Auth::id();
+    public function store1(Request $request)
+    {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
+        $payee = new Payee();
+        $id =Auth::id();
 
       
         
-    //     $customer->client_name = $request->client_name;
-    //     $customer->id_account = $request->id_account;
-    //     $customer->payeee = $request->payeee;
+        $payee->name = $request->name;
+        $payee->id_account = $request->id_account;
         
-    //     $customer->occupation = $request->occupation;
-    //     $customer->adrress = $request->adrress;
-    //     $ifexist =DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->get();
-    //     if (DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->exists())
-    //     {
-    //     // return back()->withErrors(['unsuccess', 'Name is required']);
-    //     // return  redirect('client_data/create')->withErrors(['msg', 'The Message']);  
-    //     return response()->json(['unsuccess' => 'Data no Added successfully.']);
-
-    // }
-    //     else{
-    //     $customer->save();
-    //     return redirect('client_data/create')->with('success','Data saved');
-  
-    //  }
-    // }
+        $payee->occupation = $request->occupation;
+        $payee->adrress = $request->adrress;
+        $ifexist =DB::table('payees')->where([['name',$request->name],['id_account',$request->id_account]])->get();
+        //     echo ( $ifexist );
+            if (DB::table('payees')->where([['name',$request->name],['id_account',$request->id_account]])->exists())
+            {
+           return abort (403,"sorry, you have this customer");
+            }
+            else{
+            $payee->save();
+            return redirect('client_data/create')->with('success','Data saved');
+            }
+    }
 
 
     /**

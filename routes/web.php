@@ -62,3 +62,4 @@ Route::post('/customers/fetch', 'CustomerController@fetch')->name('autocomplete.
 Route::post('/payees/fetch', 'PayeeController@fetch1')->name('autocomplete.fetch1');
 
 Route::post('client_data/create', 'CustomerController@store1');
+Route::post('client_data/create/add', 'PayeeController@store1');

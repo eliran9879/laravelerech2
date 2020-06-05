@@ -62,9 +62,9 @@ class CustomerController extends Controller
         
         $customer->occupation = $request->occupation;
         $customer->adrress = $request->adrress;
-        $ifexist =DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->get();
+        $ifexist =DB::table('customers')->where([['client_name',$request->client_name],['id_account',$request->id_account]])->get();
         echo ( $ifexist );
-        if (DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->exists())
+        if (DB::table('customers')->where([['client_name',$request->client_name],['id_account',$request->id_account]])->exists())
         {
        return abort (403,"sorry, you have this customer");
         }
@@ -80,18 +80,14 @@ class CustomerController extends Controller
             if (Gate::denies('worker')) {
                 abort(403,"Are you a hacker or what?");} }
         $customer = new Customer();
-        $id =Auth::id();
-
-      
-        
+        $id =Auth::id(); 
         $customer->client_name = $request->client_name;
         $customer->id_account = $request->id_account;
-        $customer->payeee = $request->payeee;
-        
+       
         $customer->occupation = $request->occupation;
         $customer->adrress = $request->adrress;
-        $ifexist =DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->get();
-        if (DB::table('customers')->where([['client_name',$request->client_name],['payeee',$request->payeee]])->exists())
+        $ifexist =DB::table('customers')->where([['client_name',$request->client_name],['id_account',$request->id_account]])->get();
+        if (DB::table('customers')->where([['client_name',$request->client_name],['id_account',$request->id_account]])->exists())
         {
         // return back()->withErrors(['unsuccess', 'Name is required']);
         // return  redirect('client_data/create')->withErrors(['msg', 'The Message']);  

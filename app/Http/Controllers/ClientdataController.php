@@ -247,10 +247,10 @@ class ClientdataController extends Controller
             if (Gate::denies('worker')) {
                 abort(403,"Are you a hacker or what?");} }
         if (request()->has('status')){
-        $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(4);
+        $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(5);
         }
         else{
-            $clientdatas= Clientdata::with('banks')->where('bank_id','!=','NULL')->paginate(4);
+            $clientdatas= Clientdata::with('banks')->where('bank_id','!=','NULL')->paginate(5);
 
         }
         return view('clientdatas.index',['clientdatas' => $clientdatas]);
@@ -368,14 +368,9 @@ class ClientdataController extends Controller
                 abort(403,"Are you a hacker or what?");} }
         $query = new ClientData();
         $id =Auth::id();
-        $name_client =DB::table('customers')->where('client_name' , $request->client_name)->value('payeee');
-        $id_client = DB::table('customers')->where('payeee' , $request->payeee)->value('payeee');
-        if ($name_client == $id_client) {
-            $id_client = DB::table('customers')->where([['payeee' , $request->payeee],['client_name' , $request->client_name]])->value('id_account'); 
-            $client_id = $id_client;
-        }
-        $query->client_id = $request->id_account ;
         
+        $query->client_id = $request->id_account ;
+        $query->payee_id = $request->id_payee ;
         $query->amount = $request->amount;
         $query->deposit_date = $request->start_date;
         $query->end_date = $request->end_date;

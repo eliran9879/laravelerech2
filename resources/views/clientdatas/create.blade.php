@@ -17,91 +17,115 @@
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+<!-- <div class="row"> -->
+        <div class="col">
+        <div id="addpayee">
 
-<div class="col">   
-             <a href="javascript:;" class="addAttr btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#addModal"  style="position: absolute;
-  right: 175px;">
-               @lang('Add a customer')</a>   
-       </div>        
-
+             <a href="javascript:;" class="addAttrpayee btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#addModalpayee" style="position: absolute;
+  right: 300px; top:5px;">
+               @lang('Add a payee')</a>  
+   </div> 
+   </div>
+   <div class="col">
+            <a href="javascript:;" class="addAttr btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#addModal"  style="position: absolute;
+  right: 175px; top:5px;">
+               @lang('Add a withdrawer')</a>   
+</div>       
+<!-- </div> -->
 <div class="form-group">
-<div class="col-md-2">
-    <label class="control-label" for = "client_name"> Client name </label></div>
-    <div class="col-md-10">
-    <select name="country" id="client_name" class="form-control  dynamic" data-dependent="id_account" >
-     <option value="">Select clientname</option>
-     @foreach($country_list as $client_name)
-     <option value="{{ $client_name->client_name}}">{{ $client_name->client_name }}</option>
-     @endforeach
-    </select>
-    </div>
-   <br />
-   <div class="col-md-2">
-    <label class="control-label" for = "id_account">  Id account </label></div>
-    <div class="col-md-10">
-    <select name="id_account" id="id_account" class="form-control  dynamic" data-dependent="payeee">
-     <option value="">Select Id</option>
-    </select> </div>
-   <br />
-   <div class="col-md-2">
-    <label class="control-label" for = "payeee">  payeee </label></div>
-    <div class="col-md-10">
-    <select name="payeee" id="payeee" class="form-control ">
-     <option value="">Select payeee</option>
-    </select>
-    </div>
-   {{ csrf_field() }}
-<br>
-     <div class="col-md-2">
-    <label class="control-label" for = "amount"> Amount </label></div>
-    <div class="col-md-10">
-     <input type = "number" class = "form-control" name = "amount" required>
-     </div><br>
-    <div class="col-md-2">
-    <label class="control-label" for="date">Start date </label></div>
-    
-    <div class="col-md-10">
-    <input type = "date" name="start_date" id="date" class="form-control" value="{{ date("Y-m-d") }}" required />
-    </div><br>
-    <div class="col-md-2">
-    <label class="control-label" for="date">End date </label></div>
-    
-    <div class="col-md-10">
-    <input type = "date" name="end_date" id="date" class="form-control" value="{{ date("Y-m-d") }}" required />
-    </div><br>
+{{ csrf_field() }}
 
-  
+<div class="col-md-2" style ="top:5px; height:40px;" >
+    <label class="control-label" for="type"  >Transaction Type </label></div>
 
-    <div class="col-md-2">
-    <label class="control-label" for="type">Type check </label></div>
-    
-    <div class="col-md-10">
-    <input type = "radio" id="Salaried" name="type" value="Salaried" required />
-    <label for="Salaried">Salaried</label><br>
-    <input type="radio" id="Checked" name="type" value="Checked">
-  <label for="Checked">Checked</label>
-    </div><br>
-  
-    <div class="col-md-2">
-    <label class="control-label" for="type">Transaction type </label></div>
-
-    <div class="col-md-10" name = "bonds duration" id="ddlPassport"> 
-    <input type = "radio" id="Loan" name="transaction" value="Loan">
+    <div class="col-md-10" name = "transaction" id="ddlPassport"> 
+    <input type = "radio" id="Loan" name="transaction" value="Loan" required /> 
     <label for="Loan">Loan</label><br>
     <input type="radio" id="Discount" name="transaction" value="Discount">
   <label for="Discount">Discount</label><br>
   <input type="radio" id="Realestate" name="transaction" value="Realestate">
   <label for="Realestate">Real estate</label>
     </div><br>
-   <!-- <div class="col-md-2">
-    <label class="control-label" for = "bonds duration">  Bond's duration </label></div> -->
-    <div class="col-md-10" id="dvPassport" style="display: none">
-    Bond's duration
+
+    <div id="dvPassport" style="display: none">
+    <div class="col-md-2">
+    <label class="control-label" for = "client_name"  > Withdrawer Name </label></div>
+    <div class="col-md-10">
+     <input type = "text" class = "form-control" name = "client_name" required>
+     </div><br>
+</div>
+
+<div id="dvPassportid" style="display: none">
+   <div class="col-md-2">
+    <label class="control-label" for = "id_account">  Withdrawer id </label></div>
+    <div class="col-md-10">
+    <input type = "number" class = "form-control" name = "id_account" required >
+    </div> <br>
+</div>
+
+<div id="dvPassportpayee" style="display: none">
+<div class="col-md-2">
+    <label class="control-label" for = "payeee">  Payeee </label></div>
+    <div class="col-md-10">
+    <input type = "text" class = "form-control" name = "payeee" >
+     </div><br>
+</div>
+
+<div id="dvPassportidpayee" style="display: none">
+     <div class="col-md-2">
+    <label class="control-label" for = "id_payee">  Payeee id </label></div>
+    <div class="col-md-10">
+    <input type = "number" class = "form-control" name = "id_payee" >
+     </div><br>
+</div>
+
+<div id="dvPassportamount" style="display: none">
+     <div class="col-md-2">
+    <label class="control-label" for = "amount"> Amount </label></div>
+    <div class="col-md-10">
+     <input type = "number" class = "form-control" name = "amount" required>
+     </div><br>
+</div>
+
+<div id="dvPassportstart" style="display: none">
+    <div class="col-md-2">
+    <label class="control-label" for="date">Start date </label></div>
+    <div class="col-md-10">
+    <input type = "date" name="start_date" id="date" class="form-control" value="{{ date("Y-m-d") }}" required />
+    </div><br>
+</div>
+
+<div id="dvPassportend" style="display: none">
+    <div class="col-md-2">
+    <label class="control-label" for="date">End date </label></div>
+    <div class="col-md-10">
+    <input type = "date" name="end_date" id="date" class="form-control" value="{{ date("Y-m-d") }}" required />
+    </div><br>
+</div>
+
+<div id="dvPassporttype" style="display: none">
+    <div class="col-md-2">
+    <label class="control-label" for="type">Type check </label></div>    
+    <div class="col-md-10">
+    <input type = "radio" id="Salaried" name="type" value="Salaried" required />
+    <label for="Salaried">Salaried</label><br>
+    <input type="radio" id="Checked" name="type" value="Checked">
+  <label for="Checked">Checked</label>
+    </div><br>
+    </div>
+
+<div id = "aa" style="display: none">
+   <div class="col-md-2">
+    <label class="control-label" for = "bonds duration">  Bond's duration </label></div>
+    <div class="col-md-10" >
     <input type = "Number" class = "form-control" name = "bondsduration" id="bondsduration" >
    </div><br>
+   </div>
+
+
 
     <div class="col-md-10">
-    <button name="submit" type="submit" value="Save"> Search</button></div>
+    <button name="submit" class = "form-control" type="submit" value="Save"> Search</button></div>
     </form></div>
     <script>
 $(document).ready(function(){
@@ -169,9 +193,43 @@ $(function () {
   $("input[name='transaction']").click(function () {
             if ($("#Realestate").is(":checked")) {
                 $("#dvPassport").show();
-            } else {
-                $("#dvPassport").hide();
+                $("#dvPassportid").show();
+                $("#dvPassportamount").show();
+                $("#dvPassportstart").show();
+                $("#dvPassportend").show();
+                $("#dvPassporttype").show();
+                $("#aa").show();
+                $("#dvPassportpayee").hide();
+                $("#dvPassportidpayee").hide();
+                $("#dvdiscount").hide();
+                $("#addpayee").hide();
+               //  $("#addwithdrawer").hide();
+
+            } else  if ($("#Discount").is(":checked")) {
+               $("#dvPassport").show();
+               $("#dvPassportpayee").show();
+                $("#dvPassportidpayee").show();
+               $("#dvPassportid").show();
+                $("#dvPassportamount").show();
+                $("#dvPassportstart").show();
+                $("#dvPassportend").show();
+                $("#dvPassporttype").show();
+               $("#aa").hide();
+               $("#addpayee").show();              
           
+            } else  if ($("#Loan").is(":checked")) {
+               $("#dvPassport").show();
+               $("#dvPassportid").show();
+                $("#dvPassportamount").show();
+                $("#dvPassportstart").show();
+                $("#dvPassportend").show();
+                $("#dvPassporttype").show();
+                $("#dvPassportpayee").hide();
+                $("#dvPassportidpayee").hide();
+               $("#aa").hide();
+               $("#addpayee").hide();
+               $("#dvdiscount").hide();
+
             }
         });
     });
@@ -180,25 +238,27 @@ $(function () {
 
 <script>
     $('.addAttr').click(function() {
-    // var id = $(this).data('id');      
-    // var name = $(this).data('name');  
-    // var duration = $(this).data('duration');     
-    // var date = $(this).data('date');     
+      
 
     $('#client_name').val(client_name);  
     $('#adrress').val(adrress);  
     $('#occupation').val(occupation);  
     $('#id_account').val(id_account);  
-    $('#payeee').val(payeee);
-
     } );
+
+    $('.addAttrpayee').click(function() {   
+      $('#name').val(client_name);  
+      $('#adrress').val(adrress);  
+      $('#occupation').val(occupation);  
+      $('#id_account').val(id_account);  
+      } );
  </script>
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
        <div class="modal-content">
           <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel">Modal Title </h5>
+             <h5 class="modal-title" id="exampleModalLabel">New Withdrawer</h5>
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span>
              </button>
@@ -208,8 +268,13 @@ $(function () {
              <div class="modal-body">
 
                 <div class="form-group">
-                   <label for="exampleInputEmail1">Client name</label>
+                   <label for="exampleInputEmail1">Withdrawer name</label>
                    <input type="text" class="form-control" id="client_name" name="client_name"  required>
+                </div>
+                
+                <div class="form-group">
+                   <label for="exampleInputEmail1">Id account </label>
+                   <input type="number" class="form-control" id="id_account" name="id_account" value="" required >
                 </div>
                 <div class="form-group">
                    <label for="exampleInputEmail1"> Adrress</label>
@@ -219,22 +284,58 @@ $(function () {
                    <label for="exampleInputEmail1">Occupation </label>
                    <input type="text" class="form-control" id="occupation" name="occupation" value="" required >
                 </div>
-                <div class="form-group">
-                   <label for="exampleInputEmail1">Id account </label>
-                   <input type="number" class="form-control" id="id_account" name="id_account" value="" required >
-                </div>
-                <div class="form-group">
-                   <label for="exampleInputEmail1">Payee </label>
-                   <input type="text" class="form-control" id="payeee" name="payeee" value="" required >
-                </div>
+               
+               
              </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit"  class="btn btn-primary">Save changes</button>
+                <button type="submit"  class="btn btn-primary">Add</button>
              </div>
           </form>
        </div>
     </div>
  </div>
+<div class="modal fade payee" id="addModalpayee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">New Payee</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <form action = "{{action('PayeeController@store1')}}" method="POST">
+            {{ csrf_field() }}
+             <div class="modal-body">
+
+                <div class="form-group">
+                   <label for="exampleInputEmail1">Payee name</label>
+                   <input type="text" class="form-control" id="name" name="name"  required>
+                </div>
+                
+                <div class="form-group">
+                   <label for="exampleInputEmail1">Id account </label>
+                   <input type="number" class="form-control" id="id_account" name="id_account" value="" required >
+                </div>
+                <div class="form-group">
+                   <label for="exampleInputEmail1"> Adrress</label>
+                   <input type="text" class="form-control" id="adrress" name="adrress"  required>
+                </div>
+                <div class="form-group">
+                   <label for="exampleInputEmail1">Occupation </label>
+                   <input type="text" class="form-control" id="occupation" name="occupation" value="" required >
+                </div>
+               
+               
+             </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit"  class="btn btn-primary">Add</button>
+             </div>
+          </form>
+       </div>
+    </div>
+ </div>
+ 
     @endsection
    
