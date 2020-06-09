@@ -268,6 +268,7 @@ class CustomerController extends Controller
       echo($query);
       $data = DB::table('customers')
         ->where('client_name', 'LIKE', "%{$query}%")
+        ->where('id_account', 'LIKE', "%{$query}%")
         ->get();
         $output = '';
       

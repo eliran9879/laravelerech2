@@ -22,12 +22,7 @@
     </div>
     </div>
     
-     <div class="col-md-2">
-    <label class="control-label" for="payeee">Payeee</label></div>
-    <div class="col-md-10">
-     <input type = "text" class = "form-control" name = "payeee"  required>
      
-     </div>
 
      <div class="col-md-2">
     <label class="control-label" for="account">Id Account</label></div>

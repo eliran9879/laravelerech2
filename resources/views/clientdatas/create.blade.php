@@ -7,7 +7,8 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+   <!-- <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
    <script
    src="https://code.jquery.com/jquery-3.5.1.slim.js"
    integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
@@ -61,7 +62,7 @@
    <div class="col-md-2">
     <label class="control-label" for = "id_account">  Withdrawer id </label></div>
     <div class="col-md-10">
-    <input type = "number" class = "form-control" name = "id_account" required >
+    <input type = "number" class = "form-control" name = "id_account" id = "id_account" required >
     </div> <br>
 </div>
 
@@ -69,17 +70,16 @@
 <div class="col-md-2">
     <label class="control-label" for = "payeee">  Payeee </label></div>
     <div class="col-md-10">
-    <input type = "text" class = "form-control" name = "payeee" id = "payeee">
+    <input type = "text" class = "form-control "  name = "payeee" id = "payeee">
     <div id="payeeeList">
     </div>
      </div><br>
 </div>
-
 <div id="dvPassportidpayee" style="display: none">
      <div class="col-md-2">
     <label class="control-label" for = "id_payee">  Payeee id </label></div>
     <div class="col-md-10">
-    <input type = "number" class = "form-control" name = "id_payee" >
+    <input type = "number" class = "form-control "  name = "id_payee" id = "id_payee">
      </div><br>
 </div>
 
@@ -163,75 +163,79 @@ $(document).on('click', 'li', function(){
  
  
     <script>
-$(document).ready(function(){
+// $(document).ready(function(){
 
- $('#payeee').keyup(function(){ 
-        var query = $(this).val();
-        if(query != '')
-        {
-         var _token = $('input[name="_token"]').val();
-         $.ajax({
-          url:"{{ route('autocomplete.fetchpayee') }}",
-          method:"POST",
-          data:{query:query, _token:_token},
-          success:function(data){
-           $('#payeeeList').fadeIn();  
-                    $('#payeeeList').html(data);
-          }
-         });
-        }
-    });
+//  $('#payeee').keyup(function(){ 
+//         var query = $(this).val();
+//         if(query != '')
+//         {
+//          var _token = $('input[name="_token"]').val();
+         
+//          $.ajax({
+//           url:"{{ route('autocomplete.fetchpayee') }}",
+//           method:"POST",
+//           data:{query:query, _token:_token},
+//           success:function(data){
+//            $('#payeeeList').fadeIn();  
+//                     $('#payeeeList').html(data);
+//           }
+//          });
+//         }
+//     });
   
-    $(document).on('click', 'li', function(){  
-        $('#payeee').val($(this).text());  
-        $('#payeeeList').fadeOut();  
-    });  
-
-    
 //     $(document).on('click', 'li', function(){  
-//         $('#payeee').val($(this).text());  
+//       var select = $(this).attr("id");
+//         $('#payeee').val($(this).text());
+//       console.log( select);
 //         $('#payeeeList').fadeOut();  
 //     });  
+
+    
+// //     $(document).on('click', 'li', function(){  
+// //         $('#payeee').val($(this).text());  
+// //         $('#payeeeList').fadeOut();  
+// //     });  
   
-//     $(document).ready(function(){
+// //     $(document).ready(function(){
 
-// $('.dynamic').change(function(){
-//  if($(this).val() != '')
-//  {
-//   var select = $(this).attr("id");
-//   var value = $(this).val();
-//   var dependent = $(this).data('dependent');
-//   var _token = $('input[name="_token"]').val();
-//   $.ajax({
-//    url:"{{ route('ClientdataController.fetch1') }}",
-//    method:"POST",
-//    data:{select:select, value:value, _token:_token, dependent:dependent},
-//    success:function(result)
-//    {
-//     $('#'+dependent).html(result);
-//    }
+// // $('.dynamic').change(function(){
+// //  if($(this).val() != '')
+// //  {
+// //   var select = $(this).attr("id");
+// //   var value = $(this).val();
+// //   var dependent = $(this).data('dependent');
+// //   var _token = $('input[name="_token"]').val();
+// //   $.ajax({
+// //    url:"{{ route('ClientdataController.fetch1') }}",
+// //    method:"POST",
+// //    data:{select:select, value:value, _token:_token, dependent:dependent},
+// //    success:function(result)
+// //    {
+// //     $('#'+dependent).html(result);
+// //    }
 
-//   })
-//  }
-// });
+// //   })
+// //  }
+// // });
 
-// $('#client_name').change(function(){
-//  $('#id_account').val('');
-//  $('#payeee').val('');
-// });
+// // $('#client_name').change(function(){
+// //  $('#id_account').val('');
+// //  $('#payeee').val('');
+// // });
 
-// $('#id_account').change(function(){
-//  $('#payeee').val('');
-// });
+// // $('#id_account').change(function(){
+// //  $('#payeee').val('');
+// // });
 
 
-// });
+// // });
  
 
 
-});
+// });
 
 </script>
+
 <script type="text/javascript">
 $(function () {
   $("input[name='transaction']").click(function () {
@@ -280,7 +284,7 @@ $(function () {
      
 </script>
 
-<script>
+<!-- <script>
     $('.addAttr').click(function() {
       
 
@@ -297,6 +301,53 @@ $(function () {
       $('#id_account').val(id_account);  
       } );
  </script>
+
+
+<script type="text/javascript">
+          
+
+//autocomplete script
+$(document).on('focus','.autocomplete_txt',function(){
+  type = $(this).data('type');
+  
+  if(type =='countryname' )autoType='name'; 
+  if(type =='country_code' )autoType='id_account'; 
+  
+   $(this).autocomplete({
+       minLength: 0,
+       source: function( request, response ) {
+            $.ajax({
+                url: "{{ route('searchajax') }}",
+                dataType: "json",
+                data: {
+                    term : request.term,
+                    type : type,
+                },
+                success: function(data) {
+                    var array = $.map(data, function (item) {
+                       return {
+                           label: item[autoType],
+                           value: item[autoType],
+                           data : item
+                       }
+                   });
+                    response(array)
+                }
+            });
+       },
+       select: function( event, ui ) {
+           var data = ui.item.data;           
+         //   id_arr = $(this).attr('id');
+         //   id = id_arr.split("_");
+         //   elementId = id[id.length-1];
+           $('#countryname').val(data.name);
+           $('#country_code').val(data.id_account);
+       }
+   });
+   
+   
+});
+</script> -->
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

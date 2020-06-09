@@ -467,5 +467,23 @@ class ClientdataController extends Controller
         //
     }
 
-   
+    // public function searchResponse(Request $request){
+    //     $query = $request->get('term','');
+    //     $countries=\DB::table('payees');
+    //     if($request->type=='countryname'){
+    //         $countries->where('name','LIKE','%'.$query.'%');
+    //     }
+    //     if($request->type=='country_code'){
+    //         $countries->where('id_account','LIKE','%'.$query.'%');
+    //     }
+    //        $countries=$countries->get();        
+    //     $data=array();
+    //     foreach ($countries as $country) {
+    //             $data[]=array('name'=>$country->name,'sortname'=>$country->sortname);
+    //     }
+    //     if(count($data))
+    //          return $data;
+    //     else
+    //         return ['name'=>'','sortname'=>''];
+    // }
 }

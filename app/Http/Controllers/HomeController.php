@@ -66,16 +66,27 @@ class HomeController extends Controller
     //    ->responsive(true)
     //    ->Colors(['#4caf50'])
     //    ->groupBy('name');
-       $customersindu = DB::table('customers')->where('occupation', 'industry')->count();
-       $customersreal = DB::table('customers')->where('occupation', 'real_estate')->count();
-       $customersagri = DB::table('customers')->where('occupation', 'agriculture')->count();
-      
+       $customersinducus = DB::table('customers')->where('occupation', 'industry')->count();
+       $customersindupay = DB::table('payees')->where('occupation', 'industry')->count();
+       $customersindu =  $customersinducus +   $customersindupay;
+
+       $customersrealcus = DB::table('customers')->where('occupation', 'real_estate')->count();
+       $customersrealpay = DB::table('payees')->where('occupation', 'real_estate')->count();
+       $customersreal =  $customersrealcus+  $customersrealpay;
+
+       $customersagricus = DB::table('customers')->where('occupation', 'agriculture')->count();
+       $customersagripay = DB::table('payees')->where('occupation', 'agriculture')->count();
+       $customersagri = $customersagricus + $customersagripay;
+
 if (!empty($customersindu) && !empty($customersreal) && !empty($customersagri)){
+   
        $pie1  =	 Charts::create('pie', 'highcharts')
        ->title('segmentation occuputioan')
        ->labels(['real_estate', 'industry','agriculture'])
        ->values([$customersreal,$customersindu,  $customersagri ])
-       ->responsive(true);
+       ->responsive(true); 
+    
+    
 }
 else if (!empty($customersindu) && !empty($customersreal)){
 $pie1  =	 Charts::create('pie', 'highcharts')
@@ -108,13 +119,32 @@ else if (!empty($customersreal) && !empty($customersagri)){
     ->take(5)
     ->get();
     
-    $bar_top = Charts::create('bar', 'highcharts')
-    ->title("Top 5 customer transactions")
+    $sumBrpropayee = DB::table('payees')
+    ->select([DB::raw('sum(amount) as totalpro'),'name'])
+    ->join('clientdatas', 'payees.id_account', '=', 'clientdatas.client_id') 
+    ->where('clientdatas.status', '=' ,'open') ->orWhere('clientdatas.status', '=' ,'close')
+    ->groupBy('name')
+    ->orderBy('name','DESC')
+    ->take(5)
+    ->get();
+
+    if (request()->has('payee')){
+        $bar_top = Charts::create('bar', 'highcharts')
+        ->title("Top 5 payee transactions")
+        ->elementLabel('Sum of transactions','csd')
+        ->labels($sumBrpropayee->pluck('name')->all())
+        ->values($sumBrpropayee->pluck('totalpro')->all())
+        ->responsive(true);
+    
+    }
+    else{
+        $bar_top = Charts::create('bar', 'highcharts')
+    ->title("Top 5 withdrawer transactions")
     ->elementLabel('Sum of transactions','csd')
     ->labels($sumBrpro->pluck('client_name')->all())
     ->values($sumBrpro->pluck('totalpro')->all())
     ->responsive(true);
-
+    }
     $sumBrprotry = DB::table('clientdatas')
     ->select([DB::raw('sum(amount) as totalpro'),'designation'])
     ->where([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Loan']])->orWhere([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Realestate']])->orWhere([['clientdatas.status', '=' ,'open'],['clientdatas.designation', '=' ,'Discount']])

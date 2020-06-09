@@ -66,3 +66,5 @@ Route::post('/client_data/fetchwithdrawer', 'ClientdataController@fetchwithdrawe
 
 Route::post('client_data/create', 'CustomerController@store1');
 Route::post('client_data/create/add', 'PayeeController@store1');
+
+// Route::get('searchajax', ['as'=>'searchajax','uses'=>'ClientdataController@searchResponse']);

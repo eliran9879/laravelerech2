@@ -17,7 +17,7 @@
         <div class="col-md-1">
         </div>
         <div class="col-md-3">
-            {!! $openrealestate->html() !!}
+            <!-- {!! $openrealestate->html() !!} -->
         </div>
 
         <div class="col-md-2">
@@ -31,8 +31,11 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+          
             <div class="panel-body" style="padding-bottom:2%;">
-                {!! $pie1->html() !!}
+           <strong> Filter: </strong> 
+           <a href ="home/?payee" style="color: white;">Payee </a>|
+           <a href ="home/" style="color: white;">Withdrawer</a>      {!! $bar_top->html() !!}
             </div>
         </div>
     </div>
@@ -44,12 +47,12 @@
         <div class="col-md-6">
             <div style="padding: 0 0 10px 0"> 
             
-            {!! $bar_top->html() !!}</div>
+            {!! $pie1->html() !!}</div>
             <div >{!! $date_tran->html() !!} </div>
 
         </div>
         <div class="col-md-6">
-     
+      
            <div > {!! $bar_chart1->html() !!}</div>
             <!-- <div> {!! $bar_toptry->html() !!}</div> -->
         </div>
