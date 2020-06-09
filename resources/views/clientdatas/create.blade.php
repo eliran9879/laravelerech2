@@ -22,21 +22,19 @@
         <div class="col">
         <div id="addpayee">
 
-             <a href="javascript:;" class="addAttrpayee btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#addModalpayee" style="position: absolute;
-  right: 300px; top:5px;">
+             <a href="javascript:;" class="addAttrpayee btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#addModalpayee" id ="aaa">
                @lang('Add a payee')</a>  
    </div> 
    </div>
    <div class="col">
-            <a href="javascript:;" class="addAttr btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#addModal"  style="position: absolute;
-  right: 175px; top:5px;">
+            <a href="javascript:;" class="addAttr btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#addModal"  id ="bbb">
                @lang('Add a withdrawer')</a>   
 </div>       
 <!-- </div> -->
 <div class="form-group">
 {{ csrf_field() }}
 
-<div class="col-md-2" style ="top:5px; height:40px;" >
+<div class="col-md-2" id = "ccc" >
     <label class="control-label" for="type"  >Transaction Type </label></div>
 
     <div class="col-md-10" name = "transaction" id="ddlPassport"> 
@@ -162,79 +160,7 @@ $(document).on('click', 'li', function(){
  </script>
  
  
-    <script>
-// $(document).ready(function(){
 
-//  $('#payeee').keyup(function(){ 
-//         var query = $(this).val();
-//         if(query != '')
-//         {
-//          var _token = $('input[name="_token"]').val();
-         
-//          $.ajax({
-//           url:"{{ route('autocomplete.fetchpayee') }}",
-//           method:"POST",
-//           data:{query:query, _token:_token},
-//           success:function(data){
-//            $('#payeeeList').fadeIn();  
-//                     $('#payeeeList').html(data);
-//           }
-//          });
-//         }
-//     });
-  
-//     $(document).on('click', 'li', function(){  
-//       var select = $(this).attr("id");
-//         $('#payeee').val($(this).text());
-//       console.log( select);
-//         $('#payeeeList').fadeOut();  
-//     });  
-
-    
-// //     $(document).on('click', 'li', function(){  
-// //         $('#payeee').val($(this).text());  
-// //         $('#payeeeList').fadeOut();  
-// //     });  
-  
-// //     $(document).ready(function(){
-
-// // $('.dynamic').change(function(){
-// //  if($(this).val() != '')
-// //  {
-// //   var select = $(this).attr("id");
-// //   var value = $(this).val();
-// //   var dependent = $(this).data('dependent');
-// //   var _token = $('input[name="_token"]').val();
-// //   $.ajax({
-// //    url:"{{ route('ClientdataController.fetch1') }}",
-// //    method:"POST",
-// //    data:{select:select, value:value, _token:_token, dependent:dependent},
-// //    success:function(result)
-// //    {
-// //     $('#'+dependent).html(result);
-// //    }
-
-// //   })
-// //  }
-// // });
-
-// // $('#client_name').change(function(){
-// //  $('#id_account').val('');
-// //  $('#payeee').val('');
-// // });
-
-// // $('#id_account').change(function(){
-// //  $('#payeee').val('');
-// // });
-
-
-// // });
- 
-
-
-// });
-
-</script>
 
 <script type="text/javascript">
 $(function () {
@@ -284,70 +210,7 @@ $(function () {
      
 </script>
 
-<!-- <script>
-    $('.addAttr').click(function() {
-      
 
-    $('#client_name').val(client_name);  
-    $('#adrress').val(adrress);  
-    $('#occupation').val(occupation);  
-    $('#id_account').val(id_account);  
-    } );
-
-    $('.addAttrpayee').click(function() {   
-      $('#name').val(client_name);  
-      $('#adrress').val(adrress);  
-      $('#occupation').val(occupation);  
-      $('#id_account').val(id_account);  
-      } );
- </script>
-
-
-<script type="text/javascript">
-          
-
-//autocomplete script
-$(document).on('focus','.autocomplete_txt',function(){
-  type = $(this).data('type');
-  
-  if(type =='countryname' )autoType='name'; 
-  if(type =='country_code' )autoType='id_account'; 
-  
-   $(this).autocomplete({
-       minLength: 0,
-       source: function( request, response ) {
-            $.ajax({
-                url: "{{ route('searchajax') }}",
-                dataType: "json",
-                data: {
-                    term : request.term,
-                    type : type,
-                },
-                success: function(data) {
-                    var array = $.map(data, function (item) {
-                       return {
-                           label: item[autoType],
-                           value: item[autoType],
-                           data : item
-                       }
-                   });
-                    response(array)
-                }
-            });
-       },
-       select: function( event, ui ) {
-           var data = ui.item.data;           
-         //   id_arr = $(this).attr('id');
-         //   id = id_arr.split("_");
-         //   elementId = id[id.length-1];
-           $('#countryname').val(data.name);
-           $('#country_code').val(data.id_account);
-       }
-   });
-   
-   
-});
-</script> -->
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -432,5 +295,103 @@ $(document).on('focus','.autocomplete_txt',function(){
     </div>
  </div>
  
+ <!-- <script>
+$(document).ready(function(){
+
+ $('#payeee').keyup(function(){ 
+        var query = $(this).val();
+        if(query != '')
+        {
+         var _token = $('input[name="_token"]').val();
+         
+         $.ajax({
+          url:"{{ route('autocomplete.fetchpayee') }}",
+          method:"POST",
+          data:{query:query, _token:_token},
+          success:function(data){
+           $('#payeeeList').fadeIn();  
+                    $('#payeeeList').html(data);
+          }
+         });
+        }
+    });
+  
+    $(document).on('click', 'li', function(){  
+      var select = $(this).attr("id");
+        $('#payeee').val($(this).text());
+      console.log( select);
+        $('#payeeeList').fadeOut();  
+    });  
+
+    
+//     $(document).on('click', 'li', function(){  
+//         $('#payeee').val($(this).text());  
+//         $('#payeeeList').fadeOut();  
+//     });  
+  
+//     $(document).ready(function(){
+
+// $('.dynamic').change(function(){
+//  if($(this).val() != '')
+//  {
+//   var select = $(this).attr("id");
+//   var value = $(this).val();
+//   var dependent = $(this).data('dependent');
+//   var _token = $('input[name="_token"]').val();
+//   $.ajax({
+//    url:"{{ route('ClientdataController.fetch1') }}",
+//    method:"POST",
+//    data:{select:select, value:value, _token:_token, dependent:dependent},
+//    success:function(result)
+//    {
+//     $('#'+dependent).html(result);
+//    }
+
+//   })
+//  }
+// });
+
+// $('#client_name').change(function(){
+//  $('#id_account').val('');
+//  $('#payeee').val('');
+// });
+
+// $('#id_account').change(function(){
+//  $('#payeee').val('');
+// });
+
+
+// });
+ 
+
+
+});
+
+</script> -->
+
+
+
     @endsection
    
+    <style>
+@media (min-width:1000px){
+    #aaa{
+      position: absolute;
+       right: 300px;
+       top:5px;
+    }
+}
+    @media (min-width:1000px){
+    #bbb{
+    position: absolute;
+  right: 175px;
+   top:5px;
+}
+    }
+    @media (min-width:1000px){
+    #ccc{
+    top:5px; 
+    height:40px;
+    }
+    }
+</style>

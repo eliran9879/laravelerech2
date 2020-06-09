@@ -386,8 +386,9 @@ class ClientdataController extends Controller
     // $clientnames = DB::table('customers')->select('client_name')->get(); 
     // $idaccounts = DB::table('customers')
         // ->get();   
-    // $idaccounts = Customer::where('payeee' , $query)->pluck('id_account');
-        // return view('clientdatas.create',['clientnames'=>$clientnames,'idaccounts'=>$idaccounts]);
+    $idaccounts = Customer::where('client_name' , $request->client_name)->pluck('id_account');
+    echo($idaccounts);
+    // return view('clientdatas.create',['clientnames'=>$clientnames,'idaccounts'=>$idaccounts]);
         $country_list = DB::table('customers')
         ->groupBy('client_name')
         ->get();
