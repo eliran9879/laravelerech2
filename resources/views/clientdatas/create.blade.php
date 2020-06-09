@@ -132,7 +132,7 @@
  <script>
  $(document).ready(function(){
 
-$('#client_name').keyup(function(){ 
+   $('#client_name').keyup(function(){ 
        var query = $(this).val();
        if(query != '')
        {
@@ -143,18 +143,49 @@ $('#client_name').keyup(function(){
          data:{query:query, _token:_token},
          success:function(data){
           $('#client_namelist').fadeIn();  
-                   $('#client_namelist').html(data);
+          $('#client_namelist').html(data);
          }
         });
        }
    });
 
 
-$(document).on('click', 'li', function(){  
-        $('#client_name').val($(this).text());  
+   $('#client_namelist').on('click', 'li', function(){  
+        $('#client_name').val($(this).text());
+        //op = $(this).data('');
+        // לפצל את זה מ , 
+        // להוסיף את זה ל
+        //let options = '';
+        // foreach
+        //options += `<option value="${val}"> ${val} <options>`;
+        //$('#client_id').html(options);
         $('#client_namelist').fadeOut();  
     });  
 
+    /*Payeee*/
+
+   $('#payeee').keyup(function(){ 
+       var query = $(this).val();
+       if(query != '')
+       {
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+         url:"{{ route('autocomplete.fetchwithdrawer') }}",
+         method:"POST",
+         data:{query:query, _token:_token},
+         success:function(data){
+          $('#payeeeList').fadeIn();  
+          $('#payeeeList').html(data);
+         }
+        });
+       }
+   });
+
+
+   $('#payeeeList').on('click', 'li', function(){  
+        $('#payeee').val($(this).text());  
+        $('#payeeeList').fadeOut();  
+   });  
 
 });
  </script>
@@ -227,7 +258,7 @@ $(function () {
 
                 <div class="form-group">
                    <label for="exampleInputEmail1">Withdrawer name</label>
-                   <input type="text" class="form-control" id="client_name" name="client_name"  required>
+                   <input type="text" class="form-control" id="client_name" name="client_name" autocomplete="false"  required>
                 </div>
                 
                 <div class="form-group">

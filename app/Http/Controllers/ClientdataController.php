@@ -308,7 +308,7 @@ class ClientdataController extends Controller
       foreach($data as $row)
       {
        $output .= '
-       <li><a href="#">'.$row->name.'</a></li>
+       <li style="cursor:pointer;color:blue">'.$row->name.'</li>
        ';
       }
       $output .= '</ul>';
@@ -339,7 +339,7 @@ class ClientdataController extends Controller
       foreach($data as $row)
       {
        $output1 .= '
-       <li><a href="#">'.$row->client_name.'</a></li>
+       <li style="cursor:pointer;color:blue">'.$row->client_name.'</li>
        ';
       }
       $output1 .= '</ul>';
