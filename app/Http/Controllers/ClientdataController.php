@@ -41,7 +41,12 @@ class ClientdataController extends Controller
         // echo($days);
      if ($request->bondsduration){
         $rangeibi=$request->bondsduration;
-        echo( $rangeibi);
+        // echo( $rangeibi);
+     }
+     
+     if ($request->id_payee){
+        $id_payee=$request->id_payee;
+        echo( $id_payee);
      }
         $range = $days/30;
         // echo($range);//working until here
@@ -129,8 +134,10 @@ class ClientdataController extends Controller
             $client_poalim_aprroval = $client_month1->max_approval;
         }  
     
-        $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
-        if (($clientamount / $sumamount ) < $client_poalim_aprroval){
+        $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->orWhere('client_id', $id_payee)->sum('amount');
+        $sumamountpayee =  DB::table('clientdatas')->where('payee_id', $clientid)->orWhere('payee_id', $id_payee)->sum('amount');
+
+        if ((($clientamount / $sumamount ) < $client_poalim_aprroval) & (($clientamount / $sumamountpayee ) < $client_poalim_aprroval)){
             $clientdatashapoalim = $client_month; 
             // echo($clientdatashapoalim);
         }
@@ -292,8 +299,8 @@ class ClientdataController extends Controller
      {
       $query = $request->get('query');
       echo($query);
-      $data = DB::table('customers')
-        ->where('payeee', 'LIKE', "%{$query}%")
+      $data = DB::table('payees')
+        ->where('name', 'LIKE', "%{$query}%")
         ->get();
         $output = '';
       
@@ -301,18 +308,50 @@ class ClientdataController extends Controller
       foreach($data as $row)
       {
        $output .= '
-       <li><a href="#">'.$row->payeee.'</a></li>
+       <li><a href="#">'.$row->name.'</a></li>
        ';
       }
       $output .= '</ul>';
       if(count($data))
       echo $output;
         else
-            return 'No Result Found, add new customer';
+            return ' Chosen But No Result Found, add new customer';
    
       
      }
     }
+
+    function fetchwithdrawer(Request $request)
+    {
+        if (Gate::denies('manager')){  
+            if (Gate::denies('worker')) {
+                abort(403,"Are you a hacker or what?");} }
+     if($request->get('query'))
+     {
+      $query = $request->get('query');
+      echo($query);
+      $data = DB::table('customers')
+        ->where('client_name', 'LIKE', "%{$query}%")
+        ->get();
+        $output1 = '';
+      
+      $output1 = '<ul class="dropdown-menu" style="display:block; position:relative">';
+      foreach($data as $row)
+      {
+       $output1 .= '
+       <li><a href="#">'.$row->client_name.'</a></li>
+       ';
+      }
+      $output1 .= '</ul>';
+      if(count($data))
+      echo $output1;
+        else
+            return ' Chosen But No Result Found, add new customer';
+   
+      
+     }
+    }
+
     function fetch1(Request $request)
     {
         if (Gate::denies('manager')){  

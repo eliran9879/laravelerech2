@@ -51,7 +51,9 @@
     <div class="col-md-2">
     <label class="control-label" for = "client_name"  > Withdrawer Name </label></div>
     <div class="col-md-10">
-     <input type = "text" class = "form-control" name = "client_name" required>
+     <input type = "text" class = "form-control" name = "client_name" id = "client_name" required>
+     <div id="client_namelist">
+    </div>
      </div><br>
 </div>
 
@@ -67,7 +69,9 @@
 <div class="col-md-2">
     <label class="control-label" for = "payeee">  Payeee </label></div>
     <div class="col-md-10">
-    <input type = "text" class = "form-control" name = "payeee" >
+    <input type = "text" class = "form-control" name = "payeee" id = "payeee">
+    <div id="payeeeList">
+    </div>
      </div><br>
 </div>
 
@@ -127,6 +131,37 @@
     <div class="col-md-10">
     <button name="submit" class = "form-control" type="submit" value="Save"> Search</button></div>
     </form></div>
+ <script>
+ $(document).ready(function(){
+
+$('#client_name').keyup(function(){ 
+       var query = $(this).val();
+       if(query != '')
+       {
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+         url:"{{ route('autocomplete.fetchwithdrawer') }}",
+         method:"POST",
+         data:{query:query, _token:_token},
+         success:function(data){
+          $('#client_namelist').fadeIn();  
+                   $('#client_namelist').html(data);
+         }
+        });
+       }
+   });
+
+
+$(document).on('click', 'li', function(){  
+        $('#client_name').val($(this).text());  
+        $('#client_namelist').fadeOut();  
+    });  
+
+
+});
+ </script>
+ 
+ 
     <script>
 $(document).ready(function(){
 
@@ -136,7 +171,7 @@ $(document).ready(function(){
         {
          var _token = $('input[name="_token"]').val();
          $.ajax({
-          url:"{{ route('autocomplete.fetch') }}",
+          url:"{{ route('autocomplete.fetchpayee') }}",
           method:"POST",
           data:{query:query, _token:_token},
           success:function(data){
@@ -146,47 +181,56 @@ $(document).ready(function(){
          });
         }
     });
-
+  
     $(document).on('click', 'li', function(){  
         $('#payeee').val($(this).text());  
         $('#payeeeList').fadeOut();  
     });  
+
+    
+//     $(document).on('click', 'li', function(){  
+//         $('#payeee').val($(this).text());  
+//         $('#payeeeList').fadeOut();  
+//     });  
   
-    $(document).ready(function(){
+//     $(document).ready(function(){
 
-$('.dynamic').change(function(){
- if($(this).val() != '')
- {
-  var select = $(this).attr("id");
-  var value = $(this).val();
-  var dependent = $(this).data('dependent');
-  var _token = $('input[name="_token"]').val();
-  $.ajax({
-   url:"{{ route('ClientdataController.fetch1') }}",
-   method:"POST",
-   data:{select:select, value:value, _token:_token, dependent:dependent},
-   success:function(result)
-   {
-    $('#'+dependent).html(result);
-   }
+// $('.dynamic').change(function(){
+//  if($(this).val() != '')
+//  {
+//   var select = $(this).attr("id");
+//   var value = $(this).val();
+//   var dependent = $(this).data('dependent');
+//   var _token = $('input[name="_token"]').val();
+//   $.ajax({
+//    url:"{{ route('ClientdataController.fetch1') }}",
+//    method:"POST",
+//    data:{select:select, value:value, _token:_token, dependent:dependent},
+//    success:function(result)
+//    {
+//     $('#'+dependent).html(result);
+//    }
 
-  })
- }
+//   })
+//  }
+// });
+
+// $('#client_name').change(function(){
+//  $('#id_account').val('');
+//  $('#payeee').val('');
+// });
+
+// $('#id_account').change(function(){
+//  $('#payeee').val('');
+// });
+
+
+// });
+ 
+
+
 });
 
-$('#client_name').change(function(){
- $('#id_account').val('');
- $('#payeee').val('');
-});
-
-$('#id_account').change(function(){
- $('#payeee').val('');
-});
-
-
-});
-
-});
 </script>
 <script type="text/javascript">
 $(function () {

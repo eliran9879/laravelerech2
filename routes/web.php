@@ -60,6 +60,9 @@ Route::get('client_data/status1/{id}', 'ClientdataController@status1')->name('st
 Route::get('client_data/statusclose/{id}', 'ClientdataController@statusclose')->name('statusclose');
 Route::post('/customers/fetch', 'CustomerController@fetch')->name('autocomplete.fetch');
 Route::post('/payees/fetch', 'PayeeController@fetch1')->name('autocomplete.fetch1');
+Route::post('/client_data/fetch', 'ClientdataController@fetch')->name('autocomplete.fetchpayee');
+Route::post('/client_data/fetchwithdrawer', 'ClientdataController@fetchwithdrawer')->name('autocomplete.fetchwithdrawer');
+
 
 Route::post('client_data/create', 'CustomerController@store1');
 Route::post('client_data/create/add', 'PayeeController@store1');
