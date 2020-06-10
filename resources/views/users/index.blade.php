@@ -5,14 +5,11 @@
                 
                 <div class="sidebar-module">
                 <h4>Users</h4>
-                                </div>
-     
-    
-
+                </div>
       
- </div>
+</div>
  
-    <table >   
+<table >   
 
 <thead><tr>
 <th > Name</th>
