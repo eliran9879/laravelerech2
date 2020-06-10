@@ -201,7 +201,6 @@ class CustomerController extends Controller
          ->orWhere('adrress', 'like', '%'.$query.'%')
          ->orWhere('occupation', 'like', '%'.$query.'%')
          ->orWhere('id_account', 'like', '%'.$query.'%')
-         ->orWhere('payeee', 'like', '%'.$query.'%')
          ->orWhere('status', 'like', '%'.$query.'%')
          ->orderBy('id', 'desc')
          ->get();
@@ -223,9 +222,15 @@ class CustomerController extends Controller
 
      <td>'.$row->client_name.'</td>
      <td>'.$row->adrress.'</td>
-     <td>'.$row->occupation.'</td>
+     <td>'.$row->occupation.'</td>';
      
-     <td> 
+     if($row->status == "blocked"){
+        $output .= '<td style="background-color:red;">'.$row->status.'</td>';
+} else if($row->status == "authorized") {
+$output .= '<td style="background-color:green;">'.$row->status.'</td>';
+}
+
+$output .='   <td> 
      <a href="customers/'.$row->id.'/edit"> <img src="https://image.flaticon.com/icons/png/512/84/84380.png" 
      style = "width:30px; height:30px; display:block; margin-left: auto; margin-right: auto;"> </a>
   </td>
@@ -235,13 +240,8 @@ class CustomerController extends Controller
    style = "width:30px; height:30px; display:block; margin-left: auto; margin-right: auto;">
    </button>
   </td>';
-  
-         if($row->status == "blocked"){
-            $output .= '<td style="background-color:red;">'.$row->status.'</td>';
- } else if($row->status == "authorized") {
-    $output .= '<td style="background-color:green;">'.$row->status.'</td>';
- }
- $output .= '</tr>';    
+      
+        '</tr>';  
   
 }
 }

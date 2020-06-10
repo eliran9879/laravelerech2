@@ -188,6 +188,7 @@ class PayeeController extends Controller
       $query = $request->get('query');
       if($query != '')
       {
+         
        $data = DB::table('payees')
          ->where('name', 'like', '%'.$query.'%')
          ->orWhere('adrress', 'like', '%'.$query.'%')

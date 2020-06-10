@@ -30,7 +30,6 @@
      </div>
      <div class="table-responsive">
       <h3 align="center">Total Data : <span id="total_records"></span></h3>
-      <div id="user_table">
       <table  class="table table-striped table-bordered">
        <thead>
         <tr>
@@ -46,7 +45,6 @@
 
        </tbody>
       </table>
- </div>
      </div>
     </div>    
    </div>

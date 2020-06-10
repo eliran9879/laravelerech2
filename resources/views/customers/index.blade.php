@@ -38,10 +38,10 @@
          <th style="text-align:center">Customer Name</th>
          <th style="text-align:center">Address</th>
          <th style="text-align:center">Occupation</th>
-         
+         <th style="text-align:center">Status</th>
          <th style="text-align:center">Edit</th>
          <th style="text-align:center">Delete</th>
-         <th style="text-align:center">Status</th>
+        
 
         </tr>
        </thead>
