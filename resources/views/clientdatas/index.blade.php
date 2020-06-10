@@ -66,38 +66,38 @@ style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
 @foreach($clientdatas as $clientdata)
   <tr>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
             @elseif ($clientdata->status == 'close') closeStatus
             @else overTime @endif"> {{$clientdata->banks->name}}</td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
             @elseif ($clientdata->status == 'close') closeStatus
             @else overTime @endif"> {{$clientdata->client_id}}</td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
             @elseif ($clientdata->status == 'close') closeStatus
             @else overTime @endif"> {{$clientdata->amount}}</td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
             @elseif ($clientdata->status == 'close') closeStatus
             @else overTime @endif"> {{$clientdata->deposit_date}}</td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
             @elseif ($clientdata->status == 'close') closeStatus
             @else overTime @endif">{{$clientdata->end_date}}</td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
             @elseif ($clientdata->status == 'close') closeStatus
             @else overTime @endif">{{$clientdata->designation}}</td>
             
-            <td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d H:i:s') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d H:i:s')) openStatus 
+            <td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d') ) nullStatus 
+            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
             @elseif ($clientdata->status == 'close') closeStatus
             @else overTime @endif"> {{$clientdata->type_check}}</td>
 
