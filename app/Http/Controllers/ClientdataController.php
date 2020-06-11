@@ -257,10 +257,12 @@ class ClientdataController extends Controller
         $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(5);
         }
         else{
+            $todayDate = date("Y-m-d");
+            echo($todayDate);
             $clientdatas= Clientdata::with('banks')->where('bank_id','!=','NULL')->paginate(5);
 
         }
-        return view('clientdatas.index',['clientdatas' => $clientdatas]);
+        return view('clientdatas.index',['clientdatas' => $clientdatas,'todayDate' => $todayDate]);
     }
    
     public function status1($id)

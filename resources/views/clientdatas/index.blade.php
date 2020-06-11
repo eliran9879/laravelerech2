@@ -65,52 +65,63 @@ style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
 <tbody>
 @foreach($clientdatas as $clientdata)
   <tr>
+  @if ($clientdata->status == NULL )
+<td style ="background:#ff9966;"  > {{$clientdata->banks->name}}</td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
-            @elseif ($clientdata->status == 'close') closeStatus
-            @else overTime @endif"> {{$clientdata->banks->name}}</td>
+<td style ="background:#ff9966;"  > {{$clientdata->client_id}}</td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
-            @elseif ($clientdata->status == 'close') closeStatus
-            @else overTime @endif"> {{$clientdata->client_id}}</td>
+<td style ="background:#ff9966;"  > {{$clientdata->amount}}</td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
-            @elseif ($clientdata->status == 'close') closeStatus
-            @else overTime @endif"> {{$clientdata->amount}}</td>
+<td style ="background:#ff9966;"  >{{$clientdata->deposit_date}} </td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
-            @elseif ($clientdata->status == 'close') closeStatus
-            @else overTime @endif"> {{$clientdata->deposit_date}}</td>
+<td style ="background:#ff9966;"  >{{$clientdata->end_date}}</td>
 
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
-            @elseif ($clientdata->status == 'close') closeStatus
-            @else overTime @endif">{{$clientdata->end_date}}</td>
-
-<td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d ') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
-            @elseif ($clientdata->status == 'close') closeStatus
-            @else overTime @endif">{{$clientdata->designation}}</td>
+<td style ="background:#ff9966;"  >{{$clientdata->designation}}</td>
             
-            <td class="@if ($clientdata->status != 'open' && $clientdata->status != 'close' && $clientdata->end_date >=  date('Y-m-d') ) nullStatus 
-            @elseif ($clientdata->status == 'open' && $clientdata->end_date >=  date('Y-m-d ')) openStatus 
-            @elseif ($clientdata->status == 'close') closeStatus
-            @else overTime @endif"> {{$clientdata->type_check}}</td>
+<td style ="background:#ff9966;"> {{$clientdata->type_check}}</td>
+
+@elseif ($clientdata->status == 'open'  && $clientdata->end_date <  $todayDate )
+
+<td style ="background:#ff5050"  > {{$clientdata->banks->name}}</td>
+
+<td style ="background:#ff5050"  > {{$clientdata->client_id}}</td>
+
+<td style ="background:#ff5050"  > {{$clientdata->amount}}</td>
+
+<td style ="background:#ff5050"  >{{$clientdata->deposit_date}} </td>
+
+<td style ="background:#ff5050"  >{{$clientdata->end_date}}</td>
+
+<td style ="background:#ff5050"  >{{$clientdata->designation}}</td>
+            
+<td style ="background:#ff5050"> {{$clientdata->type_check}}</td>
+@else
+
+<td   > {{$clientdata->banks->name}}</td>
+
+<td   > {{$clientdata->client_id}}</td>
+
+<td  > {{$clientdata->amount}}</td>
+
+<td >{{$clientdata->deposit_date}} </td>
+
+<td  >{{$clientdata->end_date}}</td>
+
+<td  >{{$clientdata->designation}}</td>
+            
+<td > {{$clientdata->type_check}}</td>
+@endif
 
 @if (!empty($clientdata->status))
    @if ($clientdata->status == 'open')
    <td> <a href="{{route('statusclose', $clientdata->id)}}" class="btn btn-success" onClick="alert('Are you sure?')"
->@lang('Close loan')</a> </td>
+>@lang('Close a loan')</a> </td>
    @else
 <td > {{$clientdata->status}} </td>
     @endif
     @else
     
-    <td>  <a href="{{route('status1', $clientdata->id)}}">@lang('Open loan')</a> </td>
+    <td>  <a href="{{route('status1', $clientdata->id)}}">@lang('Open a loan')</a> </td>
 @endif
 
 </tr>
@@ -148,8 +159,8 @@ style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
 -->
 
 <style>
-.nullStatus {background:#F8F8FF}
-.openStatus {background:#7FFFD4}
-.overTime {background:#DC143C}
+.nullStatus {background:#ff9966}
+.openStatus {background:white}
+.closeSta {background:#DC143C}
 .closeStatus {background:#00BFFF}
 </style>
