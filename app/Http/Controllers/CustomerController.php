@@ -218,16 +218,16 @@ class CustomerController extends Controller
        foreach($data as $row)
        {
     $output .= '
-    <tr>
+    <tr style = "text-align:center;">
 
-     <td>'.$row->client_name.'</td>
-     <td>'.$row->adrress.'</td>
-     <td>'.$row->occupation.'</td>';
+     <td style = "vertical-align: middle;">'.$row->client_name.'</td>
+     <td style = "vertical-align: middle;">'.$row->adrress.'</td>
+     <td style = "vertical-align: middle;">'.$row->occupation.'</td>';
      
      if($row->status == "blocked"){
-        $output .= '<td style="background-color:red;">'.$row->status.'</td>';
+        $output .= '<td style="background-color:red; vertical-align: middle; width: 10%; height: 10%; font-weight: bold;">'.$row->status.'</td>';
 } else if($row->status == "authorized") {
-$output .= '<td style="background-color:green;">'.$row->status.'</td>';
+        $output .= '<td style="background-color:MediumSeaGreen; vertical-align: middle; width: 10%; height: 10%; font-weight: bold;">'.$row->status.'</td>';
 }
 
 $output .='   <td> 
