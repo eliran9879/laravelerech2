@@ -48,20 +48,20 @@
     <div class="col-md-2">
       <label class="control-label" for="status">Status</label></div>
 
-    @if ($customer->status == 'blocked')
+    @if ($customer->status == 'Blocked')
     <div class="col-md-10" name="status" id="status">
       <input type="radio" name="status" value="{{$customer->status}}" checked="checked">
       {{$customer->status}}
       <br>
-      <input type="radio" name="status" value="authorized">Authorized
+      <input type="radio" name="status" value="Authorized">Authorized
       <br>
     </div><br>
     @else
     <div class="col-md-10" name="status" id="status">
-      <input type="radio" name="status" value="authorized" checked="checked">
+      <input type="radio" name="status" value="Authorized" checked="checked">
       {{$customer->status}}
       <br>
-      <input type="radio" name="status" value="blocked">Blocked
+      <input type="radio" name="status" value="Blocked">Blocked
       <br>
 
     </div><br>

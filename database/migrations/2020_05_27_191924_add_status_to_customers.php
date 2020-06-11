@@ -14,7 +14,7 @@ class AddStatusToCustomers extends Migration
     public function up()
     {
         Schema::table('customers', function (Blueprint $table) {
-            $table->string('status')->default('authorized');
+            $table->string('status')->default('Authorized');
         });
     }
 

@@ -14,7 +14,7 @@ class AddStatusToPayees extends Migration
     public function up()
     {
         Schema::table('payees', function (Blueprint $table) {
-            $table->string('status')->default('authorized');
+            $table->string('status')->default('Authorized');
         });
     }
 

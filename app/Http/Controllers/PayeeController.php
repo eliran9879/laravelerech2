@@ -223,9 +223,9 @@ class PayeeController extends Controller
         <td style = "vertical-align: middle;">' . $row->adrress . '</td>
         <td style = "vertical-align: middle;">' . $row->occupation . '</td>';
 
-                    if ($row->status == "blocked") {
+                    if ($row->status == "Blocked") {
                         $output .= '<td style="background-color:red; vertical-align: middle; width: 10%; height: 10%; font-weight: bold;">' . $row->status . '</td>';
-                    } else if ($row->status == "authorized") {
+                    } else if ($row->status == "Authorized") {
                         $output .= '<td style="background-color:MediumSeaGreen; vertical-align: middle; width: 10%; height: 10%; font-weight: bold;">' . $row->status . '</td>';
                     }
                     $output .= ' <td> 
