@@ -16,22 +16,23 @@
 <th > Email</th>
 <th > Role</th>
 <th > Code organization</th>
+<th > Action</th>
 </tr> </thead>
-<tbody>
+<tbody style = "text-align:center; ">
 @foreach($users as $user)
 <td > {{$user->name}}</td>
 <td > {{$user->email}}</td>
 <td > {{$user->role}}</td>
 @if ($user->codesubmit == 0)
-<td>  <a href="{{route('code', $user->id)}}">@lang('submit')</a> </td>
+<td style = "text-align:center; vertical-align: middle;">  <a href="{{route('code', $user->id)}}">@lang('submit')</a> </td>
     @else
-    <td > {{$user->code}}</td>
+    <td style = "text-align:center; vertical-align: middle;"> {{$user->code}}</td>
 @endif
 <td> 
 <form method = 'post' action = "{{action('UserController@destroy',$user->id)}}" >
 @csrf   
 @method('DELETE')   
-<div style="margin:0">    
+<div style="margin:10;">    
 <button type="submit" class="btn btn-danger" onClick="alert('Are you sure?')">@lang('delete')</button>
 </div>
 </form></td> 
