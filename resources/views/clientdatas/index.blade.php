@@ -12,11 +12,11 @@
                 @csrf
                 <input type="file" name="file" class="form-control">
                 <br>
-                <button class="btn btn-success">Import transaction data</button>
+                <button class="btn btn-success">Import Transaction Data</button>
                 <a  class="btn btn-warning" href="{{ route('export1') }}"> 
                 <!-- <img src="https://www.pngitem.com/pimgs/m/179-1791169_export-to-excel-icons-transparent-excel-icon-png.png"
 style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
-Export Cov Data
+Export Transaction Data
           </a>
             </form>
         </div>

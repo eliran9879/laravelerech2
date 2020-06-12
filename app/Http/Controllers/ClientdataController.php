@@ -14,6 +14,7 @@ use App\Covenantshapoalim;
 use App\Covenantsmizrahi;
 use App\Covenantsibi;
 use App\Bank;
+use App\Http\Controllers\DateTimeZone;
 
 class ClientdataController extends Controller
 {
@@ -257,8 +258,9 @@ class ClientdataController extends Controller
         $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(5);
         }
         else{
-            $todayDate = date("Y-m-d");
-            echo($todayDate);
+           
+            $todayDate = date("Y-m-d H:i:s", strtotime('-20 hours'));
+            echo ($todayDate);
             $clientdatas= Clientdata::with('banks')->where('bank_id','!=','NULL')->paginate(5);
 
         }
