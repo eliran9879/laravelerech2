@@ -32,7 +32,7 @@ class CovenantshapoalimController extends Controller
      */
     public function create()
     {
-        //
+        return view ('covenantshapoalims.create');
     }
 
     /**
@@ -43,7 +43,17 @@ class CovenantshapoalimController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $covenantshapoalim = new Covenantshapoalim();
+        $id = 1;
+        //$covenantshapoalim->title = $request->title;
+        $covenantshapoalim->bank_id = $id;
+        $covenantshapoalim->designation = $request->designation;
+        $covenantshapoalim->total_month = $request->total_month;
+        $covenantshapoalim->max_approval = $request->max_approval;
+        $covenantshapoalim->approval = $request->approval;
+        $covenantshapoalim->type_check = $request->type_check;
+        $covenantshapoalim->save();
+        return redirect('covenants_hapoalim');
     }
 
     /**
@@ -91,6 +101,8 @@ class CovenantshapoalimController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $covenantshapoalims= Covenantshapoalim::find($id);
+        $covenantshapoalims->delete();
+        return redirect('covenants_hapoalim');
     }
 }
