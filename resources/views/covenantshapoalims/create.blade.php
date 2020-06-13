@@ -29,7 +29,7 @@
             <label for="type_check">Check's Type</label>
             <br>
             <input type="radio" name="type_check" value="salaried" checked> Salaried
-            <input type="radio" name="type_check" value="not salaried"> Not Salaried
+            <input type="radio" name="type_check" value="checked"> Checked
         </div>
 
         <div class="form-group">

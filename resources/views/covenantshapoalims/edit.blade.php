@@ -1,8 +1,15 @@
 @extends('layouts.sidebar3')
 @section('content')
 
-
 <h1>Edit Hapoalim's Covenants </h1>
+<form method='post' action="{{action('CovenantshapoalimController@destroy', $covenantshapoalims->id)}}">
+    @csrf
+    @method('DELETE')
+    <div class="form-group">
+        <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')" name="submit" value="Delete Covenants">
+    </div>
+</form>
+
 <form method='post' action="{{action('CovenantshapoalimController@update', $covenantshapoalims->id)}}">
     @csrf
     @method('PATCH')
@@ -28,24 +35,15 @@
         </div>
 
         <div class="form-group">
-            <label for="title">Type check:</label>
-            <input type="text" class="form-control" name="type_check" value="{{$covenantshapoalims->type_check}}">
+            <label for="title">Check's type:</label>
+            <br>
+            <input type="radio" name="type_check" value="salaried" checked value="{{$covenantshapoalims->type_check}}"> Salaried
+            <input type="radio" name="type_check" value="checked" value="{{$covenantshapoalims->type_check}}"> Checked
         </div>
-
-
-        <form method='post' action="{{action('CovenantshapoalimController@destroy', $covenantshapoalims->id)}}">
-            @csrf
-            @method('DELETE')
-            <div class="form-group">
-                <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')" name="submit" value="Delete Covenants">
-            </div>
-
-        </form>
 
         <div class="form-group">
             <input type="submit" class="btn btn-success btn-block" name="submit" value="Save">
         </div>
-
     </div>
 
 </form>
