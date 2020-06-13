@@ -18,7 +18,7 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
-                background-image:url("images/background.jpg")
+                background-image:url("images/background2.jpg")
             }
             
             .full-height {
@@ -64,7 +64,10 @@
             }
         </style>
     </head>
-    <body style="background-image:url('images/background.jpg')"> 
+    <body style="background-image:url('images/background2.jpg');
+                 background-repeat: no-repeat;
+                 background-attachment: fixed;
+                 background-size: cover;"> 
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
