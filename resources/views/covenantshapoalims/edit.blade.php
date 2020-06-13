@@ -34,7 +34,7 @@
 
 
 <div class = "form-group">
-    <input type ="submit" class = "form-control" name="submit" value ="Just Do It">
+    <input type ="submit" class="btn btn-success btn-block" name="submit" value ="Save">
 </div>
 
 </div>
