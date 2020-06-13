@@ -32,7 +32,7 @@ class CovenantsmizrahiController extends Controller
      */
     public function create()
     {
-        //
+        return view ('covenantsmizrahis.create');
     }
 
     /**
@@ -43,7 +43,16 @@ class CovenantsmizrahiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $covenantsmizrahis = new Covenantsmizrahi();
+        $id = 2;
+        $covenantsmizrahis->bank_id = $id;
+        $covenantsmizrahis->designation = $request->designation;
+        $covenantsmizrahis->total_month = $request->total_month;
+        $covenantsmizrahis->approval = $request->approval;
+        $covenantsmizrahis->max_approval = $request->max_approval;
+        $covenantsmizrahis->type_check = $request->type_check;
+        $covenantsmizrahis->save();
+        return redirect('covenants_mizrahi');
     }
 
     /**
@@ -92,6 +101,8 @@ class CovenantsmizrahiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $covenantsmizrahis = Covenantsmizrahi::find($id);
+        $covenantsmizrahis->delete();
+        return redirect('covenants_mizrahi');
     }
 }

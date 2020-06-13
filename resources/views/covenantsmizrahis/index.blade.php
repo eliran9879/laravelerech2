@@ -1,64 +1,63 @@
 @extends('layouts.sidebar')
 @section('content')
 
-    
-<div class="w3-sidebar w3-bar-block " style="margin: 0 0 5% 0;" >
-         
-         <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
-           <h2>Covanants Mizrahi</h2>
-           <ol class="list-unstyled">
-            
-           
-             
-          </ol>
-        
-                
- </div>
 
- <div class="panel panel-default">
+<div class="w3-sidebar w3-bar-block " style="margin: 0 0 5% 0;">
+  <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
+    <h2>Covanants Mizrahi</h2>
+    <ol class="list-unstyled">
+    </ol>
+  </div>
 
-<br>
-<div class="table-responsive">
+  <div class="col">
+    <a href="{{ route('covenants_mizrahi.create') }}" class="btn btn-sm btn-primary btn-create">
+      @lang('Add a new covanant')</a>
+  </div>
 
-<table class="table">
-<thead>
-<tr>
-<th >Name</th>
-<th >Designation</th>
-<th >Range</th>
-<th >Approval</th>
-<th >Max Aprroval</th>
-<th >Type check</th>
-<th >Action</th>
+  <div class="panel panel-default">
 
+    <br>
+    <div class="table-responsive">
 
-</tr>
-</thead>
-
-<tbody>
-@foreach($covenantsmizrahis as $covenantmizrahi)
-  <tr>
- 
-<td >{{$covenantmizrahi->banks->name}} </td>
-<td >{{$covenantmizrahi->designation}}</td>
-<td >{{$covenantmizrahi->total_month}}</td>
-<td >{{$covenantmizrahi->approval}}</td>
-<td >{{$covenantmizrahi->max_approval}}</td>
-<td >{{$covenantmizrahi->type_check}}</td>
-<td ><a href= "{{route('covenants_mizrahi.edit', $covenantmizrahi->id )}}"><img src="https://image.flaticon.com/icons/png/512/84/84380.png" style = "width:30px; height:30px; margin-left: auto; margin-right: auto;"> </a></td>
-</tr>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Range</th>
+            <th>Approval</th>
+            <th>Max Aprroval</th>
+            <th>Type check</th>
+            <th>Action</th>
 
 
-@endforeach
-</tbody>
-</table>
+          </tr>
+        </thead>
+
+        <tbody>
+          @foreach($covenantsmizrahis as $covenantmizrahi)
+          <tr>
+
+            <td>{{$covenantmizrahi->banks->name}} </td>
+            <td>{{$covenantmizrahi->designation}}</td>
+            <td>{{$covenantmizrahi->total_month}}</td>
+            <td>{{$covenantmizrahi->approval}}</td>
+            <td>{{$covenantmizrahi->max_approval}}</td>
+            <td>{{$covenantmizrahi->type_check}}</td>
+            <td><a href="{{route('covenants_mizrahi.edit', $covenantmizrahi->id )}}"><img src="https://image.flaticon.com/icons/png/512/84/84380.png" style="width:30px; height:30px; margin-left: auto; margin-right: auto;"> </a></td>
+          </tr>
+
+
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </div>
-</div>
 
-</div>
 
- 
- @endsection
+@endsection
 <!-- <footer class="ttt">Website of EISS</footer> 
 <style>
 
