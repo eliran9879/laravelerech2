@@ -1,8 +1,8 @@
 @extends('layouts.sidebar')
 @section('content')
-<title>Import Export Excel to database</title>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" /> -->
-</head>
+<!-- <title>Import Export Excel to database</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" /> 
+</head> -->
 
 <body>
   <!--   
@@ -30,12 +30,12 @@
   <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
     <h2>Covanants Ibi</h2>
     <ol class="list-unstyled">
-
-
-
     </ol>
+  </div>
 
-
+  <div class="col">
+    <a href="{{ route('covenants_ibi.create') }}" class="btn btn-sm btn-primary btn-create">
+      @lang('Add a new covanant')</a>
   </div>
 
   <div class="panel panel-default">

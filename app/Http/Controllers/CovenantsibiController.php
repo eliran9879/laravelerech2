@@ -32,7 +32,7 @@ class CovenantsibiController extends Controller
      */
     public function create()
     {
-        //
+        return view ('covenantsibis.create');
     }
 
     /**
@@ -43,7 +43,18 @@ class CovenantsibiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $covenantsibis = new Covenantsibi();
+        $id = 3;
+        //$covenantshapoalim->title = $request->title;
+        $covenantsibis->bank_id = $id;
+        $covenantsibis->designation = $request->designation;
+        $covenantsibis->total_month = $request->total_month;
+        $covenantsibis->total_amount = $request->total_amount;
+        $covenantsibis->approval = $request->approval;
+        $covenantsibis->max_percentage_general = $request->max_percentage_general;
+        $covenantsibis->min_percentage_general = $request->min_percentage_general;
+        $covenantsibis->save();
+        return redirect('covenants_ibi');
     }
 
     /**
@@ -91,6 +102,8 @@ class CovenantsibiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $covenantsibis = Covenantsibi::find($id);
+        $covenantsibis->delete();
+        return redirect('covenants_ibi');
     }
 }

@@ -38,6 +38,14 @@
             <input type="text" class="form-control" name="min_percentage_general" value="{{$covenantsibis->min_percentage_general}}">
         </div>
 
+        <form method='post' action="{{action('CovenantsibiController@destroy', $covenantsibis->id)}}">
+            @csrf
+            @method('DELETE')
+            <div class="form-group">
+                <input type="submit" class="form-control" name="submit" value="Delete Covenants">
+            </div>
+
+        </form>
 
         <div class="form-group">
             <input type="submit" class="btn btn-success btn-block" name="submit" value="Save">
