@@ -7,32 +7,32 @@
     <div class="col-md-10">
         <div class="form-group">
             <label for="designation">Designation</label>
-            <input type="text" class="form-control" name="designation">
+            <input type="text" class="form-control" name="designation" required>
         </div>
 
         <div class="form-group">
             <label for="total_month">Range</label>
-            <input type="text" class="form-control" name="total_month">
+            <input type="text" class="form-control" name="total_month" required>
         </div>
 
         <div class="form-group">
             <label for="total_amount">Max amount</label>
-            <input type="text" class="form-control" name="total_amount">
+            <input type="text" class="form-control" name="total_amount" required>
         </div>
 
         <div class="form-group">
             <label for="approval">Approval</label>
-            <input type="text" class="form-control" name="approval">
+            <input type="text" class="form-control" name="approval" required>
         </div>
 
         <div class="form-group">
             <label for="max_percentage_general">Max general</label>
-            <input type="text" class="form-control" name="max_percentage_general">
+            <input type="text" class="form-control" name="max_percentage_general" required>
         </div>
 
         <div class="form-group">
             <label for="min_percentage_general">Min general</label>
-            <input type="text" class="form-control" name="min_percentage_general">
+            <input type="text" class="form-control" name="min_percentage_general" required>
         </div>
 
         <div class="form-group">

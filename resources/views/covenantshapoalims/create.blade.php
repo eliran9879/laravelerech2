@@ -7,22 +7,22 @@
     <div class="col-md-10">
         <div class="form-group">
             <label for="designation">Designation</label>
-            <input type="text" class="form-control" name="designation">
+            <input type="text" class="form-control" name="designation" required>
         </div>
 
         <div class="form-group">
             <label for="total_month">Range</label>
-            <input type="text" class="form-control" name="total_month">
+            <input type="text" class="form-control" name="total_month" required>
         </div>
 
         <div class="form-group">
             <label for="approval">Approval</label>
-            <input type="text" class="form-control" name="approval">
+            <input type="text" class="form-control" name="approval" required>
         </div>
 
         <div class="form-group">
             <label for="max_approval">Max Approval</label>
-            <input type="text" class="form-control" name="max_approval">
+            <input type="text" class="form-control" name="max_approval" required>
         </div>
 
         <div class="form-group">

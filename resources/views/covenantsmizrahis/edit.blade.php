@@ -36,7 +36,7 @@
             @csrf
             @method('DELETE')
             <div class="form-group">
-                <input type="submit" class="form-control" name="submit" value="Delete Covenants">
+                <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')" name="submit" value="Delete Covenants">
             </div>
         </form>
 
