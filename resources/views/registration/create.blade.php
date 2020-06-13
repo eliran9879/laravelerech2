@@ -2,12 +2,15 @@
  
 @section('content')
 
-
+<body style="background-image:url('images/background2.jpg');
+                 background-repeat: no-repeat;
+                 background-attachment: fixed;
+                 background-size: cover;"> 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Register</div>
+                <div class="card-header">Register Admin</div>
                 <div class="card-body">
      <form method = 'post' action = "{{action('RegistrationController@store')}}" >
         {{ csrf_field() }}
@@ -64,5 +67,5 @@
     </div>
 </div>
     </form>
- 
+    </body>
 @endsection
