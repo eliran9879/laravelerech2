@@ -1,8 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
 
-
-
 <div class="w3-sidebar w3-bar-block " style="margin: 0 0 5% 0;">
 
   <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
@@ -20,7 +18,7 @@
 
     <br>
     <div class="table-responsive">
-      <table class="table">
+      <table class="table" style="text-align:center;">
         <thead>
           <tr>
             <th>Name</th>
@@ -30,12 +28,10 @@
             <th>Max Aprroval</th>
             <th>Type check</th>
             <th>Action</th>
-
-
           </tr>
         </thead>
 
-        <tbody>
+        <tbody style="text-align:center;">
           @foreach($covenantshapoalims as $covenanthapoalim)
           <tr>
 

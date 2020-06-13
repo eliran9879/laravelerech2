@@ -42,7 +42,7 @@
 
     <br>
     <div class="table-responsive">
-      <table class="table">
+      <table class="table" style="text-align:center;">
         <thead>
           <tr>
             <th>Name</th>
@@ -53,12 +53,10 @@
             <th>Max general</th>
             <th>Min general</th>
             <th>Action</th>
-
-
           </tr>
         </thead>
 
-        <tbody>
+        <tbody style="text-align:center;">
           @foreach($covenantsibis as $covenantibi)
           <tr>
 
