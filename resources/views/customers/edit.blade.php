@@ -71,7 +71,7 @@
 
   <div class="col-md-8">
     <div class="form-group">
-      <input type="submit" class="btn btn-md btn-primary" name="submit" value="Save Changes">
+      <input type="submit" class="btn btn-success btn-block" name="submit" value="Save Changes">
     </div>
   </div>
 </form>
