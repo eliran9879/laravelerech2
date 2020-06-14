@@ -21,12 +21,14 @@
     <div id="client_nameList">
     </div>
     </div>
+<br>
 
      <div class="col-md-2">
     <label class="control-label" for="account">Id Account</label></div>
     <div class="col-md-10">
      <input type = "number" class = "form-control" name = "account" required>
      </div>
+<br>
 
      <div class="col-md-2">
     <label class="control-label" for="occupation">Occupation</label></div>
@@ -38,6 +40,7 @@
   
   </select>
      </div>
+<br>
 
     <div class="col-md-2">
     <label class="control-label" for="adrress">Address</label></div>

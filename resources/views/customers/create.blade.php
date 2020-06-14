@@ -1,7 +1,7 @@
 @extends('layouts.sidebar2')
 @section('content')
 
-<h1>Create a new customer</h1>
+<h1>Create a new withdrawer</h1>
 <form method='post' action="{{action('CustomerController@store')}}">
   {{csrf_field()}}
 
@@ -22,13 +22,14 @@
       </div>
     </div>
 
-
+<br>
 
     <div class="col-md-2">
       <label class="control-label" for="account">Id Account</label></div>
     <div class="col-md-10">
       <input type="number" class="form-control" name="account" required>
     </div>
+    <br>
 
     <div class="col-md-2">
       <label class="control-label" for="occupation">Occupation</label></div>
@@ -40,6 +41,7 @@
 
       </select>
     </div>
+    <br>
 
     <div class="col-md-2">
       <label class="control-label" for="adrress">Address</label></div>

@@ -10,7 +10,7 @@
   </div>
 
   <div class="col">
-    <a href="{{ route('covenants_hapoalim.create') }}" class="btn btn-sm btn-primary btn-create">
+    <a href="{{ route('covenants_hapoalim.create') }}" class="btn btn-sm btn-primary btn-create" id="aaa">
       @lang('Add a new covanant')</a>
   </div>
 
@@ -55,27 +55,14 @@
 
 
 @endsection
-<!-- <footer class="ttt">Website of EISS</footer> 
-
 <style>
-
- 
-
-  .col {
-    position: absolute;
-    top: 87px;
-    left: 750px;
-  }
-
-.ttt{
-   position:absolute;
-   bottom:0;
-   width:100%;
-   height:30px;   
-   background:#6cf;
-   text-align:center;
-}
-
+   @media (min-width:1000px) {
+      #aaa {
+         position: absolute;
+         right: 1px;
+         top: -45px;
+      }
+   }
 </style>
 
 -->
