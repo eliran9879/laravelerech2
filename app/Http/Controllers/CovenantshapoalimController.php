@@ -101,7 +101,13 @@ class CovenantshapoalimController extends Controller
      */
     public function destroy($id)
     {
-        $covenantshapoalims= Covenantshapoalim::find($id);
+        if (Gate::denies('manager')) {
+            if (Gate::denies('worker')) {
+                abort(403, "Are you a hacker or what?");
+            }
+        }
+       
+        $covenantshapoalims = Covenantshapoalim::find($id);
         $covenantshapoalims->delete();
         return redirect('covenants_hapoalim');
     }

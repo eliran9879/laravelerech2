@@ -102,6 +102,11 @@ class CovenantsibiController extends Controller
      */
     public function destroy($id)
     {
+        if (Gate::denies('manager')) {
+            if (Gate::denies('worker')) {
+                abort(403, "Are you a hacker or what?");
+            }
+        }
         $covenantsibis = Covenantsibi::find($id);
         $covenantsibis->delete();
         return redirect('covenants_ibi');

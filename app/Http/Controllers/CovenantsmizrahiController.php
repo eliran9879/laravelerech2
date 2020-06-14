@@ -101,6 +101,11 @@ class CovenantsmizrahiController extends Controller
      */
     public function destroy($id)
     {
+        if (Gate::denies('manager')) {
+            if (Gate::denies('worker')) {
+                abort(403, "Are you a hacker or what?");
+            }
+        }
         $covenantsmizrahis = Covenantsmizrahi::find($id);
         $covenantsmizrahis->delete();
         return redirect('covenants_mizrahi');

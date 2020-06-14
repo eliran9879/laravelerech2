@@ -18,9 +18,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('covenants_ibi', 'CovenantsibiController')->middleware('auth');
+Route::get('covenants_ibi/destroy/{id}', 'CovenantsibiController@destroy');
+
 Route::resource('covenants_hapoalim', 'CovenantshapoalimController')->middleware('auth');
+Route::get('covenants_hapoalim/destroy/{id}', 'CovenantshapoalimController@destroy');
+
 Route::resource('covenants_mizrahi', 'CovenantsmizrahiController')->middleware('auth');
+Route::get('covenants_mizrahi/destroy/{id}', 'CovenantsmizrahiController@destroy');
+
 Route::resource('client_data', 'ClientdataController')->middleware('auth');
+
 // Route::post('/client_data/fetch1', 'ClientdataController@fetch1')->name('autocomplete1.fetch');
 
 //Route::resource('customers', 'CustomerController');

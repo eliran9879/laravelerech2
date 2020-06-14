@@ -2,13 +2,13 @@
 @section('content')
 
 <h1>Edit IBI's Covenants </h1>
-<form method='post' action="{{action('CovenantsibiController@destroy', $covenantsibis->id)}}">
+<!-- <form method='post' action="{{action('CovenantsibiController@destroy', $covenantsibis->id)}}">
     @csrf
     @method('DELETE')
     <div class="form-group">
         <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')" name="submit" value="Delete Covenants">
     </div>
-</form>
+</form> -->
 
 <form method='post' action="{{action('CovenantsibiController@update', $covenantsibis->id)}}">
     @csrf
