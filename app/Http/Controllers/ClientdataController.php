@@ -255,7 +255,8 @@ class ClientdataController extends Controller
             if (Gate::denies('worker')) {
                 abort(403,"Are you a hacker or what?");} }
         if (request()->has('status')){
-        $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(5);
+            $todayDate = date("Y-m-d H:i:s", strtotime('-20 hours'));
+            $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(5);
         }
         else{
            

@@ -50,7 +50,7 @@ Export Transaction Data
 <th > amount</th>
 <th > deposit date</th>
 <th > end date</th>
-<th > disignation</th>
+<th > designation</th>
 <th > Type check</th>
 <th > Action 
 <!-- <a  href="{{ route('export1') }}"> <img src="https://www.pngitem.com/pimgs/m/179-1791169_export-to-excel-icons-transparent-excel-icon-png.png"
@@ -113,7 +113,7 @@ style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
 @endif
 
 @if (!empty($clientdata->status))
-   @if ($clientdata->status == 'open')
+   @if ($clientdata->status == 'open' )
    <td> <a href="{{route('statusclose', $clientdata->id)}}" class="btn btn-success" onClick="alert('Are you sure?')"
 >@lang('Close a loan')</a> </td>
    @else
