@@ -58,7 +58,7 @@ class PayeeController extends Controller
 
         $payee->name = $request->name;
         $payee->id_account = $request->account;
-
+        $payee->status = 'Authorized';
         $payee->occupation = $request->occupation;
         $payee->adrress = $request->adrress;
         $ifexist = DB::table('payees')->where([['name', $request->name], ['id_account', $request->account]])->get();

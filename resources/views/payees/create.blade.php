@@ -47,7 +47,7 @@
        
     <br>
     <div class="col-md-10">
-    <button name="submit" type="submit" value="Save"> Add</button></div>
+    <button name="submit" type="submit" value="Save" class="btn btn-success btn-block"> Add</button></div>
     </form>
     </div>
 

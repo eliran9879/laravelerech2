@@ -362,7 +362,7 @@ body {
         <button class="dropdown-btn" >Customers <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-        <a href="{{ url('customers') }}" class="list-group-item list-group-item-action bg-light text-color">Withdrawer</a>
+        <a href="{{ url('customers') }}" class="list-group-item list-group-item-action bg-light text-color">Withdrawers</a>
         <a href="{{ url('payees') }}" class="list-group-item list-group-item-action bg-light text-color">Payees</a>
         </div>
         <a href="{{ url('client_data') }}" class="list-group-item list-group-item-action bg-light text-color">Transaction data</a>
