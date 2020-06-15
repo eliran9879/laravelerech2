@@ -16,7 +16,7 @@ class CreateClientdatasTable extends Migration
         Schema::create('clientdatas', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestamps();
-                $table->integer('withdrawer_id')->unsigned()->index();
+                $table->integer('client_id')->unsigned()->index();
                 $table->integer('payee_id')->unsigned()->index()->nullable();
                 $table->string('amount');
                 $table->string('deposit_date');

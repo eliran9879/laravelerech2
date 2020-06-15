@@ -20,7 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('adrress');
             $table->string('occupation');
             $table->string('id_account');
-            $table->string('payeee');
+            //$table->string('payeee');
         });
     }
 

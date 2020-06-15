@@ -115,8 +115,8 @@ var user_id;
             location.reload();
             // $('#user_table').data().ajax.reload();
             //  $("#result").load($data);
-            alert('Data Deleted');
-          }, 2000);
+            //alert('Data Deleted');
+          }, 0);
         }
       })
     });

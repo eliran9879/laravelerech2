@@ -356,7 +356,7 @@ body {
       <div class="list-group list-group-flush">
         <a href="{{ route('home') }}" class="list-group-item list-group-item-action bg-light text-color">Dashboard</a>
         @if (Gate::allows('manager')) 
-        <a href="{{url('users')}}" class="list-group-item list-group-item-action bg-light text-color">access to users </a>
+        <a href="{{url('users')}}" class="list-group-item list-group-item-action bg-light text-color">Access to users </a>
         @endif
         <a href="{{ url('client_data/create') }}" class="list-group-item list-group-item-action bg-light text-color">Query</a>
         <button class="dropdown-btn" >Customers <i class="fa fa-caret-down"></i>

@@ -84,7 +84,7 @@ class ClientdataController extends Controller
                     $sumamount_loan_ibi =  DB::table('clientdatas')->where([['designation','realestate'],['bank_id','3']])->sum('amount');
                     $sumamount_ibi =  DB::table('clientdatas')->where('designation','realestate')->sum('amount');
                 //    echo($sumamount);
-                if (($clientamount  < $client_ibi_aprroval) & (( $sumamount_loan_ibi/ $sumamount_ibi) < $client_ibi_max) & (( $sumamount_discount_ibi/ $sumamount_ibi) > $client_ibi_min))  {
+                if (($clientamount  < $client_ibi_aprroval) & (( $sumamount_loan_ibi/ $sumamount_ibi) < $client_ibi_max)){
                     $clientdatasibi = $client_month_ibi; 
                     //  echo($clientdatas);
                  }
@@ -305,7 +305,7 @@ class ClientdataController extends Controller
       $query = $request->get('query');
       echo($query);
       $data = DB::table('payees')
-        ->where('name', 'LIKE', "%{$query}%")
+        ->where('id_account', 'LIKE', "%{$query}%")
         ->get();
         $output = '';
       
@@ -313,14 +313,14 @@ class ClientdataController extends Controller
       foreach($data as $row)
       {
        $output .= '
-       <li style="cursor:pointer;color:blue">'.$row->name.'</li>
+       <li style="cursor:pointer;color:blue">'.$row->id_account.'</li>
        ';
       }
       $output .= '</ul>';
       if(count($data))
       echo $output;
         else
-            return ' Chosen But No Result Found, add new customer';
+            return ' Chosen But No Result Found, add new payee';
    
       
      }
@@ -336,7 +336,7 @@ class ClientdataController extends Controller
       $query = $request->get('query');
       echo($query);
       $data = DB::table('customers')
-        ->where('client_name', 'LIKE', "%{$query}%")
+        ->where('id_account', 'LIKE', "%{$query}%")
         ->get();
         $output1 = '';
       
@@ -344,14 +344,14 @@ class ClientdataController extends Controller
       foreach($data as $row)
       {
        $output1 .= '
-       <li style="cursor:pointer;color:blue">'.$row->client_name.'</li>
+       <li style="cursor:pointer;color:blue">'.$row->id_account.'</li>
        ';
       }
       $output1 .= '</ul>';
       if(count($data))
       echo $output1;
         else
-            return ' Chosen But No Result Found, add new customer';
+            return ' Chosen But No Result Found, add new withdrawer';
    
       
      }

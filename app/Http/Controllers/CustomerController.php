@@ -60,13 +60,10 @@ class CustomerController extends Controller
         }
         $customer = new Customer();
         $id = Auth::id();
-
-
-
         $customer->client_name = $request->client_name;
         $customer->id_account = $request->account;
-        $customer->payeee = $request->payeee;
-
+        //$customer->payeee = $request->payeee;
+        $customer->status = 'Authorized';
         $customer->occupation = $request->occupation;
         $customer->adrress = $request->adrress;
         $ifexist = DB::table('customers')->where([['client_name', $request->client_name], ['id_account', $request->id_account]])->get();

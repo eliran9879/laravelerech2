@@ -43,7 +43,7 @@
          <label for="Realestate">Real estate</label>
       </div><br>
 
-      <div id="dvPassport" style="display: none">
+      <!-- <div id="dvPassport" style="display: none">
          <div class="col-md-2">
             <label class="control-label" for="client_name"> Withdrawer Name </label></div>
          <div class="col-md-10">
@@ -51,17 +51,19 @@
             <div id="client_namelist">
             </div>
          </div><br>
-      </div>
+      </div> -->
 
       <div id="dvPassportid" style="display: none">
          <div class="col-md-2">
             <label class="control-label" for="id_account"> Withdrawer id </label></div>
          <div class="col-md-10">
             <input type="number" class="form-control" name="id_account" id="id_account" required>
+            <div id="client_namelist">
+            </div>
          </div> <br>
       </div>
 
-      <div id="dvPassportpayee" style="display: none">
+      <!-- <div id="dvPassportpayee" style="display: none">
          <div class="col-md-2">
             <label class="control-label" for="payeee"> Payeee </label></div>
          <div class="col-md-10">
@@ -69,12 +71,14 @@
             <div id="payeeeList">
             </div>
          </div><br>
-      </div>
+      </div> -->
       <div id="dvPassportidpayee" style="display: none">
          <div class="col-md-2">
             <label class="control-label" for="id_payee"> Payeee id </label></div>
          <div class="col-md-10">
             <input type="number" class="form-control " name="id_payee" id="id_payee">
+            <div id="payeeeList">
+            </div>
          </div><br>
       </div>
 
@@ -130,7 +134,7 @@
 <script>
    $(document).ready(function() {
 
-      $('#client_name').keyup(function() {
+      $('#id_account').keyup(function() {
          var query = $(this).val();
          if (query != '') {
             var _token = $('input[name="_token"]').val();
@@ -151,7 +155,7 @@
 
 
       $('#client_namelist').on('click', 'li', function() {
-         $('#client_name').val($(this).text());
+         $('#id_account').val($(this).text());
          //op = $(this).data('');
          // לפצל את זה מ , 
          // להוסיף את זה ל
@@ -164,7 +168,7 @@
 
       /*Payeee*/
 
-      $('#payeee').keyup(function() {
+      $('#id_payee').keyup(function() {
          var query = $(this).val();
          if (query != '') {
             var _token = $('input[name="_token"]').val();
@@ -185,7 +189,7 @@
 
 
       $('#payeeeList').on('click', 'li', function() {
-         $('#payeee').val($(this).text());
+         $('#id_payee').val($(this).text());
          $('#payeeeList').fadeOut();
       });
 
