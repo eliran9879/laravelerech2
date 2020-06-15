@@ -221,7 +221,8 @@ class PayeeController extends Controller
 
         <td style = "vertical-align: middle;">' . $row->name . '</td>
         <td style = "vertical-align: middle;">' . $row->adrress . '</td>
-        <td style = "vertical-align: middle;">' . $row->occupation . '</td>';
+        <td style = "vertical-align: middle;">' . $row->occupation . '</td>
+        <td style = "vertical-align: middle;">' . $row->id_account . '</td>';
 
                     if ($row->status == "Blocked") {
                         $output .= '<td style="background-color:red; vertical-align: middle; width: 10%; height: 10%; font-weight: bold;">' . $row->status . '</td>';

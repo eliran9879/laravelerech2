@@ -35,6 +35,7 @@
               <th style="text-align:center">Payee Name</th>
               <th style="text-align:center">Address</th>
               <th style="text-align:center">Occupation</th>
+              <th style="text-align:center">Id Account</th>
               <th style="text-align:center">Status</th>
               <th style="text-align:center">Edit</th>
               <th style="text-align:center">Delete</th>
@@ -122,8 +123,8 @@
             location.reload();
             // $('#user_table').data().ajax.reload();
             //  $("#result").load($data);
-            alert('Data Deleted');
-          }, 2000);
+            // alert('Data Deleted');
+          }, 0);
         }
       })
     });

@@ -1,7 +1,7 @@
 @extends('layouts.sidebar3')
 @section('content')
 
-<h1>Edit a Customer</h1>
+<h1>Edit a withdrawer</h1>
 <form method='post' action="{{action('CustomerController@update', $customer ->id)}}">
   @csrf
   @method('PATCH')
@@ -12,15 +12,9 @@
 
   <div class="form-group">
     <div class="col-md-2">
-      <label class="control-label" for="client_name"> Client name </label></div>
+      <label class="control-label" for="client_name"> Withdrawer name </label></div>
     <div class="col-md-10">
       <input type="text" class="form-control" name="client_name" value="{{$customer->client_name}}">
-    </div>
-    <br>
-    <div class="col-md-2">
-      <label class="control-label" for="payeee">Payeee</label></div>
-    <div class="col-md-10">
-      <input type="text" class="form-control" name="payeee" value="{{$customer->payeee}}">
     </div>
     <br>
 
