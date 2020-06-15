@@ -88,7 +88,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    welcome...
+                    Erech Finances
                 </div>
 
                 <div class="links">

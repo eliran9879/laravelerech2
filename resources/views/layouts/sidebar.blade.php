@@ -296,7 +296,7 @@ body {
             <div class="container">
                 <img src="images/erech_logo.png" style="width:100px;height:50px">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                     Erech Company
+                     Erech Finances
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

@@ -1,11 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+<body style="background-image:url('images/background2.jpg');
+                 background-repeat: no-repeat;
+                 background-attachment: fixed;
+                 background-size: cover;"> 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-            <script type="text/javascript"> document.body.style.backgroundImage = "url('pic.jpg')"; </script>
+            <!-- <script type="text/javascript"> document.body.style.backgroundImage = "url('pic.jpg')"; </script> -->
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -71,4 +75,5 @@
         </div>
     </div>
 </div>
+</body>
 @endsection

@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<body style="background-image:url('../images/background2.jpg');
+                 background-repeat: no-repeat;
+                 background-attachment: fixed;
+                 background-size: cover;"> 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -44,4 +48,5 @@
         </div>
     </div>
 </div>
+</body>
 @endsection
