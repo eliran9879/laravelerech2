@@ -23,7 +23,7 @@ class ClientdataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function all(Request $request)
+    public function all($rangeibi)
     {
         if (Gate::denies('manager')){  
             if (Gate::denies('worker')) {
@@ -40,53 +40,59 @@ class ClientdataController extends Controller
         $clientdatas1 = $datetime2->diff($datetime1);
         $days = $clientdatas1->format('%a');
         // echo($days);
-     if ($request->bondsduration){
-        $rangeibi=$request->bondsduration;
-        // echo( $rangeibi);
-     }
-     
-     if ($request->id_payee){
-        $id_payee=$request->id_payee;
-        echo( $id_payee);
-     }
+    //  if ($request->bondsduration){
+    //     $rangeibi=$request->bondsduration;
+    //     echo( $rangeibi);
+    //  }
+     echo( $rangeibi);
+    //  if ($request->id_payee){
+    //     $id_payee=$request->id_payee;
+    //     echo( $id_payee);
+    //  }
         $range = $days/30;
         // echo($range);//working until here
         foreach ($clientbasic as $clientbasic) {
             $client_des = $clientbasic->designation;
             $client_check = $clientbasic->type_check;
             $clientid =  $clientbasic->client_id;
+            $id_payee =  $clientbasic->payee_id;
             $clientamount = $clientbasic->amount;
-        echo($client_des);
+        // echo($client_des);
     }    
-          if (($client_des == 'Loan' || $client_des == 'real_estate') & ($client_check == 'Salaried')) {
-               if (($client_des == 'real_estate') & ($client_check == 'Salaried')) {
-                $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
+          if (($client_des == 'Loan' || $client_des == 'Realestate') & ($client_check == 'Salaried')) {
+               if (($client_des == 'Realestate') & ($client_check == 'Salaried')) {
+                // $min_month =  DB::table('covenantshapoalims')->where([['total_month','>', $range],['designation','loan']])->min('total_month');  
                 $min_month_ibi =  DB::table('covenantsibis')->where([['total_month','>', $rangeibi],['designation','realestate']])->min('total_month');  
-                if (!empty($min_month)){
-                    $client_month =  Covenantshapoalim::with('banks')->where([['designation','loan'],['total_month',$min_month]])->get(); 
-                    foreach ($client_month as $client_month1) {
-                        $client_poalim_aprroval = $client_month1->max_approval;
-                    }
-                   $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
-                //    echo($sumamount);
-                 if (($clientamount / $sumamount ) < $client_poalim_aprroval){
-                     $clientdatashapoalim = $client_month; 
-                    //  echo($clientdatas);
-                 }
-                }
+               echo( $min_month_ibi);
+                // if (!empty($min_month)){
+                //     $client_month =  Covenantshapoalim::with('banks')->where([['designation','loan'],['total_month',$min_month]])->get(); 
+                //     foreach ($client_month as $client_month1) {
+                //         $client_poalim_aprroval = $client_month1->max_approval;
+                //     }
+                //    $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
+                // //    echo($sumamount);
+                //  if (($clientamount / $sumamount ) < $client_poalim_aprroval){
+                //      $clientdatashapoalim = $client_month; 
+                //     //  echo($clientdatas);
+                //  }
+                // }
                  if (!empty($min_month_ibi)){
-                    $client_month_ibi =  Covenantsibi::with('banks')->where([['designation','realestate'],['total_month',$min_month_ibi]])->get(); 
+                    $client_month_ibi =  Covenantsibi::with('banks')->where([['designation','Realestate'],['total_month',$min_month_ibi]])->get(); 
+                    //  echo($client_month_ibi);
                     foreach ($client_month_ibi as $client_month1_ibi) {
                             $client_ibi_aprroval = $client_month1_ibi->total_amount;
                             $client_ibi_min = $client_month1_ibi->min_percentage_general;
                             $client_ibi_max = $client_month1_ibi->max_percentage_general;
                         }  
-                    $sumamount_loan_ibi =  DB::table('clientdatas')->where([['designation','realestate'],['bank_id','3']])->sum('amount');
-                    $sumamount_ibi =  DB::table('clientdatas')->where('designation','realestate')->sum('amount');
-                //    echo($sumamount);
-                if (($clientamount  < $client_ibi_aprroval) & (( $sumamount_loan_ibi/ $sumamount_ibi) < $client_ibi_max)){
+                    $sumamount_loan_ibi =  DB::table('clientdatas')->where([['designation','Realestate'],['bank_id','3'],['status','open']])->sum('amount');
+                    $sumamount_ibi =  DB::table('clientdatas')->where([['bank_id','3'],['status','open']])->sum('amount');
+                    // echo($sumamount_loan_ibi);
+                    echo($sumamount_loan_ibi + $clientamount);
+                    $sumamount_loan_ibi_total = $sumamount_loan_ibi + $clientamount;
+                    $sumamount_ibi_total =$sumamount_ibi + $clientamount;
+                if (($clientamount  < $client_ibi_aprroval) & (( $sumamount_loan_ibi_total / $sumamount_ibi_total) < $client_ibi_max) & (( $sumamount_loan_ibi_total/ $sumamount_ibi_total) > $client_ibi_min)){
                     $clientdatasibi = $client_month_ibi; 
-                    //  echo($clientdatas);
+                    //  echo($client_month_ibi);
                  }
                 }
                     
@@ -99,12 +105,13 @@ class ClientdataController extends Controller
             foreach ($client_month as $client_month1) {
                 $client_poalim_aprroval = $client_month1->max_approval;
             }
-           $sumamount =  DB::table('clientdatas')->where('client_id', $clientid)->sum('amount');
-        
+           $sumamount =  DB::table('clientdatas')->where([['client_id', $clientid],['status','open'],['bank_id','1']])->sum('amount');
+        if ($sumamount > 0){
          if (($clientamount / $sumamount ) < $client_poalim_aprroval){
              $clientdatashapoalim = $client_month; 
             //  echo($clientdatashapoalim);
          }
+        }
         }
          if (!empty($min_month_ibi)){
             $client_month_ibi =  Covenantsibi::with('banks')->where([['designation','loan'],['total_month',$min_month_ibi]])->get(); 
@@ -421,10 +428,13 @@ class ClientdataController extends Controller
         $query->end_date = $request->end_date;
         $query->designation = $request->transaction;
         $query->type_check = $request->type;
-
+        if ($request->bondsduration)
+        {
+        $rangeibi = $request->bondsduration;
+        }
         $query->save();
 
-        return redirect('all');
+        return $this->all($rangeibi);
     }
 
    
