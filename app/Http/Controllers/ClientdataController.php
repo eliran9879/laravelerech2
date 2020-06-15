@@ -44,7 +44,7 @@ class ClientdataController extends Controller
     //     $rangeibi=$request->bondsduration;
     //     echo( $rangeibi);
     //  }
-     echo( $rangeibi);
+    //  echo( $rangeibi);
     //  if ($request->id_payee){
     //     $id_payee=$request->id_payee;
     //     echo( $id_payee);
@@ -428,13 +428,19 @@ class ClientdataController extends Controller
         $query->end_date = $request->end_date;
         $query->designation = $request->transaction;
         $query->type_check = $request->type;
+       
+        $query->save();
         if ($request->bondsduration)
         {
         $rangeibi = $request->bondsduration;
         }
-        $query->save();
-
+        else
+        {
+         $rangeibi = 0;
+       
+        }
         return $this->all($rangeibi);
+        
     }
 
    
