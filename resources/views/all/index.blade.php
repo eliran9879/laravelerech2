@@ -4,7 +4,7 @@
 <div class="w3-sidebar w3-bar-block " style="margin: 0 0 5% 0;" >
          
          <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
-           <h2>Query results</h2>
+           <h2>Query Results</h2>
            <ol class="list-unstyled">
             
            
@@ -20,22 +20,32 @@
 <table class="table">
 <thead>
 <tr>
-<th > Name</th>
-<th > Range</th>
-<th > Approval</th>
-<th > Action </th>
+<th style="text-align:center"> Name Of Bank</th>
+<th style="text-align:center"> Designation</th>
+@if(!empty($clientdatasibi))
+@foreach($clientdatasibi as $clientdataibi)
+@if ($clientdataibi->designation == 'realestate')
+<th style="text-align:center"> Range (B.D)</th>
+@endif
+@endforeach
+
+@else
+<th style="text-align:center"> Range (M)</th>
+@endif
+<th style="text-align:center"> Approval (%)</th>
 </tr>
 </thead>
 
-<tbody>
+<tbody style="text-align:center;">
 @if(!empty($clientdatashapoalim))
 @foreach($clientdatashapoalim as $clientdata)
 <tr>
  
 <td >{{$clientdata->banks->name}} </td>
+<td > {{$clientdata->designation}}</td>              
+
 <td > {{$clientdata->total_month}}</td>
 <td > {{$clientdata->approval}}</td>
-              
 </tr>
 
 @endforeach
@@ -46,6 +56,8 @@
 <tr>
  
 <td >{{$clientdatami->banks->name}} </td>
+<td > {{$clientdatami->designation}}</td>              
+
 <td > {{$clientdatami->total_month}}</td>
 <td > {{$clientdatami->approval}}</td>
 
@@ -60,6 +72,8 @@
 <tr>
  
 <td >{{$clientdataibi->banks->name}} </td>
+<td > {{$clientdataibi->designation}}</td>              
+
 <td > {{$clientdataibi->total_month}}</td>
 <td > {{$clientdataibi->approval}}</td>
 

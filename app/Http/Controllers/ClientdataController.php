@@ -80,10 +80,11 @@ class ClientdataController extends Controller
                     $client_month_ibi =  Covenantsibi::with('banks')->where([['designation','Realestate'],['total_month',$min_month_ibi]])->get(); 
                     //  echo($client_month_ibi);
                     foreach ($client_month_ibi as $client_month1_ibi) {
-                            $client_ibi_aprroval = $client_month1_ibi->total_amount;
+                            $client_ibi_aprroval = $client_month1_ibi->total_amount *1000;
                             $client_ibi_min = $client_month1_ibi->min_percentage_general;
                             $client_ibi_max = $client_month1_ibi->max_percentage_general;
                         }  
+                        echo( $client_ibi_aprroval);
                     $sumamount_loan_ibi =  DB::table('clientdatas')->where([['designation','Realestate'],['bank_id','3'],['status','open']])->sum('amount');
                     $sumamount_ibi =  DB::table('clientdatas')->where([['bank_id','3'],['status','open']])->sum('amount');
                     // echo($sumamount_loan_ibi);
@@ -116,7 +117,7 @@ class ClientdataController extends Controller
          if (!empty($min_month_ibi)){
             $client_month_ibi =  Covenantsibi::with('banks')->where([['designation','loan'],['total_month',$min_month_ibi]])->get(); 
             foreach ($client_month_ibi as $client_month1_ibi) {
-                    $client_ibi_aprroval = $client_month1_ibi->total_amount;
+                    $client_ibi_aprroval = $client_month1_ibi->total_amount *1000;
                     $client_ibi_min = $client_month1_ibi->min_percentage_general;
                     $client_ibi_max = $client_month1_ibi->max_percentage_general;
                 }  
@@ -153,7 +154,7 @@ class ClientdataController extends Controller
     if (!empty($min_month_ibi)){
         $client_month_ibi =  Covenantsibi::with('banks')->where([['designation','discount'],['total_month',$min_month_ibi]])->get(); 
         foreach ($client_month_ibi as $client_month1_ibi) {
-            $client_ibi_aprroval = $client_month1_ibi->total_amount;
+            $client_ibi_aprroval = $client_month1_ibi->total_amount *1000;
             $client_ibi_min = $client_month1_ibi->min_percentage_general;
             $client_ibi_max = $client_month1_ibi->max_percentage_general;
         }  
@@ -168,7 +169,7 @@ class ClientdataController extends Controller
             // echo(  $min_month_mizrahi);
             $client_month_mizrahi =  Covenantsmizrahi::with('banks')->where([['designation','discount'],['total_month',$min_month_mizrahi]])->get(); 
             foreach ($client_month_mizrahi as $client_month1_mizrahi) {
-                $client_mizrahi_aprroval = $client_month1_mizrahi->max_approval;
+                $client_mizrahi_aprroval = $client_month1_mizrahi->max_approval *1000;
             }
             if ($clientamount < $client_mizrahi_aprroval){
             $clientdatasmizrahi = $client_month_mizrahi; 

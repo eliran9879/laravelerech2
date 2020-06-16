@@ -50,9 +50,9 @@
           <tr>
             <th>Name</th>
             <th>Designation</th>
-            <th>Range</th>
-            <th>Max amount</th>
-            <th>Approval</th>
+            <th>Range (M)</th>
+            <th>Max amount (K)</th>
+            <th>Approval (%)</th>
             <th>Max general</th>
             <th>Min general</th>
             <th>Action</th>

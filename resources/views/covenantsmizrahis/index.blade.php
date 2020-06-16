@@ -26,9 +26,9 @@
           <tr>
             <th>Name</th>
             <th>Designation</th>
-            <th>Range</th>
-            <th>Approval</th>
-            <th>Max Aprroval</th>
+            <th>Range (M)</th>
+            <th>Approval (%)</th>
+            <th>Max Aprroval (K)</th>
             <th>Type check</th>
             <th>Action</th>
           </tr>

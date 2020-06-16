@@ -28,8 +28,8 @@
           <tr>
             <th>Name</th>
             <th>Designation</th>
-            <th>Range</th>
-            <th>Approval</th>
+            <th>Range (M)</th>
+            <th>Approval (%)</th>
             <th>Max Aprroval</th>
             <th>Type check</th>
             <th style="right:15px;">Action</th>
