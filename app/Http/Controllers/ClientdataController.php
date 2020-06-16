@@ -261,6 +261,9 @@ class ClientdataController extends Controller
         if (Gate::denies('manager')){  
             if (Gate::denies('worker')) {
                 abort(403,"Are you a hacker or what?");} }
+        $id=Auth::id();
+        $org =  DB::table('users')->where('id',$id)->first('codesubmit');
+        if  ($org == '1'){
         if (request()->has('status')){
             $todayDate = date("Y-m-d H:i:s", strtotime('-20 hours'));
             $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(5);
@@ -273,6 +276,14 @@ class ClientdataController extends Controller
 
         }
         return view('clientdatas.index',['clientdatas' => $clientdatas,'todayDate' => $todayDate]);
+        }
+        else
+        {
+        // $nodata = 'no data'; 
+        return view('clientdatas.index');
+
+        }
+
     }
    
     public function status1($id)

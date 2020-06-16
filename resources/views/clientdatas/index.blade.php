@@ -1,7 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
 <body>
-   
 <div class="container">
     <div class="card bg-light mt-3">
         <div class="card-header">
@@ -23,7 +22,8 @@ Export Transaction Data
     </div>
 </div>
    
-</body>    
+</body>  
+<br>  
 <div class="w3-sidebar w3-bar-block " style="margin: 0 0 5% 0;" >
          
          <div class="sidebar-module" style="font-family: Arial Black, Gadget, sans-serif;">
@@ -63,6 +63,8 @@ style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
 </thead>
 
 <tbody>
+@if (!empty($clientdatas ))   
+
 @foreach($clientdatas as $clientdata)
   <tr>
   @if ($clientdata->status == NULL )
@@ -127,12 +129,24 @@ style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
 </tr>
 
 @endforeach
+
+
+
+@else
+
+@endif
+
 </tbody>
 </table>
 </div>
+@if (!empty($clientdatas ))   
 {{$clientdatas->links()}}
+@endif
 </div>
 </div>
+
+
+
 
  @endsection
 
