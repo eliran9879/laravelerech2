@@ -33,6 +33,12 @@ Export Transaction Data
            <a href ="client_data/?status=Close">Close</a>|
            <a href ="client_data">All</a>
            <br>
+           <img src="images/content2.png" style="width:120px;height:80px; position: absolute;
+         right: 25px; bottom:120px;">
+ <br>
+
+ 
+
            <!-- {{ date('Y-m-d H:i:s') }} <br> -->
            <!-- {{ date("d-m-Y H:i:s", strtotime("now -3 GMT")) }} -->
            <ol class="list-unstyled">
@@ -40,8 +46,6 @@ Export Transaction Data
  </div>
 
  <div class="panel panel-default">
-<br>
- <img src="images/content.png" style="width:100px;height:50px;left:200px ">
 <div class="table-responsive">
 <table class="table">
 <thead>
