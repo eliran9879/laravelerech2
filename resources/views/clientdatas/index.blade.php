@@ -41,6 +41,7 @@ Export Transaction Data
 
  <div class="panel panel-default">
 <br>
+ <img src="images/content.png" style="width:100px;height:50px;left:200px ">
 <div class="table-responsive">
 <table class="table">
 <thead>
@@ -53,7 +54,7 @@ Export Transaction Data
 <th > designation</th>
 <th > Type check</th>
 <th > Action 
-<!-- <a  href="{{ route('export1') }}"> <img src="https://www.pngitem.com/pimgs/m/179-1791169_export-to-excel-icons-transparent-excel-icon-png.png"
+ <!-- <img src="content.png"
 style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
 
 </th>
@@ -97,6 +98,23 @@ style = "width:30px; height:30px; margin-left:40px; margin-right: auto;"> -->
 <td style ="background:#ff5050"  >{{$clientdata->designation}}</td>
             
 <td style ="background:#ff5050"> {{$clientdata->type_check}}</td>
+
+@elseif ($clientdata->status == 'open'  && $clientdata->end_date <  $weeksmoreDate )
+
+<td style ="background:#ffff66"  > {{$clientdata->banks->name}}</td>
+
+<td style ="background:#ffff66"  > {{$clientdata->client_id}}</td>
+
+<td style ="background:#ffff66"  > {{$clientdata->amount}}</td>
+
+<td style ="background:#ffff66"  >{{$clientdata->deposit_date}} </td>
+
+<td style ="background:#ffff66"  >{{$clientdata->end_date}}</td>
+
+<td style ="background:#ffff66"  >{{$clientdata->designation}}</td>
+            
+<td style ="background:#ffff66"> {{$clientdata->type_check}}</td>
+
 @else
 
 <td   > {{$clientdata->banks->name}}</td>

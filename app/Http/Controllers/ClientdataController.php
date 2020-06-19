@@ -263,20 +263,24 @@ class ClientdataController extends Controller
             if (Gate::denies('worker')) {
                 abort(403,"Are you a hacker or what?");} }
         $id=Auth::id();
-        $org =  DB::table('users')->where('id',$id)->first('codesubmit');
+        $org =  DB::table('users')->where('id',$id)->value('codesubmit');
+        echo($org);
         if  ($org == '1'){
         if (request()->has('status')){
             $todayDate = date("Y-m-d H:i:s", strtotime('-20 hours'));
+            $weeksmoreDate = date("Y-m-d H:i:s", strtotime('20 days'));
             $clientdatas= Clientdata::with('banks')->where('status',request('status'))->paginate(5);
         }
         else{
            
             $todayDate = date("Y-m-d H:i:s", strtotime('-20 hours'));
-            echo ($todayDate);
+            $weeksmoreDate = date("Y-m-d H:i:s", strtotime('20 days'));
+            // echo($weeksmoreDate);
+            // echo ($todayDate);
             $clientdatas= Clientdata::with('banks')->where('bank_id','!=','NULL')->paginate(5);
 
         }
-        return view('clientdatas.index',['clientdatas' => $clientdatas,'todayDate' => $todayDate]);
+        return view('clientdatas.index',['clientdatas' => $clientdatas,'todayDate' => $todayDate, 'weeksmoreDate'=> $weeksmoreDate]);
         }
         else
         {
